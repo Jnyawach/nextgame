@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
+use App\Models\League;
 use Illuminate\Http\Request;
 
 class AdminCountriesController extends Controller
@@ -50,6 +51,9 @@ class AdminCountriesController extends Controller
     public function show($id)
     {
         //
+        $country=Country::findBySlugOrFail($id);
+        $leagues=League::where('country_id',$country->id)->get();
+        return  view('admin.countries.show', compact('country','leagues'));
     }
 
     /**

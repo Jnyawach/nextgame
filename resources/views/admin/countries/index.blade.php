@@ -20,6 +20,7 @@
                             <th>FLAG</th>
                             <th>NAME</th>
                             <th>CODE</th>
+                            <th>ACTION</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,6 +33,9 @@
                                 </td>
                                 <td>{{$country->name}}</td>
                                 <td>{{$country->code}}</td>
+                                <td><a href="{{route('countries.show', $country->slug)}}" class="btn btn-link">
+                                        Competitions
+                                    </a></td>
                             </tr>
                         @endforeach
 

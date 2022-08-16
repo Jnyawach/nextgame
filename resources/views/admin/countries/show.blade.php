@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Leagues')
+@section('title', $country->name)
 @section('styles')
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.css">
 @endsection
@@ -9,7 +9,7 @@
         @include('includes.status')
         <div class="card">
             <div class="card-header">
-                <h6>Countries ({{$leagues->count()}})</h6>
+                <h6>{{$country->name}} ({{$leagues->count()}} Competitions)</h6>
             </div>
             <div class="card-body">
                 @if($leagues->count()>0)
@@ -54,5 +54,6 @@
         } );
     </script>
 @endsection
+
 
 
