@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
-use App\Models\Country;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\League;
 use App\Models\Popular;
-use App\Models\Team;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Config;
 
-
-class MainController extends Controller
+class AdminPopularCompetitions extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +17,8 @@ class MainController extends Controller
     public function index()
     {
         //
-        $popular=Popular::all();
-        return view('welcome', compact('popular'));
+        $populars=Popular::all();
+        return view('admin.popular.index', compact('populars'));
     }
 
     /**
@@ -31,6 +29,8 @@ class MainController extends Controller
     public function create()
     {
         //
+        $leagues=League::all();
+        return view('admin.popular.create', compact('leagues'));
     }
 
     /**
@@ -42,6 +42,14 @@ class MainController extends Controller
     public function store(Request $request)
     {
         //
+
+        $validated=$request->validate([
+          'league_id'=>'required|integer'
+        ]);
+
+        $popuplar=Popular::create($validated);
+        return redirect('admin/popular')
+            ->with('status','Competition marked as Popular Successfully');
     }
 
     /**
@@ -87,39 +95,10 @@ class MainController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function SoccerTest(){
-
-
-       /*$key = Config::get('sports.KEY');
-        $host = Config::get('sports.URL');
-
-        $request=Http::withHeaders([
-            'x-rapidapi-host' => $host,
-            'x-rapidapi-key' => $key
-        ])->get('https://v3.football.api-sports.io/teams?country=England');
-
-        return json_decode($request);*/
-        /*$key = Config::get('sports.KEY');
-        $host = Config::get('sports.URL');
-
-
-            $request = Http::withHeaders([
-                'x-rapidapi-host' => 'football-prediction-api.p.rapidapi.com',
-                'x-rapidapi-key' => '36658edad1mshd563a16fdba23b6p1e680djsnf96de1513d8f'
-            ])->get('https://football-prediction-api.p.rapidapi.com/api/v2/predictions?market=classic&iso_date=2022-08-21&federation=UEFA');
-
-            $result = json_decode($request);
-            return $result;*/
-
-        //scorebat highlights
-
-        $response=Http::get('https://www.scorebat.com/video-api/v3/feed/?token='.Config::get('scorebat.access_token'));
-       return json_decode($response);
-
-
-
+        $popular=Popular::findOrFail($id);
+        $popular->delete();
+        return redirect('admin/popular')
+            ->with('status','Competition removed from popular');
 
     }
 }

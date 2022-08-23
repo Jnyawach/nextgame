@@ -7,9 +7,10 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Team extends Model
+class Highlight extends Model
 {
     use HasFactory, Sluggable, SluggableScopeHelpers;
+
     /**
      * Return the sluggable configuration array for this model.
      *
@@ -25,12 +26,7 @@ class Team extends Model
     }
 
     protected $fillable=[
-        'name','country_id','team_id','founded','code',
-        'logo','venue_id','venue_name','venue_address','venue_capacity',
-        'venue_surface','venue_image'
+       'name','match_url','competition_url','thumbnail','match_date',
+        'video_id','video_title','video_embed','competition'
     ];
-
-    public function country(){
-        return $this->belongsTo(Country::class);
-    }
 }

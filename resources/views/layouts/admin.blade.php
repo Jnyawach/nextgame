@@ -52,6 +52,16 @@
                         <i class="align-middle" data-feather="folder"></i> <span class="align-middle">Leagues</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->is('admin/teams') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('teams.index')}}">
+                        <i class="align-middle" data-feather="users"></i> <span class="align-middle">Teams</span>
+                    </a>
+                </li>
+                <li class="sidebar-item {{ request()->is('admin/popular') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('popular.index')}}">
+                        <i class="align-middle" data-feather="thumbs-up"></i> <span class="align-middle">Popular Competitions</span>
+                    </a>
+                </li>
 
 
             </ul>

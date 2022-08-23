@@ -16,6 +16,21 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->bigInteger('country_id')->unsigned()->index();
+            $table->integer('team_id');
+            $table->integer('founded')->nullable();
+            $table->string('name');
+            $table->string('slug');
+            $table->string('code')->nullable();
+            $table->string('logo')->nullable();
+            $table->integer('venue_id')->nullable();
+            $table->string('venue_name')->nullable();
+            $table->string('venue_address')->nullable();
+            $table->integer('venue_capacity')->nullable();
+            $table->string('venue_surface')->nullable();
+            $table->string('venue_image')->nullable();
+            $table->foreign('country_id')->references('id')
+                ->on('countries')->cascadeOnDelete();
         });
     }
 
