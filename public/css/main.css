@@ -130,8 +130,11 @@ a:hover{
 
 .match-details h6{
     font-weight: 700;
+    font-size: 13px;
 }
-
+.match-details p{
+    font-size: 13px;
+}
 .match-details p span{
     color: var(--senior);
 }

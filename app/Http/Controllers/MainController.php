@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Country;
+use App\Models\Highlight;
 use App\Models\Popular;
 use App\Models\Team;
 use Illuminate\Http\Request;
@@ -20,7 +21,8 @@ class MainController extends Controller
     {
         //
         $popular=Popular::all();
-        return view('welcome', compact('popular'));
+        $highlights=Highlight::take(4)->get();
+        return view('welcome', compact('popular','highlights'));
     }
 
     /**
@@ -116,7 +118,13 @@ class MainController extends Controller
         //scorebat highlights
 
         $response=Http::get('https://www.scorebat.com/video-api/v3/feed/?token='.Config::get('scorebat.access_token'));
-       return json_decode($response);
+    $highlights=json_decode($response);
+    foreach ($highlights as $highlight){
+       foreach($highlight as $video){
+           return $video;
+       }
+    }
+
 
 
 

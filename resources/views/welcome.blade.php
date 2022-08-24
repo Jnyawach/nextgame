@@ -1,278 +1,41 @@
 @extends('layouts.main')
 @section('title','Latest Match highlights and football Predictions')
 @section('content')
+    @if($highlights->count()>0)
     <section class="latest-highlights mt-5">
         <div class="play-title">
-            <h1 class="fs-4 d-inline-block">Latest Match Highlights</h1>
-            <div class="d-inline-block float-end">
-                <button type="button" class="btn btn-link fs-6" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                    <span><i data-feather="chevron-left"></i></span>
-                </button>
-                <button type="button" class="btn btn-link fs-6" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                    <span><i data-feather="chevron-right"></i></span>
-                </button>
-            </div>
+            <h1 class="fs-6 fw-bold">LATEST MATCH HIGHLIGHTS</h1>
+
         </div>
 
-        <div id="carouselExampleControls" class="carousel slide mt-4"  data-bs-pause="hover" >
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="row ">
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
+        <div class="row mt-5">
+            @foreach($highlights as $highlight)
+            <div class="col-12 col-sm-6 col-md-6 col-lg-3 pt-3">
+                <a href="#" title="match name" class="text-decoration-none">
+                    <div>
+                        <div class="player-thumbnail">
+                            <img src="{{$highlight->thumbnail}}" class="img-fluid curved">
+                            <div class="play-icon rounded-circle">
+                                <span><i data-feather="play"></i></span>
 
-                                    </div>
+                            </div>
 
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
                         </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
 
-                                    </div>
+                        <div class="match-details">
+                            <h6 class="mt-3">{{$highlight->name}}</h6>
+                            <p class="mt-2 ">{{$highlight->competition}}: <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
 
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row ">
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
 
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="row ">
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                        <div class="col-12 col-md-4 col-lg-3">
-                            <a href="#" title="match name" class="text-decoration-none">
-                                <div>
-                                    <div class="player-thumbnail">
-                                        <img src="images/img.png" class="img-fluid rounded-3 curved">
-                                        <div class="play-icon rounded-circle">
-                                            <span><i data-feather="play"></i></span>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="match-details">
-                                        <h6 class="mt-3">Talleres Cordoba - Velez Sarsfield</h6>
-                                        <p class="mt-2">COPA LIBERTADORES: Playoffs <span>3hrs ago</span></p>
-
-                                    </div>
-                                </div>
-
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                </a>
             </div>
-
+            @endforeach
         </div>
 
     </section>
+    @endif
     <section class="popular-competitions mt-5">
         <hr>
         <div class="mt-5 mb-5">

@@ -16,8 +16,8 @@ class AdminVideoController extends Controller
     public function index()
     {
         //
-        $videos=Highlight::all();
-        return view('admin.videos.index', compact('videos'));
+        $highlights=Highlight::all();
+        return view('admin.videos.index', compact('highlights'));
     }
 
     /**
@@ -50,6 +50,8 @@ class AdminVideoController extends Controller
     public function show($id)
     {
         //
+        $highlight=Highlight::findBySlugOrFail($id);
+        return view('admin.videos.show', compact('highlight'));
     }
 
     /**
@@ -84,5 +86,9 @@ class AdminVideoController extends Controller
     public function destroy($id)
     {
         //
+        $highlight=Highlight::findOrFail($id);
+        $highlight->delete();
+        return redirect()->back()
+            ->with('status','Highlight successfully deleted');
     }
 }

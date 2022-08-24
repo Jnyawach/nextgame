@@ -63,6 +63,12 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ request()->is('admin/videos') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('videos.index')}}">
+                        <i class="align-middle" data-feather="video"></i> <span class="align-middle">Highlights</span>
+                    </a>
+                </li>
+
 
             </ul>
 
