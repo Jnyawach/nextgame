@@ -92,9 +92,11 @@ a:hover{
 }
 
 .btn{
-
     border-radius: 0px;
 
+}
+.btn:focus{
+    box-shadow: none;
 }
 .active-btn{
     background-color: var(--senior);
@@ -109,6 +111,15 @@ a:hover{
 }
 .btn-outline-primary:hover{
     background-color: var(--senior);
+}
+.btn-outline-light{
+    border: 1px solid var(--light);
+    color: var(--light);
+}
+.btn-outline-light:hover{
+    border: 1px solid var(--senior);
+    color: var(--senior);
+    background:none;
 }
 .btn-link{
     color: var(--senior);
@@ -301,4 +312,79 @@ footer .nav .nav-item .nav-link{
     height: 25px;
     line-height:25px;
     width: 25px;
+}
+
+/*----------------competitions page-----------------*/
+.competitions li{
+    margin-top: 15px;
+}
+.competitions li a{
+    font-size: 18px;
+}
+.country-name{
+    color: var(--senior);
+}
+
+/*---------------competition page-------------------*/
+
+.competition-header img{
+    background-color: var(--light);
+    border-radius: 1px;
+    padding: 5px;
+}
+
+/*-------------competition table page ------------*/
+.season{
+    background: none;
+    border-radius: 0px;
+    width: 100px;
+    color: var(--senior);
+    border: 0px;
+    padding: 0px;
+    font-weight: bold;
+
+
+}
+.season:focus{
+    border: 0px;
+    box-shadow: none;
+    outline: none;
+}
+
+.league-table{
+    color: var(--light) !important;
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    box-sizing: border-box;
+
+}
+.league-table thead tr{
+    border-bottom: 1px solid #222;
+}
+.league-table thead tr th{
+
+    font-weight: bold;
+    padding:15px 0px 15px 0px;
+    color: var(--senior);
+    font-size: 13px;
+
+
+}
+.premier-head{
+    width: 4%;
+
+}
+.premier-body{
+    width: 4%;
+    text-align: left !important;
+}
+.league-table tbody tr{
+    border-bottom: 1px solid #222;
+}
+.league-table tbody tr td{
+    padding:8px 0px 8px 0px;
+    text-align: center;
+    font-size: 13px;
+
 }

@@ -26,6 +26,7 @@ use App\Http\Controllers\Admin\AdminVideoController;
 
 /*General Controller------------*/
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\General\MatchHighlightsController;
 
 Route::group([], function (){
     Route::resource('admin/videos', AdminVideoController::class);
@@ -39,6 +40,7 @@ Route::group([], function (){
 //General Routes
 Route::group([], function (){
     Route::resource('/', MainController::class);
+    Route::resource('match-highlights', MatchHighlightsController::class);
 });
 
 

@@ -11,10 +11,15 @@
         <div class="row mt-5">
             @foreach($highlights as $highlight)
             <div class="col-12 col-sm-6 col-md-6 col-lg-3 pt-3">
-                <a href="#" title="match name" class="text-decoration-none">
+                <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
                     <div>
                         <div class="player-thumbnail">
-                            <img src="{{$highlight->thumbnail}}" class="img-fluid curved">
+                            @if(file_get_contents($highlight->thumbnail))
+                                <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
+                            @else
+                                <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
+                            @endif
+
                             <div class="play-icon rounded-circle">
                                 <span><i data-feather="play"></i></span>
 
@@ -33,6 +38,8 @@
             </div>
             @endforeach
         </div>
+
+        <a href="{{route('match-highlights.index')}}" class="btn btn-outline-light mt-5">See all highlights<span class="ms-2"><i data-feather="arrow-right"></i></span></a>
 
     </section>
     @endif
