@@ -81,6 +81,7 @@
         </div>
 
     </section>
+    @if($videos->count()>0)
     <section class="mt-5 p-3">
         <h1 class="fw-bold fs-5">Related Match Highlights</h1>
         <div class="row mt-5">
@@ -116,4 +117,41 @@
 
 
     </section>
+    @else
+        <section class="mt-5 p-3">
+            <h1 class="fw-bold fs-5">Latest Match Highlights</h1>
+            <div class="row mt-5">
+                @foreach($latest as $highlight)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-3 pt-3">
+                        <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
+                            <div>
+                                <div class="player-thumbnail">
+                                    @if(file_get_contents($highlight->thumbnail))
+                                        <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
+                                    @else
+                                        <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
+                                    @endif
+
+                                    <div class="play-icon rounded-circle">
+                                        <span><i data-feather="play"></i></span>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="match-details">
+                                    <h6 class="mt-3">{{$highlight->name}}</h6>
+                                    <p class="mt-2 ">{{$highlight->competition}}: <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
+
+                                </div>
+                            </div>
+
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+
+
+        </section>
+    @endif
 @endsection

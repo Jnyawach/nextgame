@@ -51,8 +51,9 @@ class MatchHighlightsController extends Controller
     {
         //
         $highlight=Highlight::findBySlugOrFail($id);
-        $videos=Highlight::where('id','!=',$highlight->id)->take(4)->get();
-        return view('match-highlights.show', compact('highlight','videos'));
+        $videos=Highlight::where('id','!=',$highlight->id)->where('competition',$highlight->competition)->take(4)->get();
+        $latest=Highlight::where('id','!=',$highlight->id)->take(4)->get();
+        return view('match-highlights.show', compact('highlight','videos','latest'));
     }
 
     /**
