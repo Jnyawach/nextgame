@@ -10,4 +10,13 @@
     <meta name="twitter:description" content="Football Highlights, Match Recaps,Football match Reviews">
     <meta name="twitter:image" content="{{asset('images/default')}}">
     <meta name="twitter:card" content="summary_large_image">
+    @livewireStyles
+@endsection
+@section('content')
+    <section class="mt-5">
+    @livewire('highlights')
+    </section>
+@endsection
+@section('scripts')
+    @livewireScripts
 @endsection

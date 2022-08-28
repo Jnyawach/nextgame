@@ -20,8 +20,8 @@
                                 <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
                             @endif
 
-                            <div class="play-icon rounded-circle">
-                                <span><i data-feather="play"></i></span>
+                            <div class="play-icon">
+                                <span class="fs-4"><i class="fal fa-play"></i></span>
 
                             </div>
 
@@ -39,7 +39,7 @@
             @endforeach
         </div>
 
-        <a href="{{route('match-highlights.index')}}" class="btn btn-outline-light mt-5">See all highlights<span class="ms-2"><i data-feather="arrow-right"></i></span></a>
+        <a href="{{route('match-highlights.index')}}" class="btn btn-outline-light mt-5">See all highlights<span class="ms-2"><i class="far fa-long-arrow-alt-right"></i></span></a>
 
     </section>
     @endif

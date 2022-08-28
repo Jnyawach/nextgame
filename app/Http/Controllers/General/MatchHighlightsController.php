@@ -17,6 +17,7 @@ class MatchHighlightsController extends Controller
     {
         //
 
+
         return  view('match-highlights.index');
     }
 

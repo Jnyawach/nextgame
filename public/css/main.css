@@ -80,6 +80,12 @@ a:hover{
     background-color: var(--primary) !important;
 
 }
+.modal-backdrop {
+    z-index: 1020!important;
+}
+.smaller .nav .nav-item .nav-link{
+    font-size: 16px;
+}
 
  .nav .nav-item .nav-link{
     font-weight: normal;
@@ -103,7 +109,14 @@ a:hover{
     color: white !important;
 }
 .btn-primary{
-
+    background-color: var(--senior);
+    color: white !important;
+    border: 1px solid var(--senior);
+}
+.btn-primary:hover{
+    background-color: var(--senior);
+    color: var(--primary) !important;
+    border: 1px solid var(--senior);
 }
 .btn-outline-primary{
     border: 1px solid var(--senior);
@@ -157,15 +170,17 @@ a:hover{
     align-items: center;
 }
 .play-icon{
-    background-color: var(--junior);
-    color: white;
-    height: 50px !important;
-    width: 50px !important;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     opacity: 0.6;
     position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    background:var(--junior);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 
 }
 .player-thumbnail:hover .play-icon{
@@ -387,4 +402,39 @@ footer .nav .nav-item .nav-link{
     text-align: center;
     font-size: 13px;
 
+}
+
+/*-----------------------Hihglights Page--------------*/
+
+.highlight-title{
+    position: absolute;
+    bottom: 0px;
+    padding-left: 5%;
+    background: linear-gradient(0deg, rgba(0,0,0,0.8) 65%, rgba(0,212,255,0.01) 100%);
+    width: 100%;
+    padding-top: 10%;
+    padding-bottom: 1%;
+
+}
+.highlight-title h6{
+    font-weight: bolder;
+    font-size: 24px;
+}
+.highlight-title p span{
+    color: var(--senior);
+}
+.play-icon-main{
+    position: absolute;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    padding: 5px;
+    background:var(--junior);
+    color: white;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    left: 45%;
+    top: 40%;
+    z-index: 100;
 }

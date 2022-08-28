@@ -52,20 +52,26 @@
         <h1 class="fw-bold fs-5">{{$highlight->name}}</h1>
 
 
-        <div class="highlight mt-5">
+        <div class="highlight mt-3">
             <div class="row">
-                <div class="col-12 col-md-8">
-                    <div class="shadow-sm p-1 bg-light" >
+                <div class="col-12 col-md-9">
+                    <div class="shadow-sm" >
                         <div style='width:100%;height:0px;position:relative;padding-bottom:56.250%;background:#000;'>
                            {!! $highlight->video_embed!!}
                         </div>
                     </div>
                     <div class="mt-3">
-                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
-                        <div class="addthis_inline_share_toolbox"></div>
+                        <div id="social-links">
+                            <span class="me-3">Share:</span>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}" class="btn btn-link" target="_blank"><span><i class="fab fa-facebook-f"></i></span></a>
+                            <a href="https://twitter.com/intent/tweet?url={{url()->current()}}" class="btn btn-link" target="_blank"><span><i class="fab fa-twitter"></i></span></a>
+                            <a href="https://wa.me/?text={{url()->current()}}" class="btn btn-link" target="_blank" ><span><i class="fab fa-whatsapp"></i></span></a>
+
+
+                        </div>
                         <div class="match-details">
                             <h6 class="mt-3">{{$highlight->competition}}</h6>
-                            <p class="fs-5">{{$highlight->name}} <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
+                            <p class="fs-6">{{$highlight->name}} <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
                         </div>
 
                     </div>
@@ -96,8 +102,8 @@
                                     <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
                                 @endif
 
-                                <div class="play-icon rounded-circle">
-                                    <span><i data-feather="play"></i></span>
+                                <div class="play-icon">
+                                    <span class="fs-4"><i class="fal fa-play"></i></span>
 
                                 </div>
 
@@ -132,10 +138,10 @@
                                         <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
                                     @endif
 
-                                    <div class="play-icon rounded-circle">
-                                        <span><i data-feather="play"></i></span>
+                                        <div class="play-icon">
+                                            <span class="fs-4"><i class="fal fa-play"></i></span>
 
-                                    </div>
+                                        </div>
 
                                 </div>
 
@@ -154,4 +160,8 @@
 
         </section>
     @endif
+@endsection
+@section('scripts')
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5e8efbdff2cc3431"></script>
 @endsection
