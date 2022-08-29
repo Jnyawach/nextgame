@@ -30,7 +30,7 @@ return new class extends Migration
             $table->string('venue_surface')->nullable();
             $table->string('venue_image')->nullable();
             $table->foreign('country_id')->references('id')
-                ->on('countries')->cascadeOnDelete();
+                ->on('competition-countries')->cascadeOnDelete();
         });
     }
 

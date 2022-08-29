@@ -96,6 +96,12 @@ a:hover{
  .nav-item .nav-link:hover{
     color: var(--senior);
 }
+.text-primary{
+    color: var(--senior) !important;
+}
+.text-light{
+    color: var(--light) !important;
+}
 
 .btn{
     border-radius: 0px;
@@ -128,6 +134,7 @@ a:hover{
 .btn-outline-light{
     border: 1px solid var(--light);
     color: var(--light);
+    background: none;
 }
 .btn-outline-light:hover{
     border: 1px solid var(--senior);

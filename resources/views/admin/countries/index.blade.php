@@ -33,7 +33,7 @@
                                 </td>
                                 <td>{{$country->name}}</td>
                                 <td>{{$country->code}}</td>
-                                <td><a href="{{route('countries.show', $country->slug)}}" class="btn btn-link">
+                                <td><a href="{{route('competition-countries.show', $country->slug)}}" class="btn btn-link">
                                         Competitions
                                     </a></td>
                             </tr>

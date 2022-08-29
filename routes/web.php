@@ -28,13 +28,14 @@ use App\Http\Controllers\Admin\AdminVideoController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\General\MatchHighlightsController;
 use App\Http\Controllers\General\CompetitionsController;
+use App\Http\Controllers\General\CountriesController;
 
 Route::group([], function (){
     Route::resource('admin/videos', AdminVideoController::class);
     Route::resource('admin/popular', AdminPopularCompetitions::class);
     Route::resource('admin/teams', AdminTeamsController::class);
     Route::resource('admin/leagues', AdminLeaguesController::class);
-    Route::resource('admin/countries', AdminCountriesController::class);
+    Route::resource('admin/competition-countries', AdminCountriesController::class);
     Route::resource('admin/timezones', AdminTimezoneController::class);
     Route::resource('admin', AdminController::class);
 });
@@ -43,6 +44,7 @@ Route::group([], function (){
     Route::resource('/', MainController::class);
     Route::resource('match-highlights', MatchHighlightsController::class);
     Route::resource('competitions', CompetitionsController::class);
+    Route::resource('competition-countries', CountriesController::class);
 });
 
 

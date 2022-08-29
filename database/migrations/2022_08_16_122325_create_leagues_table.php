@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('type')->nullable();
             $table->string('logo')->nullable();
             $table->foreign('country_id')->references('id')
-                ->on('countries')->cascadeOnDelete();
+                ->on('competition-countries')->cascadeOnDelete();
         });
     }
 

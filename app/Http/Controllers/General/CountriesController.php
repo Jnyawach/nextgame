@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
 use App\Models\Country;
-use App\Models\League;
 use Illuminate\Http\Request;
 
-class AdminCountriesController extends Controller
+class CountriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,10 @@ class AdminCountriesController extends Controller
     public function index()
     {
         //
-        $countries=Country::all();
-        return  view('admin.competition-countries.index', compact('countries'));
+        $countries=Country::query()->orderBy('name')->get()->groupBy(function (Country $directory): string {
+            return ($directory->name)[0];
+        });
+        return view('competition-countries.index', compact('countries'));
     }
 
     /**
@@ -52,8 +53,7 @@ class AdminCountriesController extends Controller
     {
         //
         $country=Country::findBySlugOrFail($id);
-        $leagues=League::where('country_id',$country->id)->get();
-        return  view('admin.competition-countries.show', compact('country','leagues'));
+        return  view('competition-countries.show', compact('country'));
     }
 
     /**

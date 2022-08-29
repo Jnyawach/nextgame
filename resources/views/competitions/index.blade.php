@@ -23,7 +23,7 @@
                     <li><a href="{{route('competitions.show', $league->slug)}}" class="text-decoration-none fs-6" title="{{$league->name}}">{{$league->name}}</a> </li>
                     @endforeach
 
-                    <li><a href="#" class="btn btn-link p-0 text-decoration-none">Show all<span class="ms-2"><i class="fal fa-angle-right"></i></span></a> </li>
+                    <li><a href="{{route('competition-countries.show', $country->slug)}}" class="btn btn-link p-0 text-decoration-none text-light">Show all<span class="ms-2"><i class="fal fa-angle-right"></i></span></a> </li>
                 </ul>
 
             </div>
@@ -32,6 +32,9 @@
 
 
 
+        </div>
+        <div class="text-center mx-auto mt-5 align-content-center">
+            {{$countries->links('vendor.pagination.custom')}}
         </div>
 
     </section>

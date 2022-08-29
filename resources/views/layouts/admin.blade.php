@@ -41,8 +41,8 @@
                     </a>
                 </li>
 
-                <li class="sidebar-item {{ request()->is('admin/countries') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{route('countries.index')}}">
+                <li class="sidebar-item {{ request()->is('admin/competition-countries') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('competition-countries.index')}}">
                         <i class="align-middle" data-feather="globe"></i> <span class="align-middle">Countries</span>
                     </a>
                 </li>

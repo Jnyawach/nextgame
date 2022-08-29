@@ -21,7 +21,7 @@ class RequestCountry extends Command
      *
      * @var string
      */
-    protected $description = 'Request all countries available for fixtures';
+    protected $description = 'Request all competition-countries available for fixtures';
 
     /**
      * Execute the console command.
@@ -36,7 +36,7 @@ class RequestCountry extends Command
         $request = Http::withHeaders([
             'x-rapidapi-host' => $host,
             'x-rapidapi-key' => $key
-        ])->get('https://v3.football.api-sports.io/countries');
+        ])->get('https://v3.football.api-sports.io/competition-countries');
 
         $result = json_decode($request);
         foreach ($result->response as $response) {

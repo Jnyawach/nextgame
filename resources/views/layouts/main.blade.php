@@ -125,7 +125,7 @@
                         <a class="nav-link" href="{{route('competitions.index')}}">Competitions</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Match highlights</a>
+                        <a class="nav-link" href="{{route('competition-countries.index')}}">Countries</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Livescore</a>
