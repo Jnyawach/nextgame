@@ -263,15 +263,17 @@ footer .nav .nav-item .nav-link{
 /*-------------------Prediction Page-------------------*/
 
 .prediction-nav .nav .nav-item{
-    background-color: var(--senior);
-    margin: 1px;
+
 }
 .prediction-nav .nav .nav-item .nav-link{
     font-size: 14px;
-    font-weight: 700;
+
 }
 .prediction-nav .nav .nav-item .nav-link:hover{
-    color: var(--primary);
+    color: var(--senior);
+}
+.prediction-nav .nav .nav-item .active{
+    color: var(--senior);
 }
 
 .prediction-table{

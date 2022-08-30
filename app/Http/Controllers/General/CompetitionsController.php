@@ -54,6 +54,9 @@ class CompetitionsController extends Controller
     public function show($id)
     {
         //
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('competitions.show', compact('league','year'));
     }
 
     /**
