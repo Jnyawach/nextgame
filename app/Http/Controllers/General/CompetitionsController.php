@@ -5,6 +5,7 @@ namespace App\Http\Controllers\General;
 use App\Http\Controllers\Controller;
 use App\Models\Country;
 use App\Models\League;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CompetitionsController extends Controller
@@ -18,7 +19,7 @@ class CompetitionsController extends Controller
     {
         //
 
-        $countries=Country::paginate(12);
+        $countries= Country::paginate(12);
 
 
         return view('competitions.index', compact('countries'));
@@ -91,5 +92,11 @@ class CompetitionsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function fixtures($id){
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('competitions/fixtures', compact('league','year'));
     }
 }

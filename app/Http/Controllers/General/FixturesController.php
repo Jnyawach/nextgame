@@ -3,11 +3,9 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class CountriesController extends Controller
+class FixturesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,12 +15,7 @@ class CountriesController extends Controller
     public function index()
     {
         //
-        $duration=Carbon::now()->addDays(30);
-        $countries=Country::query()->orderBy('name')->get()->groupBy(function (Country $directory): string {
-            return ($directory->name)[0];
-        });
-
-        return view('competition-countries.index', compact('countries'));
+        return view();
     }
 
     /**
@@ -55,8 +48,6 @@ class CountriesController extends Controller
     public function show($id)
     {
         //
-        $country=Country::findBySlugOrFail($id);
-        return  view('competition-countries.show', compact('country'));
     }
 
     /**

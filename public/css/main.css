@@ -8,6 +8,7 @@
     --success:#CEC69B;
     --neon:#5C7a02;
     --orange:#FCE205;
+    --outline:#222;
 }
 
 body{
@@ -222,17 +223,31 @@ a:hover{
     box-shadow: none !important;
 }
 
-.popular-competitions .card{
+.transform-card{
     background: rgba(225,225,225,0.05);
     border: 0.002rem solid var(--light);
     color: white;
     border-radius: 1px;
     min-height: 108px;
 }
-.popular-competitions .card:hover{
+.transform-card:hover{
     background-color: rgba(250,250,250, 0.1);
     transform:translateY(-5px);
     transition: .3s ease-in-out;
+}
+.logo-image{
+    width: 80px !important;
+    height: 80px !important;
+    border-radius: 50% !important;
+    border: 1px solid var(--outline);
+    overflow: hidden;
+
+}
+.logo-image img{
+    max-width: 100%;
+    height: auto;
+    object-fit: contain
+
 }
 
 
@@ -394,6 +409,26 @@ footer .nav .nav-item .nav-link{
     font-size: 13px;
 
 
+}
+/*-----------------Fixture---------------------------*/
+.fixture{
+    border: 1px solid #222;
+    background: none;
+    border-radius: 0;
+}
+.fixture p{
+    font-weight: 500;
+    font-size: 15px;
+
+}
+.rounded-image{
+    border-radius: 50%;
+    border: 1px solid #222;
+    padding: 5px;
+}
+
+.senior-text{
+    color: var(--senior);
 }
 .premier-head{
     width: 4%;

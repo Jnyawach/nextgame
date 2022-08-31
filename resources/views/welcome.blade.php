@@ -50,9 +50,9 @@
 
                 <div class="row display-flex mt-5">
                     @foreach($popular as $competition)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-2">
+                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-1">
                             <a href="#" class="text-decoration-none" title="League Name">
-                                <div class="card">
+                                <div class="card transform-card fixture">
                                     <div class="card-body p-2">
                                         <div class="row ">
                                             <div class="col-3">
