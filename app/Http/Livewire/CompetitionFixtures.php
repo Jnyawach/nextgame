@@ -23,19 +23,35 @@ class CompetitionFixtures extends Component
             $body=[
                 'status'=>'NS',
                 'league'=>$this->league->league_id,
-                'season'=>$this->year
+                'season'=>$this->year,
+
             ];
             $url='https://v3.football.api-sports.io/fixtures';
             $response=Http::withHeaders([
                 'x-rapidapi-host' => $host,
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
-            return json_decode($response);
+            $result= json_decode($response);
+            $round=array();
+            foreach ($result->response as $data){
+
+                $round[]=array(
+                    'round'=>$data->league->round,
+                    'home'=>$data->teams->home->name,
+                    'home_logo'=>$data->teams->home->logo,
+                    'away'=>$data->teams->away->name,
+                    'away_logo'=>$data->teams->away->logo,
+                    'id'=>$data->fixture->id,
+                    'date'=>$data->fixture->date
+
+                );
+            }
+            return collect($round);
 
         });
-        dd($request);
+        dd(Carbon::now()->timezone->getName());
         return view('livewire.competition-fixtures',[
-            'fixures'=>$request
+            'fixtures'=>$request
         ]);
     }
 }

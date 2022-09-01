@@ -22,10 +22,15 @@
         </div>
     </section>
     <section class="mt-5 p-3">
-        <h6>Match Day 4</h6>
+        @if($fixtures)
+            @foreach($fixtures->groupBy('round') as $key=>$round)
+        <h6 class="mt-5">{{$key}}</h6>
         <div class="row mt-3">
+            @foreach(json_decode($round) as $fixture)
+
             <div class="col-12 col-md-6 col-lg-4 p-1">
-                <a href="#" class="text-decoration-none text-light" title="Fixture Name">
+                <a href="{{route('fixtures.show',$fixture->id)}}" class="text-decoration-none text-light"
+                   title="{{$fixture->home}}-{{$fixture->away}}">
 
                     <div class="card fixture transform-card">
                         <div class="card-body">
@@ -33,17 +38,17 @@
                                 <div class="col-8">
 
                                     <div>
-                                        <img src="images/Arsenal-FC-icon.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Arsenal</p>
+                                        <img src="{{$fixture->home_logo}}" class="img-fluid d-inline-block m-1" style="width: 28px">
+                                        <p class="d-inline-block m-1">{{$fixture->home}}</p>
                                     </div>
                                     <div class="mt-2">
-                                        <img src="images/premier-league.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Manchester United</p>
+                                        <img src="{{$fixture->away_logo}}" class="img-fluid d-inline-block m-1" style="height: 25px">
+                                        <p class="d-inline-block m-1">{{$fixture->away}}</p>
                                     </div>
                                 </div>
                                 <div class="col-4">
-                                    <p>04:30 PM</p>
-                                    <p>Aug 30, 2022</p>
+                                    <p>{{\Carbon\Carbon::parse($fixture->date)->format('g:i A')}}</p>
+                                    <p>{{\Carbon\Carbon::parse($fixture->date)->isoFormat('MMM Do YY')}}</p>
                                 </div>
                             </div>
 
@@ -52,64 +57,18 @@
                 </a>
 
             </div>
-            <div class="col-12 col-md-6 col-lg-4 p-1">
-                <a href="#" class="text-decoration-none text-light" title="Fixture Name">
+            @endforeach
 
-                    <div class="card fixture transform-card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
 
-                                    <div>
-                                        <img src="images/Arsenal-FC-icon.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Arsenal</p>
-                                    </div>
-                                    <div class="mt-2">
-                                        <img src="images/premier-league.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Manchester United</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <p>04:30 PM</p>
-                                    <p>Aug 30, 2022</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </a>
-
-            </div>
-            <div class="col-12 col-md-6 col-lg-4 p-1">
-                <a href="#" class="text-decoration-none text-light" title="Fixture Name">
-
-                    <div class="card fixture transform-card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-8">
-
-                                    <div>
-                                        <img src="images/Arsenal-FC-icon.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Arsenal</p>
-                                    </div>
-                                    <div class="mt-2">
-                                        <img src="images/premier-league.png" class="img-fluid d-inline-block m-1" style="width: 25px">
-                                        <p class="d-inline-block m-1">Manchester United</p>
-                                    </div>
-                                </div>
-                                <div class="col-4">
-                                    <p>04:30 PM</p>
-                                    <p>Aug 30, 2022</p>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </a>
-
-            </div>
 
         </div>
+            @endforeach
+        @else
+            <div class="text-center">
+                <h6>Sorry! No fixtures available</h6>
+
+            </div>
+        @endif
 
     </section>
 </div>

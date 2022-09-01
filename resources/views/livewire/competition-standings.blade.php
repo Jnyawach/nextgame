@@ -53,7 +53,7 @@
                     <tr>
 
                         <td style="width:3%;font-weight: bold">{{$team->rank}}</td>
-                        <td style="width:4%;text-align: left"><img src="{{$team->team->logo}}" class="img-fluid" style="width: 24px"></td>
+                        <td style="width:4%;text-align: left"><img src="{{$team->team->logo}}" class="img-fluid" style="height: 24px"></td>
                         <td style="width: 50%;text-align: left"><a href="#" class="text-decoration-none" title="{{$team->team->name}}">{{$team->team->name}}</a> </td>
                         <td class="premier-body">{{$team->all->played}}</td>
                         <td class="premier-body">{{$team->all->win}}</td>
