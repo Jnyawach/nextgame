@@ -9,13 +9,11 @@
                     <a class="nav-link {{ Request::routeIs('competition-fixtures') ? 'active' : '' }}" href="{{route('competition-fixtures',$league->slug)}}">Fixtures</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Results</a>
+                    <a class="nav-link {{ Request::routeIs('competition-results') ? 'active' : '' }}" href="{{route('competition-results',$league->slug)}}">Results</a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Transfers</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Injuries</a>
+                    <a class="nav-link {{ Request::routeIs('competition-injuries') ? 'active' : '' }}" href="{{route('competition-injuries',$league->slug)}}">Injuries</a>
                 </li>
             </ul>
 

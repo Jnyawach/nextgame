@@ -131,6 +131,7 @@ a:hover{
 }
 .btn-outline-primary:hover{
     background-color: var(--senior);
+    border: 1px solid var(--senior);
 }
 .btn-outline-light{
     border: 1px solid var(--light);
@@ -176,6 +177,7 @@ a:hover{
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: var(--light);
 }
 .play-icon{
     opacity: 0.6;
@@ -481,4 +483,15 @@ footer .nav .nav-item .nav-link{
     left: 45%;
     top: 40%;
     z-index: 100;
+}
+
+/*-------------injury------------*/
+.injury span{
+    color: var(--senior);
+}
+.injury p{
+    font-size: 13px;
+}
+.injury h6{
+    font-size: 14px;
 }

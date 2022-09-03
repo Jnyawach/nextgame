@@ -70,7 +70,7 @@
                                 @if(file_get_contents($highlight->thumbnail))
                                     <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}" loading="lazy">
                                 @else
-                                    <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
+                                    <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}" loading="lazy">
                                 @endif
 
                                 <div class="play-icon">

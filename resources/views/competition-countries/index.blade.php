@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'all Countries')
+@section('title', 'All Countries')
 @section('styles')
     <meta name="description" content="Football Competition Countries">
     <meta name="keywords" content="Football competitions,Major Leagues, Football Leagues ">

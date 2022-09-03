@@ -36,7 +36,7 @@ Route::group([], function (){
     Route::resource('admin/popular', AdminPopularCompetitions::class);
     Route::resource('admin/teams', AdminTeamsController::class);
     Route::resource('admin/leagues', AdminLeaguesController::class);
-    Route::resource('admin/competition-countries', AdminCountriesController::class);
+    Route::resource('admin/countries', AdminCountriesController::class);
     Route::resource('admin/timezones', AdminTimezoneController::class);
     Route::resource('admin', AdminController::class);
 });
@@ -46,6 +46,8 @@ Route::group([], function (){
     Route::resource('match-highlights', MatchHighlightsController::class);
     Route::resource('fixtures', FixturesController::class);
     Route::get('competitions/fixtures/{id}',  [CompetitionsController::class, 'fixtures'])->name('competition-fixtures');
+    Route::get('competitions/results/{id}',  [CompetitionsController::class, 'results'])->name('competition-results');
+    Route::get('competitions/injuries/{id}',  [CompetitionsController::class, 'injuries'])->name('competition-injuries');
     Route::resource('competitions', CompetitionsController::class);
     Route::resource('competition-countries', CountriesController::class);
 });

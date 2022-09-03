@@ -11,10 +11,10 @@
                     <h1 class="fw-bold fs-4">{{$league->name}}</h1>
                     <label for="season-select">Season:</label>
                     <select class=" season mt-2" id="season-select" wire:model="year">
-                        <option selected value="2022">2022-23</option>
-                        <option value="2021">2021-22</option>
-                        <option value="2020">2020-21</option>
-                        <option value="2019">2019-20</option>
+                        <option selected value="{{\Carbon\Carbon::now()->format('Y')}}">{{\Carbon\Carbon::now()->format('Y')}}-{{\Carbon\Carbon::now()->addYear()->isoFormat('YY')}}</option>
+                        <option value="{{\Carbon\Carbon::now()->subYear()->format('Y')}}">{{\Carbon\Carbon::now()->subYear()->format('Y')}}-{{\Carbon\Carbon::now()->IsoFormat('YY')}}</option>
+                        <option value="{{\Carbon\Carbon::now()->subYears(2)->format('Y')}}">{{\Carbon\Carbon::now()->subYears(2)->format('Y')}}-{{\Carbon\Carbon::now()->subYear()->IsoFormat('YY')}}</option>
+                        <option value="{{\Carbon\Carbon::now()->subYears(3)->format('Y')}}">{{\Carbon\Carbon::now()->subYears(3)->format('Y')}}-{{\Carbon\Carbon::now()->subYears(2)->IsoFormat('YY')}}</option>
                     </select>
                 </div>
             </div>

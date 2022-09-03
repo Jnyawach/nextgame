@@ -18,9 +18,13 @@ class CountriesController extends Controller
     {
         //
         $duration=Carbon::now()->addDays(30);
-        $countries=Country::query()->orderBy('name')->get()->groupBy(function (Country $directory): string {
-            return ($directory->name)[0];
+        $countries=cache()->remember('countries',$duration, function (){
+          $data=  Country::query()->orderBy('name')->get()->groupBy(function (Country $directory): string {
+                return ($directory->name)[0];
+            });
+          return $data;
         });
+
 
         return view('competition-countries.index', compact('countries'));
     }

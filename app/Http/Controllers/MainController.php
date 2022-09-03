@@ -5,6 +5,7 @@ use App\Models\Country;
 use App\Models\Highlight;
 use App\Models\Popular;
 use App\Models\Team;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Config;
@@ -20,8 +21,13 @@ class MainController extends Controller
     public function index()
     {
         //
-        $popular=Popular::all();
-        $highlights=Highlight::take(4)->get();
+        $time=Carbon::now()->addHours(2);
+        $popular=cache()->remember('popular',$time,function (){
+            return Popular::all();
+        });
+        $highlights=cache()->remember('home-highlights',$time, function (){
+          return  Highlight::take(4)->get();
+        });
         return view('welcome', compact('popular','highlights'));
     }
 

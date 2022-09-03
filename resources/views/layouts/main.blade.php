@@ -118,7 +118,7 @@
     </main>
     <footer class="mt-5">
         <hr>
-        <div class="row mt-5">
+        <div class="row mt-5 p-3">
             <div class="col-6 col-sm-6 col-md-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -131,7 +131,7 @@
                         <a class="nav-link" href="#">Livescore</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Fixtures</a>
+                        <a class="nav-link" href="{{route('fixtures.index')}}">Fixtures</a>
                     </li>
                 </ul>
             </div>
@@ -185,7 +185,7 @@
             </div>
         </div>
         <div class="footer text-center mt-5">
-            <p>&copy; 2022 Soccer world</p>
+            <p>&copy; {{\Carbon\Carbon::now()->year}} Nextgame</p>
         </div>
 
     </footer>

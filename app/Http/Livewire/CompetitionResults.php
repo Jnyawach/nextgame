@@ -7,21 +7,19 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Config;
 
-class CompetitionFixtures extends Component
+class CompetitionResults extends Component
 {
     public $league;
     public $year;
     public function render()
-
     {
-        $keyword=$this->year.$this->league->id.'fixtures';
+        $keyword=$this->year.$this->league->id.'results';
         $duration=Carbon::now()->addHours(6);
-
         $request =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
             $host = Config::get('sports.URL');
             $body=[
-                'status'=>'NS',
+                'status'=>'FT',
                 'league'=>$this->league->league_id,
                 'season'=>$this->year,
 
@@ -42,15 +40,16 @@ class CompetitionFixtures extends Component
                     'away'=>$data->teams->away->name,
                     'away_logo'=>$data->teams->away->logo,
                     'id'=>$data->fixture->id,
-                    'date'=>$data->fixture->date
+                    'date'=>$data->fixture->date,
+                    'home_goals'=>$data->goals->home,
+                    'away_goals'=>$data->goals->away
 
                 );
             }
             return collect($round);
 
         });
-
-        return view('livewire.competition-fixtures',[
+        return view('livewire.competition-results',[
             'fixtures'=>$request
         ]);
     }

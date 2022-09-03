@@ -19,7 +19,13 @@ class CompetitionsController extends Controller
     {
         //
 
-        $countries= Country::paginate(12);
+        $duration=Carbon::now()->addDays(7);
+        $keyword='countries-page-'.request('page',1);
+
+        $countries= cache()->remember($keyword,$duration,function (){
+            return Country::paginate(12);
+        });
+
 
 
         return view('competitions.index', compact('countries'));
@@ -98,5 +104,17 @@ class CompetitionsController extends Controller
         $league=League::findBySlugOrFail($id);
         $year=date('Y');
         return view('competitions/fixtures', compact('league','year'));
+    }
+
+    public function results($id){
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('competitions/results', compact('league','year'));
+    }
+
+    public function injuries($id){
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('competitions/injuries', compact('league','year'));
     }
 }
