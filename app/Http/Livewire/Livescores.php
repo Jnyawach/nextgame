@@ -2,27 +2,38 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Country;
+use App\Models\Popular;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Config;
+use stdClass;
 
-class Fixtures extends Component
+class Livescores extends Component
 {
-    public $date;
+    public $search;
+    public $foo;
+    protected $queryString = [
+        'foo',
+        'search' => ['except' => ''],
 
-    public function FixtureDate($id){
-        dd($id);
-    }
+    ];
+
+
     public function render()
     {
-        $keyword=$this->date;
-        $duration=Carbon::now()->addMinutes(30);
+        $popular=Popular::all();
+       $countries=Country::when($this->search,function ($query){
+           return $query->where('name', 'like', '%'.$this->search.'%');
+       })->get();
+        $keyword='live_fixture';
+        $duration=Carbon::now()->addMinute();
         $request =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
             $host = Config::get('sports.URL');
             $body=[
-                'date'=>$this->date,
+                'live'=>'all',
 
 
             ];
@@ -32,11 +43,14 @@ class Fixtures extends Component
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
             $result= json_decode($response);
+            dd($result);
 
             $fixture=array();
             foreach ($result->response as $data){
 
+
                 $fixture[]=array(
+
                     'fixture_id'=>$data->fixture->id,
                     'date'=>$data->fixture->date,
                     'status'=>$data->fixture->status->short,
@@ -56,10 +70,13 @@ class Fixtures extends Component
 
                 );
             }
+            dd($fixture);
             return collect($fixture);
 
         });
-        return view('livewire.fixtures',[
+        return view('livewire.livescores',[
+            'countries'=>$countries,
+            'popular'=>$popular,
             'fixtures'=>$request
         ]);
     }

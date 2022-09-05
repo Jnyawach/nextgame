@@ -29,7 +29,7 @@
                                 <a class="nav-link" href="{{route('match-highlights.index')}}" title="Match Highlights">HIGHLIGHTS</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">LIVESCORE</a>
+                                <a class="nav-link" href="{{route('livescores.index')}}">LIVESCORE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">FIXTURES</a>
@@ -128,7 +128,7 @@
                         <a class="nav-link" href="{{route('competition-countries.index')}}">Countries</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Livescore</a>
+                        <a class="nav-link" href="{{route('livescores.index')}}">Livescore</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('fixtures.index')}}">Fixtures</a>

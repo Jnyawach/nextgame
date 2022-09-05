@@ -13,7 +13,7 @@
     @livewireStyles
 @endsection
 @section('content')
-    @livewire('fixtures')
+    @livewire('fixtures',['date'=>$date])
 @endsection
 @section('scripts')
     @livewireScripts

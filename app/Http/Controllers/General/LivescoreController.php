@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class FixturesController extends Controller
+class LivescoreController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class FixturesController extends Controller
     public function index()
     {
         //
-        $date=Carbon::now()->format('Y-m-d');
-        return view('fixtures.index', compact('date'));
+        return view('livescores.index');
     }
 
     /**

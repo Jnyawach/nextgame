@@ -38,17 +38,17 @@
                                 <div class="col-8">
 
                                     <div>
-                                        <img src="{{$fixture->home_logo}}" class="img-fluid d-inline-block m-1" style="width: 28px">
-                                        <p class="d-inline-block m-1">{{$fixture->home}}</p>
+                                        <img src="{{$fixture->home_logo}}" class="img-fluid d-inline-block m-1" style="height: 25px">
+                                        <p class="d-inline-block m-1">{{ \Illuminate\Support\Str::limit($fixture->home, 20, $end='...') }}</p>
                                     </div>
                                     <div class="mt-2">
                                         <img src="{{$fixture->away_logo}}" class="img-fluid d-inline-block m-1" style="height: 25px">
-                                        <p class="d-inline-block m-1">{{$fixture->away}}</p>
+                                        <p class="d-inline-block m-1">{{ \Illuminate\Support\Str::limit($fixture->away, 20, $end='...') }}</p>
                                     </div>
                                 </div>
-                                <div class="col-4">
-                                    <p>{{\Carbon\Carbon::parse($fixture->date)->format('g:i A')}}</p>
-                                    <p>{{\Carbon\Carbon::parse($fixture->date)->isoFormat('MMM Do YY')}}</p>
+                                <div class="col-4 align-self-center">
+                                    <p class="m-1">{{\Carbon\Carbon::parse($fixture->date)->format('g:i A')}}</p>
+                                    <p class="m-1">{{\Carbon\Carbon::parse($fixture->date)->isoFormat('MMM Do YY')}}</p>
                                 </div>
                             </div>
 

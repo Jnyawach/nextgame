@@ -30,6 +30,7 @@ use App\Http\Controllers\General\MatchHighlightsController;
 use App\Http\Controllers\General\CompetitionsController;
 use App\Http\Controllers\General\CountriesController;
 use App\Http\Controllers\General\FixturesController;
+use App\Http\Controllers\General\LivescoreController;
 
 Route::group([], function (){
     Route::resource('admin/videos', AdminVideoController::class);
@@ -50,6 +51,7 @@ Route::group([], function (){
     Route::get('competitions/injuries/{id}',  [CompetitionsController::class, 'injuries'])->name('competition-injuries');
     Route::resource('competitions', CompetitionsController::class);
     Route::resource('competition-countries', CountriesController::class);
+    Route::resource('livescores', LivescoreController::class);
 });
 
 

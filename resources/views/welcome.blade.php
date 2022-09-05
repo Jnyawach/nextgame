@@ -51,7 +51,7 @@
                 <div class="row display-flex mt-5">
                     @foreach($popular as $competition)
                         <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-1">
-                            <a href="#" class="text-decoration-none" title="League Name">
+                            <a href="{{route('competitions.show',$competition->league->slug)}}" class="text-decoration-none" title="{{$competition->league->name}}">
                                 <div class="card transform-card fixture">
                                     <div class="card-body p-2">
                                         <div class="row ">

@@ -420,7 +420,7 @@ footer .nav .nav-item .nav-link{
 }
 .fixture p{
     font-weight: 500;
-    font-size: 15px;
+    font-size: 14px;
 
 }
 .rounded-image{
@@ -493,5 +493,88 @@ footer .nav .nav-item .nav-link{
     font-size: 13px;
 }
 .injury h6{
+    font-size: 14px;
+}
+/*------------------------livescore page----------------*/
+.input-group{
+    border-radius: 0;
+}
+.input-group-text{
+    background: none;
+    border:none;
+    color: var(--light);
+}
+
+.input-group input[type=search]{
+    background: none;
+    border:none;
+    box-shadow: none;
+    color: var(--light);
+}
+.panel-image{
+    font-size: 14px;
+}
+.live-score .nav-item .nav-link{
+    font-size: 11px !important;
+}
+.live-score .nav-item .active{
+    background-color: var(--senior);
+    border: 1px solid var(--senior);
+}
+.fixture-competition h6{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-weight: 700;
+}
+.fixture-competition span{
+    font-size: 11px;
+}
+
+.game-detail{
+    background-color: rgba(250,250,250, 0.05);
+    border:1px solid var(--outline) ;
+    padding: 8px;
+}
+.game-detail small{
+    font-size: 11px;
+}
+.game-detail span{
+    font-size: 14px;
+}
+.live{
+    border-left:2px solid var(--junior) ;
+}
+
+.complete{
+    border-left:2px solid var(--success) ;
+}
+/*--------------------------match-info----------------*/
+.nav-tabs{
+    border-bottom: 1px solid var(--outline);
+}
+.nav-tabs .nav-item .nav-link{
+    font-size: 14px !important;
+    border: 0!important;
+}
+.nav-tabs .nav-item .nav-link:hover{
+    color: var(--senior);
+    border: 0;
+}
+
+.nav-tabs .active{
+    background:none !important;
+    border: 0;
+    color: var(--senior) !important;
+}
+.progress{
+    border-radius: 0px !important;
+    height: 4px;
+}
+
+.injury span{
+    color: var(--senior);
+}
+.injury p{
     font-size: 14px;
 }

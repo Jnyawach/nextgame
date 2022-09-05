@@ -22,8 +22,9 @@
         </div>
     </section>
     <section class="mt-3 p-3">
-        <h6>Injuries</h6>
+
         @if($injuries->count()>0)
+            <h6>Injuries</h6>
         <div class="row mt-3">
             @foreach(json_decode($injuries) as $injury)
             <div class="col-12 col-md-3 p-1">
@@ -37,7 +38,7 @@
                             <div class="col-9">
                                 <h6 class="fw-bold">{{$injury->name}}</h6>
                                 <p class="p-0 m-0"><span>Injury:</span> {{$injury->type}}</p>
-                                <small><span>Club:</span> {{$injury->team}}</small>
+                                <small><span>Club:</span> {{ \Illuminate\Support\Str::limit($injury->team, 15, $end='...') }}</small>
                             </div>
                         </div>
                     </div>

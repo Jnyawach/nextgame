@@ -17,13 +17,14 @@ class CompetitionInjuries extends Component
         $duration=Carbon::now()->addHours(6);
 
 
+
         $request =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
             $host = Config::get('sports.URL');
             $body=[
                 'league'=>$this->league->league_id,
                 'season'=>$this->year,
-                'date'=>Carbon::now()->isoFormat('YYYY-MM-DD')
+               'date'=>Carbon::now()->isoFormat('YYYY-MM-DD')
             ];
             $url='https://v3.football.api-sports.io/injuries';
             $response=Http::withHeaders([
@@ -31,6 +32,7 @@ class CompetitionInjuries extends Component
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
             $result= json_decode($response);
+
             $injuries=array();
             foreach ($result->response as $data){
 

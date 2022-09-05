@@ -22,7 +22,7 @@
         </div>
     </section>
     <section class="mt-5 p-3">
-        @if($fixtures)
+        @if($fixtures->count()>0)
             @foreach($fixtures->groupBy('round') as $key=>$round)
                 <h6 class="mt-5">{{$key}}</h6>
                 <div class="row mt-3">
@@ -67,7 +67,7 @@
             @endforeach
         @else
             <div class="text-center">
-                <h6>Sorry! No fixtures available</h6>
+                <h6>Sorry! No results available</h6>
 
             </div>
         @endif
