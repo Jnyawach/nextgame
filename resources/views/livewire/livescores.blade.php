@@ -53,12 +53,12 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6" wire:poll.750ms>
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
                         <ul class="nav live-score">
                             <li class="nav-item">
-                                <a class="nav-link btn active" href="#">LIVE</a>
+                                <a class="nav-link btn active" href="{{route('livescores.index')}}">LIVE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">TODAY</a>
@@ -80,16 +80,18 @@
 
                         </ul>
                     </div>
-                    <div class="card-body">
-                        <div class="fixture-competition">
+                    <div class="card-body" >
+                        @if(isset($fixtures))
+                        @foreach(json_decode($fixtures) as $fixture)
+                        <div class="fixture-competition mt-4">
                             <a href="#" class="text-decoration-none">
                                 <div class="row">
                                     <div class="col-1">
-                                        <img src="images/premier-league.png" style="width:30px" class="float-start">
+                                        <img src="{{$fixture->league_logo}}" style="height:30px;width: 30px" class="float-start">
                                     </div>
                                     <div class="col-10">
-                                        <h6>Premier League</h6>
-                                        <span>England</span>
+                                        <h6>{{$fixture->league_name}}</h6>
+                                        <span>{{$fixture->league_country}}</span>
                                     </div>
                                     <div class="col-1">
                                         <p><i class="fal fa-angle-right"></i></p>
@@ -102,75 +104,47 @@
                         </div>
 
 
-                        <div class="game-detail mt-2">
-                            <a href="#" title="fixture" class="text-decoration-none text-light">
-
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td style="width: 2%" rowspan="2">
-                                            <small>21:00</small>
-                                        </td>
-                                        <td style="width: 4%; text-align: center;">
-                                            <img src="images/Arsenal-FC-icon.png" class="" height="20px">
-                                        </td>
-                                        <td style="width: 60%">
-                                            <p class="p-0 m-0">Arsenal</p>
-                                        </td>
-                                        <td style="width: 2%" rowspan="2">
-                                            <form>
-                                                <button type="submit" class="btn btn-link"><i class="fal fa-star"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 4%; text-align: center;">
-                                            <img src="images/premier-league.png" class="" height="20px">
-                                        </td>
-                                        <td style="width: 60%">
-                                            <p class="p-0 m-0">Manchester United</p>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-
-                            </a>
-                        </div>
                         <!---Live fixture--->
-                        <div class="game-detail mt-2 live">
-                            <a href="#" title="fixture" class="text-decoration-none text-light">
+                            @foreach($fixture->games as $match)
+                        <div class="game-detail mt-2">
+                            <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
 
                                 <table>
                                     <tbody>
                                     <tr>
                                         <td style="width: 2%" rowspan="2">
-                                            <small class="text-junior">32<span>'</span></small>
+                                            @if($match->status=='HT')
+                                                <small class="text-junior">{{$match->status}}</small>
+                                            @else
+                                                <small class="text-junior">{{$match->elapsed}}<span>'</span></small>
+                                            @endif
+
+
                                         </td>
                                         <td style="width: 4%; text-align: center;">
-                                            <img src="images/Arsenal-FC-icon.png" class="" height="20px">
+                                            <img src="{{$match->home_logo}}" style="height: 18px" alt="{{$match->home_team}}">
                                         </td>
                                         <td style="width: 60%">
-                                            <p class="p-0 m-0">Arsenal</p>
+                                            <p class="p-0 m-0">{{$match->home_team}}</p>
                                         </td>
                                         <td style="width: 2%">
-                                            <p class="p-0 m-0 fw-bold">0</p>
+                                            <p class="p-0 m-0 fw-bold">{{$match->home_goals}}</p>
                                         </td>
                                         <td style="width: 2%" rowspan="2">
-                                            <form>
-                                                <button type="submit" class="btn btn-link"><i class="fal fa-star"></i></button>
+                                            <form wire:submit.prevent="AddFavorite({{$match->fixture_id}})" id="{{$match->fixture_id}}">
+                                                <button type="submit" class="btn btn-link" title="Add to Favorite"><i class="fal fa-star"></i></button>
                                             </form>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td style="width: 4%; text-align: center;">
-                                            <img src="images/premier-league.png" class="" height="20px">
+                                            <img src="{{$match->away_logo}}" style="height: 18px" alt="{{$match->away_team}}">
                                         </td>
                                         <td style="width: 60%">
-                                            <p class="p-0 m-0">Manchester United</p>
+                                            <p class="p-0 m-0">{{$match->away_team}}</p>
                                         </td>
                                         <td style="width: 2%">
-                                            <p class="p-0 m-0 fw-bold">0</p>
+                                            <p class="p-0 m-0 fw-bold">{{$match->away_goals}}</p>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -179,49 +153,14 @@
 
                             </a>
                         </div>
-                        <!--- complete fixture-->
-                        <div class="game-detail mt-2 complete">
-                            <a href="#" title="fixture" class="text-decoration-none text-light">
+                                @endforeach
 
-                                <table>
-                                    <tbody>
-                                    <tr>
-                                        <td style="width: 2%" rowspan="2">
-                                            <small>FT</small>
-                                        </td>
-                                        <td style="width: 4%; text-align: center;">
-                                            <img src="images/Arsenal-FC-icon.png" class="" height="20px">
-                                        </td>
-                                        <td style="width: 60%">
-                                            <p class="p-0 m-0">Arsenal</p>
-                                        </td>
-                                        <td style="width: 2%">
-                                            <p class="p-0 m-0 fw-bold">2</p>
-                                        </td>
-                                        <td style="width: 2%" rowspan="2">
-                                            <form>
-                                                <button type="submit" class="btn btn-link disabled"><i class="fal fa-star"></i></button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td style="width: 4%; text-align: center;">
-                                            <img src="images/premier-league.png" class="" height="20px">
-                                        </td>
-                                        <td style="width: 60%">
-                                            <p class="p-0 m-0">Manchester United</p>
-                                        </td>
-                                        <td style="width: 2%">
-                                            <p class="p-0 m-0 fw-bold">3</p>
-                                        </td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-
-
-                            </a>
-                        </div>
-
+                        @endforeach
+                        @else
+                            <div class="text-center">
+                                <h6>Sorry! No live fixtures available currently</h6>
+                            </div>
+                        @endif
 
                     </div>
                 </div>

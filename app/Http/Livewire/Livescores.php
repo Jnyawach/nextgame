@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Country;
 use App\Models\Popular;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Config;
@@ -14,11 +15,16 @@ class Livescores extends Component
 {
     public $search;
     public $foo;
+    public $favorites=[];
     protected $queryString = [
         'foo',
         'search' => ['except' => ''],
 
     ];
+
+    public function mount(){
+       // $this->favorites=unserialize($_COOKIE['favorite_id']);
+    }
 
 
     public function render()
@@ -34,8 +40,6 @@ class Livescores extends Component
             $host = Config::get('sports.URL');
             $body=[
                 'live'=>'all',
-
-
             ];
             $url='https://v3.football.api-sports.io/fixtures';
             $response=Http::withHeaders([
@@ -43,35 +47,40 @@ class Livescores extends Component
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
             $result= json_decode($response);
-            dd($result);
+            //dd($result);
+            $groupedObjects=array();
 
-            $fixture=array();
-            foreach ($result->response as $data){
+            foreach ($result->response as $cont){
+                $leagueName=$cont->league->name;
+                if (!isset($groupedObjects[$leagueName])){
+                    $groupedObjects[$leagueName]=[
+                        'league_name'=>$cont->league->name,
+                        'league_id'=>$cont->league->id,
+                        'league_logo'=>$cont->league->logo,
+                        'league_country'=>$cont->league->country,
+                        'games'=>[]
+                    ];
+                }
+                $game=[
+                    'fixture_id'=>$cont->fixture->id,
+                    'date'=>$cont->fixture->date,
+                    'status'=>$cont->fixture->status->short,
+                    'status_long'=>$cont->fixture->status->long,
+                    'elapsed'=>$cont->fixture->status->elapsed,
+                    'home_team'=>$cont->teams->home->name,
+                    'home_logo'=>$cont->teams->home->logo,
+                    'away_team'=>$cont->teams->away->name,
+                    'away_logo'=>$cont->teams->away->logo,
+                    'home_goals'=>$cont->goals->home,
+                    'away_goals'=>$cont->goals->away
+                ];
+
+                array_push($groupedObjects[$leagueName]['games'],$game);
 
 
-                $fixture[]=array(
-
-                    'fixture_id'=>$data->fixture->id,
-                    'date'=>$data->fixture->date,
-                    'status'=>$data->fixture->status->short,
-                    'elapsed'=>$data->fixture->status->elapsed,
-                    'league_name'=>$data->league->name,
-                    'league_logo'=>$data->league->logo,
-                    'league_country'=>$data->league->country,
-                    'league_id'=>$data->league->id,
-                    'home_name'=>$data->teams->home->name,
-                    'home_logo'=>$data->teams->home->logo,
-                    'away_name'=>$data->teams->away->name,
-                    'away_logo'=>$data->teams->away->logo,
-                    'home_goals'=>$data->goals->home,
-                    'away_goals'=>$data->goals->away
-
-
-
-                );
             }
-            dd($fixture);
-            return collect($fixture);
+           // dd($groupedObjects);
+            return json_encode($groupedObjects);
 
         });
         return view('livewire.livescores',[
@@ -79,5 +88,18 @@ class Livescores extends Component
             'popular'=>$popular,
             'fixtures'=>$request
         ]);
+    }
+
+    public function AddFavorite($id){
+        $data[] = $id;
+       if (json_decode(Cookie::get('favorite_id'))){
+
+           Cookie::queue('favorite_id', json_encode($data));
+       }else{
+
+           Cookie::queue('favorite_id', json_encode($data));
+       }
+
+       dd($this->favorites=json_decode(Cookie::get('favorite_id')));
     }
 }
