@@ -61,19 +61,19 @@
                                 <a class="nav-link btn active" href="{{route('livescores.index')}}">LIVE</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">TODAY</a>
+                                <a class="nav-link" href="{{route('livescore-football',\Carbon\Carbon::now()->format('Y-m-d'))}}">TODAY</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">AUG 27</a>
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDay()->isoFormat('MMM Do')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">AUG 28</a>
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(2)->isoFormat('MMM Do')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">AUG 29</a>
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">AUG 30</a>
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(4)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(4)->isoFormat('MMM Do')}}</a>
                             </li>
 
 
@@ -81,7 +81,7 @@
                         </ul>
                     </div>
                     <div class="card-body" >
-                        @if(isset($fixtures))
+                        @if(json_decode($fixtures))
                         @foreach(json_decode($fixtures) as $fixture)
                         <div class="fixture-competition mt-4">
                             <a href="#" class="text-decoration-none">

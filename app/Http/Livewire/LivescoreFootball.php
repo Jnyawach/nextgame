@@ -5,15 +5,13 @@ namespace App\Http\Livewire;
 use App\Models\Country;
 use App\Models\Popular;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cookie;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Config;
-use stdClass;
-
-class Livescores extends Component
+class LivescoreFootball extends Component
 {
+    public $date;
     public $search;
     public $foo;
     public $favorites=[];
@@ -22,25 +20,19 @@ class Livescores extends Component
         'search' => ['except' => ''],
 
     ];
-
-    public function mount(){
-       // $this->favorites=unserialize($_COOKIE['favorite_id']);
-    }
-
-
     public function render()
     {
         $popular=Popular::all();
-       $countries=Country::when($this->search,function ($query){
-           return $query->where('name', 'like', '%'.$this->search.'%');
-       })->get();
-        $keyword='live_fixture';
-        $duration=Carbon::now()->addMinute();
+        $countries=Country::when($this->search,function ($query){
+            return $query->where('name', 'like', '%'.$this->search.'%');
+        })->get();
+        $keyword='fixture'.$this->date;
+        $duration=Carbon::now()->addMinutes(30);
         $request =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
             $host = Config::get('sports.URL');
             $body=[
-                'live'=>'all',
+                'date'=>$this->date,
             ];
             $url='https://v3.football.api-sports.io/fixtures';
             $response=Http::withHeaders([
@@ -80,11 +72,11 @@ class Livescores extends Component
 
 
             }
-           // dd($groupedObjects);
+            // dd($groupedObjects);
             return json_encode($groupedObjects);
 
         });
-        return view('livewire.livescores',[
+        return view('livewire.livescore-football',[
             'countries'=>$countries,
             'popular'=>$popular,
             'fixtures'=>$request
@@ -93,11 +85,12 @@ class Livescores extends Component
 
     public function AddFavorite(Request $request,$id){
         if($cookie=$request->cookie('favorite')){
-           $cookie.= (string)$id. ',';
+            $cookie.= (string)$id. ',';
 
             $data=cookie('favorite', $cookie, 120);
             dd($data);
         }
 
     }
+
 }

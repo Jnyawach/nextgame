@@ -83,4 +83,9 @@ class LivescoreController extends Controller
     {
         //
     }
+
+    public function football($id){
+        $date=$id;
+        return view('livescores/football', compact('date'));
+    }
 }

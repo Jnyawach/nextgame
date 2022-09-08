@@ -51,6 +51,7 @@ Route::group([], function (){
     Route::get('competitions/injuries/{id}',  [CompetitionsController::class, 'injuries'])->name('competition-injuries');
     Route::resource('competitions', CompetitionsController::class);
     Route::resource('competition-countries', CountriesController::class);
+    Route::get('livescores/football/{id}',  [LivescoreController::class, 'football'])->name('livescore-football');
     Route::resource('livescores', LivescoreController::class);
 });
 
