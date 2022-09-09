@@ -18,7 +18,7 @@ class AdminCountriesController extends Controller
     {
         //
         $countries=Country::all();
-        return  view('admin.competition-countries.index', compact('countries'));
+        return  view('admin.countries.index', compact('countries'));
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
+use App\Models\Country;
 use Illuminate\Http\Request;
 
 class LivescoreController extends Controller
@@ -87,5 +88,9 @@ class LivescoreController extends Controller
     public function football($id){
         $date=$id;
         return view('livescores/football', compact('date'));
+    }
+    public function country($id){
+        $country=Country::findBySlugOrFail($id);
+        return view('livescores/country', compact('country'));
     }
 }

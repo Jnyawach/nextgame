@@ -56,7 +56,29 @@
             <div class="col-12 col-lg-6" >
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
-                        @include('includes.livsecore_nav')
+                        <ul class="nav live-score">
+                            <li class="nav-item">
+                                <a class="nav-link btn active" href="{{route('livescores.index')}}">LIVE</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('livescore-football',\Carbon\Carbon::now()->format('Y-m-d'))}}">TODAY</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDay()->isoFormat('MMM Do')}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(2)->isoFormat('MMM Do')}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(4)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(4)->isoFormat('MMM Do')}}</a>
+                            </li>
+
+
+
+                        </ul>
                     </div>
                     <div class="card-body" >
                         @if(json_decode($fixtures))
@@ -85,53 +107,53 @@
                                 <!---Live fixture--->
                                 @foreach($fixture->games as $match)
                                     @if($match->status=='1H'||$match->status=='HT'||$match->status=='2H')
-                                    <div class="game-detail mt-2 live">
-                                        <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
+                                        <div class="game-detail mt-2 live">
+                                            <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
 
-                                            <table>
-                                                <tbody>
-                                                <tr>
-                                                    <td style="width: 2%" rowspan="2">
-                                                        @if($match->status=='HT')
-                                                            <small class="text-junior">{{$match->status}}</small>
-                                                        @else
-                                                            <small class="text-junior">{{$match->elapsed}}<span>'</span></small>
-                                                        @endif
-
-
-                                                    </td>
-                                                    <td style="width: 4%; text-align: center;">
-                                                        <img src="{{$match->home_logo}}" style="height: 18px" alt="{{$match->home_team}}">
-                                                    </td>
-                                                    <td style="width: 60%">
-                                                        <p class="p-0 m-0">{{$match->home_team}}</p>
-                                                    </td>
-                                                    <td style="width: 2%">
-                                                        <p class="p-0 m-0 fw-bold">{{$match->home_goals}}</p>
-                                                    </td>
-                                                    <td style="width: 2%" rowspan="2">
-                                                        <form wire:submit.prevent="AddFavorite({{$match->fixture_id}})" id="{{$match->fixture_id}}">
-                                                            <button type="submit" class="btn btn-link" title="Add to Favorite"><i class="fal fa-star"></i></button>
-                                                        </form>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 4%; text-align: center;">
-                                                        <img src="{{$match->away_logo}}" style="height: 18px" alt="{{$match->away_team}}">
-                                                    </td>
-                                                    <td style="width: 60%">
-                                                        <p class="p-0 m-0">{{$match->away_team}}</p>
-                                                    </td>
-                                                    <td style="width: 2%">
-                                                        <p class="p-0 m-0 fw-bold">{{$match->away_goals}}</p>
-                                                    </td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="width: 2%" rowspan="2">
+                                                            @if($match->status=='HT')
+                                                                <small class="text-junior">{{$match->status}}</small>
+                                                            @else
+                                                                <small class="text-junior">{{$match->elapsed}}<span>'</span></small>
+                                                            @endif
 
 
-                                        </a>
-                                    </div>
+                                                        </td>
+                                                        <td style="width: 4%; text-align: center;">
+                                                            <img src="{{$match->home_logo}}" style="height: 18px" alt="{{$match->home_team}}">
+                                                        </td>
+                                                        <td style="width: 60%">
+                                                            <p class="p-0 m-0">{{$match->home_team}}</p>
+                                                        </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$match->home_goals}}</p>
+                                                        </td>
+                                                        <td style="width: 2%" rowspan="2">
+                                                            <form wire:submit.prevent="AddFavorite({{$match->fixture_id}})" id="{{$match->fixture_id}}">
+                                                                <button type="submit" class="btn btn-link" title="Add to Favorite"><i class="fal fa-star"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 4%; text-align: center;">
+                                                            <img src="{{$match->away_logo}}" style="height: 18px" alt="{{$match->away_team}}">
+                                                        </td>
+                                                        <td style="width: 60%">
+                                                            <p class="p-0 m-0">{{$match->away_team}}</p>
+                                                        </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$match->away_goals}}</p>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                            </a>
+                                        </div>
                                     @elseif($match->status=='NS')
                                         <div class="game-detail mt-2">
                                             <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">

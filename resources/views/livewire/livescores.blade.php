@@ -36,7 +36,7 @@
                             @if($countries->count()>0)
                             @foreach($countries as $country)
                             <li class="mt-2">
-                                <a href="#" class="text-decoration-none" title="{{$country->name}}">
+                                <a href="{{route('livescore-country',$country->slug)}}" class="text-decoration-none" title="{{$country->name}}">
                                     <div class="panel-image">
                                         <img src="{{$country->flag}}" class="img-fluid" title="{{$country->name}}" style="width: 20px" loading="lazy">
                                         <span class="ms-3">{{$country->name}}</span>
@@ -56,29 +56,7 @@
             <div class="col-12 col-lg-6" wire:poll.750ms>
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
-                        <ul class="nav live-score">
-                            <li class="nav-item">
-                                <a class="nav-link btn active" href="{{route('livescores.index')}}">LIVE</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{route('livescore-football',\Carbon\Carbon::now()->format('Y-m-d'))}}">TODAY</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDay()->isoFormat('MMM Do')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(2)->isoFormat('MMM Do')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-uppercase" href="{{route('livescore-football',\Carbon\Carbon::now()->addDays(4)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(4)->isoFormat('MMM Do')}}</a>
-                            </li>
-
-
-
-                        </ul>
+                        @include('includes.livsecore_nav')
                     </div>
                     <div class="card-body" >
                         @if(json_decode($fixtures))
