@@ -21,7 +21,7 @@
                             @if($popular->count()>0)
                                 @foreach($popular as $competition)
                                     <li class="mt-2">
-                                        <a href="#" class="text-decoration-none" title="{{$competition->league->name}}">
+                                        <a href="{{route('football.index', $competition->league->slug)}}" class="text-decoration-none" title="{{$competition->league->name}}">
                                             <div class="panel-image">
                                                 <img src="{{$competition->league->logo}}" class="img-fluid" title="{{$competition->league->name}}" style="height: 20px" loading="lazy">
                                                 <span class="ms-3">{{$competition->league->name}}</span>
@@ -62,8 +62,7 @@
                         @if(json_decode($fixtures))
                             @foreach(json_decode($fixtures) as $fixture)
                                 <div class="fixture-competition mt-4">
-                                    <a href="#" class="text-decoration-none">
-                                        <div class="row">
+                                    <div class="row">
                                             <div class="col-1">
                                                 <img src="{{$fixture->league_logo}}" style="height:30px;width: 30px" class="float-start">
                                             </div>
@@ -76,7 +75,7 @@
 
                                             </div>
                                         </div>
-                                    </a>
+
 
 
                                 </div>

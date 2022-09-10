@@ -446,8 +446,11 @@ footer .nav .nav-item .nav-link{
 .league-table tbody tr td{
     padding:8px 0px 8px 0px;
     text-align: center;
-    font-size: 13px;
+    font-size: 11px;
 
+}
+.league-table thead tr th{
+    font-size: 11px;
 }
 
 /*-----------------------Hihglights Page--------------*/

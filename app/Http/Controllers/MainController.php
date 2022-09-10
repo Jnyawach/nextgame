@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Highlight;
+use App\Models\League;
 use App\Models\Popular;
 use App\Models\Team;
 use Carbon\Carbon;
@@ -135,5 +136,11 @@ class MainController extends Controller
 
 
 
+    }
+
+
+    public function football($id){
+        $league=League::findBySlugOrFail($id);
+        return view('football.index', compact('league'));
     }
 }

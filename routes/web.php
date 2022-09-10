@@ -43,6 +43,7 @@ Route::group([], function (){
 });
 //General Routes
 Route::group([], function (){
+    Route::get('football/{id}',  [MainController::class, 'football'])->name('football.index');
     Route::resource('/', MainController::class);
     Route::resource('match-highlights', MatchHighlightsController::class);
     Route::resource('fixtures', FixturesController::class);
