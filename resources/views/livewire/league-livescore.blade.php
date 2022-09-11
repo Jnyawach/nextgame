@@ -23,7 +23,7 @@
                                     <li class="mt-2">
                                         <a href="{{route('football.index', $competition->league->slug)}}" class="text-decoration-none" title="{{$competition->league->name}}">
                                             <div class="panel-image">
-                                                <img src="{{$competition->league->logo}}" class="img-fluid" title="{{$competition->league->name}}" style="height: 20px" loading="lazy">
+                                                <img src="{{$competition->league->logo}}" class="img-fluid" alt="{{$competition->league->name}}" style="height: 20px" loading="lazy">
                                                 <span class="ms-3">{{$competition->league->name}}</span>
                                             </div>
                                         </a>
@@ -38,7 +38,7 @@
                                     <li class="mt-2">
                                         <a href="{{route('livescore-country',$country->slug)}}" class="text-decoration-none" title="{{$country->name}}">
                                             <div class="panel-image">
-                                                <img src="{{$country->flag}}" class="img-fluid" title="{{$country->name}}" style="width: 20px" loading="lazy">
+                                                <img src="{{$country->flag}}" class="img-fluid" alt="{{$country->name}}" style="width: 20px" loading="lazy">
                                                 <span class="ms-3">{{$country->name}}</span>
                                             </div>
                                         </a>
@@ -61,7 +61,7 @@
                                <a href="{{route('football.index', $league->slug)}}" class="text-decoration-none" title="{{$league->name}}">
                                    <div class="row">
                                        <div class="col-1">
-                                           <img src="{{$league->logo}}" style="height:30px;width: 30px" class="float-start">
+                                           <img src="{{$league->logo}}" style="height:30px;width: 30px" class="float-start" alt="{{$league->name}}">
                                        </div>
                                        <div class="col-9">
                                            <h6>{{$league->name}}</h6>
@@ -75,31 +75,16 @@
                                        </div>
                                    </div>
                                </a>
-
-                               <div class="prediction-nav m-0 mt-3">
-                                   <ul class="nav mb-0 ms-0">
-                                       <li class="nav-item">
-
-                                           <a class="nav-link {{ Request::routeIs('football.index') ? 'active' : '' }}"  href="{{route('football.index',$league->slug)}}">Overview</a>
-                                       </li>
-                                       <li class="nav-item">
-                                           <a class="nav-link {{ Request::routeIs('competition-fixtures') ? 'active' : '' }}" href="#">Fixtures</a>
-                                       </li>
-                                       <li class="nav-item">
-                                           <a class="nav-link {{ Request::routeIs('competition-results') ? 'active' : '' }}" href="#">Standings</a>
-                                       </li>
-
-                                   </ul>
-                               </div>
-
+                               @include('includes.football_nav')
 
                            </div>
                        </div>
                     </div>
                     <div class="card-body" >
                         <div class="fixture-competition">
-                            <h6>Upcoming Matches</h6>
+
                             @if($next_games)
+                                <h6>Upcoming Matches</h6>
                                @foreach(json_decode($next_games) as $game)
                                     <div class="game-detail mt-2">
                                         <a href="{{route('livescores.show',$game->id)}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
@@ -108,7 +93,7 @@
                                                 <tbody>
                                                 <tr>
                                                     <td style="width: 2%" rowspan="2">
-                                                        <small>{{$game->status}}</small>
+                                                        @if(!$game->status=='NS') <small>{{$game->status}}</small>@endif
                                                         <small>{{\Carbon\Carbon::parse($game->date)->format('H:i')}}</small>
                                                     </td>
                                                     <td style="width: 4%; text-align: center;">
@@ -140,7 +125,7 @@
                                 @endforeach
                             @endif
                             <div class="standings mt-5">
-                                @if($standings->response)
+                                @if(count($standings)>0)
                                     <h6>Standings</h6>
                                     <div class="row mt-3">
                                         <div class="col-12">
@@ -161,20 +146,20 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        @foreach($standings->response[0]->league->standings[0] as $team)
+                                                        @foreach($standings->take(5) as $team)
                                                             <tr>
 
-                                                                <td style="width:3%;font-weight: bold">{{$team->rank}}</td>
-                                                                <td style="width:4%;text-align: left"><img src="{{$team->team->logo}}" class="img-fluid" style="height: 15px"></td>
-                                                                <td style="width: 50%;text-align: left"><a href="#" class="text-decoration-none" title="{{$team->team->name}}">{{$team->team->name}}</a> </td>
-                                                                <td class="premier-body">{{$team->all->played}}</td>
-                                                                <td class="premier-body">{{$team->all->win}}</td>
-                                                                <td class="premier-body">{{$team->all->draw}}</td>
-                                                                <td class="premier-body">{{$team->all->lose}}</td>
-                                                                <td class="premier-body d-none d-md-table-cell">{{$team->all->goals->for}}</td>
-                                                                <td class="premier-body d-none d-md-table-cell">{{$team->all->goals->against}}</td>
-                                                                <td class="premier-body">{{$team->goalsDiff}}</td>
-                                                                <td class="premier-body">{{$team->points}}</td>
+                                                                <td style="width:3%;font-weight: bold">{{$team['rank']}}</td>
+                                                                <td style="width:4%;text-align: left"><img src="{{$team['logo']}}" class="img-fluid" style="height: 15px" alt="{{$team['name']}}"></td>
+                                                                <td style="width: 50%;text-align: left"><a href="#" class="text-decoration-none" title="{{$team['name']}}">{{$team['name']}}</a> </td>
+                                                                <td class="premier-body">{{$team['matches_played']}}</td>
+                                                                <td class="premier-body">{{$team['win']}}</td>
+                                                                <td class="premier-body">{{$team['draw']}}</td>
+                                                                <td class="premier-body">{{$team['lose']}}</td>
+                                                                <td class="premier-body d-none d-md-table-cell">{{$team['goals_for']}}</td>
+                                                                <td class="premier-body d-none d-md-table-cell">{{$team['goals_against']}}</td>
+                                                                <td class="premier-body">{{$team['goals_diff']}}</td>
+                                                                <td class="premier-body">{{$team['points']}}</td>
 
                                                             </tr>
                                                         @endforeach
@@ -182,6 +167,9 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
+                                                <diV class="card-footer p-0 m-0">
+                                                    <a href="#" class="btn btn-link text-decoration-none">See all<i class="fal fa-angle-right ms-3"></i></a>
+                                                </diV>
                                             </div>
                                         </div>
                                     </div>
@@ -192,6 +180,55 @@
                                     </div>
                                 @endif
                             </div>
+
+                                @if($last_games)
+                                    <h6 class="mt-4 mb-3">Last Matches</h6>
+                                    @foreach(json_decode($last_games) as $game)
+                                        <div class="game-detail mt-2">
+                                            <a href="{{route('livescores.show',$game->id)}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
+
+                                                <table>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td style="width: 2%" rowspan="2">
+                                                            <small>{{$game->status}}</small>
+                                                            <small>{{\Carbon\Carbon::parse($game->date)->format('H:i')}}</small>
+                                                        </td>
+                                                        <td style="width: 4%; text-align: center;">
+                                                            <img src="{{$game->home_logo}}" style="height: 18px" alt="{{$game->home}}">
+                                                        </td>
+                                                        <td style="width: 60%">
+                                                            <p class="p-0 m-0">{{$game->home}}</p>
+                                                        </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$game->home_goals}}</p>
+                                                        </td>
+                                                        <td style="width: 2%" rowspan="2">
+                                                            <form>
+                                                                <button type="submit" class="btn btn-link" title="Add to Favorite" disabled><i class="fal fa-star"></i></button>
+                                                            </form>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td style="width: 4%; text-align: center;">
+                                                            <img src="{{$game->away_logo}}" style="height: 18px" alt="{{$game->away}}">
+                                                        </td>
+                                                        <td style="width: 60%">
+                                                            <p class="p-0 m-0">{{$game->away}}</p>
+                                                        </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$game->away_goals}}</p>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+
+
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                @endif
+
                         </div>
 
                     </div>
