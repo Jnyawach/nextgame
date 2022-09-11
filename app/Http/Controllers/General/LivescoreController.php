@@ -49,6 +49,7 @@ class LivescoreController extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -85,10 +86,6 @@ class LivescoreController extends Controller
         //
     }
 
-    public function football($id){
-        $date=$id;
-        return view('livescores/football', compact('date'));
-    }
     public function country($id){
         $country=Country::findBySlugOrFail($id);
         return view('livescores/country', compact('country'));

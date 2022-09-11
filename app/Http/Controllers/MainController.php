@@ -143,4 +143,22 @@ class MainController extends Controller
         $league=League::findBySlugOrFail($id);
         return view('football.index', compact('league'));
     }
+    public function fixture($id){
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('football/fixtures', compact('league','year'));
+    }
+
+    public function standings($id){
+        $league=League::findBySlugOrFail($id);
+        $year=date('Y');
+        return view('football/standings', compact('league','year'));
+    }
+
+    public function match($match, $id){
+        $fixture=$id;
+        $match=str_replace('-', ' ', $match);
+
+        return view('football/match', compact('fixture','match'));
+    }
 }

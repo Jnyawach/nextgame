@@ -43,7 +43,7 @@ class Livescores extends Component
                 'live'=>'all',
             ];
             $url='https://v3.football.api-sports.io/fixtures';
-            $response=Http::withHeaders([
+            $response=Http::timeout(4)->withHeaders([
                 'x-rapidapi-host' => $host,
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
