@@ -29,7 +29,7 @@ class LivescoreMatch extends Component
             return $query->where('name', 'like', '%'.$this->search.'%');
         })->get();
         // call for fixture statistics by id
-        $fixtures =cache()->remember($keyword,$duration,function (){
+        $match =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
             $host = Config::get('sports.URL');
             $body=[
@@ -42,33 +42,32 @@ class LivescoreMatch extends Component
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
             $result= json_decode($response);
-             $statistics=array();
-            dd($result);
+             $fixture=array();
+           // dd($result);
             if ($result->response){
-                $statistics[]=array(
-                    'home'=>[
-                        'name'=>$result->response[0]->team->name,
-                        'logo'=>$result->response[0]->team->logo,
-                        'stats'=>$result->response[0]->statistics
-                    ],
-                    'away'=>[
-                        'name'=>$result->response[1]->team->name,
-                        'logo'=>$result->response[1]->team->logo,
-                        'stats'=>$result->response[1]->statistics
-                    ]
+                $fixture['game']=array(
+                    'fixture'=>$result->response[0]->fixture,
+                    'teams'=>$result->response[0]->teams,
+                    'league'=>$result->response[0]->league,
+                    'goals'=>$result->response[0]->goals,
+                    'event'=>$result->response[0]->events,
+                    'lineups'=>$result->response[0]->lineups,
+                    'statistics'=>$result->response[0]->statistics
 
                 );
             }
 
 
 
-            dd($statistics);
-            return collect($statistics);
+          // dd($fixture);
+           return collect($fixture);
 
         });
+
         return view('livewire.livescore-match',[
             'countries'=>$countries,
             'popular'=>$popular,
+            'match'=>json_decode($match)
 
         ]);
     }

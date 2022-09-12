@@ -42,7 +42,7 @@
                                 @foreach($fixture->games as $match)
                                     @if($match->status=='1H'||$match->status=='HT'||$match->status=='2H')
                                     <div class="game-detail mt-2 live">
-                                        <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
+                                        <a href="{{route('league.match',[\Illuminate\Support\Str::slug($match->home_team.'-vs-'.$match->away_team),$match->fixture_id])}}" title="fixture" class="text-decoration-none text-light">
 
                                             <table>
                                                 <tbody>
@@ -90,7 +90,7 @@
                                     </div>
                                     @elseif($match->status=='NS')
                                         <div class="game-detail mt-2">
-                                            <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
+                                            <a href="{{route('league.match',[\Illuminate\Support\Str::slug($match->home_team.'-vs-'.$match->away_team),$match->fixture_id])}}" title="fixture" class="text-decoration-none text-light">
 
                                                 <table>
                                                     <tbody>
@@ -126,7 +126,7 @@
                                         </div>
                                     @else
                                         <div class="game-detail mt-2 complete">
-                                            <a href="{{route('livescores.show',$match->fixture_id)}}" title="fixture" class="text-decoration-none text-light">
+                                            <a href="{{route('league.match',[\Illuminate\Support\Str::slug($match->home_team.'-vs-'.$match->away_team),$match->fixture_id])}}" title="fixture" class="text-decoration-none text-light">
 
                                                 <table>
                                                     <tbody>
@@ -140,6 +140,9 @@
                                                         <td style="width: 60%">
                                                             <p class="p-0 m-0">{{$match->home_team}}</p>
                                                         </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$match->home_goals}}</p>
+                                                        </td>
                                                         <td style="width: 2%" rowspan="2">
                                                             <form wire:submit.prevent="AddFavorite({{$match->fixture_id}})" id="{{$match->fixture_id}}">
                                                                 <button type="submit" class="btn btn-link" title="Add to Favorite"><i class="fal fa-star"></i></button>
@@ -152,6 +155,9 @@
                                                         </td>
                                                         <td style="width: 60%">
                                                             <p class="p-0 m-0">{{$match->away_team}}</p>
+                                                        </td>
+                                                        <td style="width: 2%">
+                                                            <p class="p-0 m-0 fw-bold">{{$match->away_goals}}</p>
                                                         </td>
                                                     </tr>
                                                     </tbody>

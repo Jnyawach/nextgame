@@ -90,4 +90,8 @@ class LivescoreController extends Controller
         $country=Country::findBySlugOrFail($id);
         return view('livescores/country', compact('country'));
     }
+    public function football($id){
+        $date=$id;
+        return view('livescores/football', compact('date'));
+    }
 }
