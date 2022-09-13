@@ -10,7 +10,7 @@
             <div class="d-none d-lg-block col-3">
                @include('includes.livescore_sidebar')
             </div>
-            <div class="col-12 col-lg-6" wire:poll.750ms>
+            <div class="col-12 col-lg-6" wire:poll.30000ms>
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
                         @include('includes.livsecore_nav')

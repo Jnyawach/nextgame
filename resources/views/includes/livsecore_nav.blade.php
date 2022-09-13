@@ -1,6 +1,6 @@
 <ul class="nav live-score">
     <li class="nav-item">
-        <a class="nav-link btn {{ Request::routeIs('livescores.index') ? 'active' : '' }}" href="{{route('livescores.index')}}">LIVE</a>
+        <a class="nav-link  {{ request()->is('livescores') ? 'active' : '' }}" href="{{route('livescores.index')}}">LIVE</a>
     </li>
     <li class="nav-item">
         <a class="nav-link {{ request()->is('livescores/football/'.\Carbon\Carbon::now()->format('Y-m-d')) ? 'active' : '' }}" href="{{route('livescore-football',\Carbon\Carbon::now()->format('Y-m-d'))}}">TODAY</a>

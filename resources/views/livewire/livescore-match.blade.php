@@ -41,18 +41,28 @@
                                 <div class="game-detail mt-3">
                                     <div class="row mt-3">
                                         <div class="col-4 text-center">
-                                            <img src="images/Arsenal-FC-icon.png" class="img-fluid" style="width: 30px">
-                                            <h6 class="mt-2">Arsenal</h6>
+                                            <img src="{{$match->game->teams->home->logo}}" class="img-fluid" style="height: 20px" alt="{{$match->game->teams->home->name}}">
+                                            <h6 class="mt-2">{{$match->game->teams->home->name}}</h6>
                                         </div>
                                         <div class="col-4 text-center">
-                                            <!---Indicate the match progress or time or result if complete-->
+                                            @if($match->game->fixture->status->short=='NS')
+                                            <h2 class="mt-2 fw-bold fs-5">{{\Carbon\Carbon::parse($match->game->fixture->date)->format('H:i')}}</h2>
+                                                <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->isoFormat('MMM Do YY')}}</small>
+                                            @elseif($match->game->fixture->status->short=='1H'||$match->game->fixture->status->short=='HT'||$match->game->fixture->status->short=='2H')
+                                                <h2 class="mt-2 fw-bold fs-5">{{$match->game->goals->home}} : {{$match->game->goals->away}}</h2>
+                                                <small class="text-junior">{{$match->game->fixture->status->elapsed}}'</small>
 
-                                            <h2 class="mt-2 fw-bold fs-4">21:00</h2>
-                                            <small class="text-junior">31'</small>
+                                            @elseif($match->game->fixture->status->short=='FT')
+                                                <h2 class="mt-2 fw-bold fs-5">{{$match->game->goals->home}} : {{$match->game->goals->away}}</h2>
+                                                <small class="text-junior">FT</small>
+                                            @else
+                                                <h2 class="mt-2 fw-bold fs-5">{{$match->game->fixture->status->short}}</h2>
+                                            @endif
+
                                         </div>
                                         <div class="col-4 text-center">
-                                            <img src="images/premier-league.png" class="img-fluid" style="width: 30px">
-                                            <h6 class="mt-2">Manchester United</h6>
+                                            <img src="{{$match->game->teams->away->logo}}" class="img-fluid" style="height: 20px" alt="{{$match->game->teams->away->name}}">
+                                            <h6 class="mt-2">{{$match->game->teams->away->name}}</h6>
                                         </div>
                                     </div>
 
@@ -100,8 +110,8 @@
 
                                                         </div>
                                                         <div class="col-10">
-                                                            <p class="p-0 m-0">August 30, 2022</p>
-                                                            <small>21:00</small>
+                                                            <p class="p-0 m-0">{{\Carbon\Carbon::parse($match->game->fixture->date)->isoFormat('MMM Do YY')}}</p>
+                                                            <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->format('H : i')}}</small>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -112,7 +122,7 @@
                                                             <p><i class="fal fa-location"></i></p>
                                                         </div>
                                                         <div class="col-10">
-                                                            <p class="p-0 m-0">Old Trafford</p>
+                                                            <p class="p-0 m-0">{{$match->game->fixture->venue->name?$match->game->fixture->venue->name:'-'}}</p>
                                                         </div>
                                                     </div>
 
@@ -124,7 +134,7 @@
                                                             <p><i class="fal fa-whistle"></i></p>
                                                         </div>
                                                         <div class="col-10">
-                                                            <p class="p-0 m-0">Joanne Makena</p>
+                                                            <p class="p-0 m-0">{{$match->game->fixture->referee?$match->game->fixture->referee:'-'}}</p>
                                                         </div>
                                                     </div>
 
@@ -136,22 +146,37 @@
                                     <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel"
                                          aria-labelledby="profile-tab" tabindex="0">
                                         <div class="card fixture">
-                                            <div class="card-body">
-                                                <table style="width: 100%">
+                                            <div class="card-body p-0 m-0">
+                                                @if($match->game->event)
+                                                <table style="width: 100%" class="events-table">
                                                     <tbody>
+                                                    @foreach($match->game->event as $event)
+                                                        @if($event->team->id==$match->game->teams->home->id)
                                                     <tr>
-                                                        <td>
-                                                            41'
-                                                        </td>
-                                                        <td style="width: 20%">Jesus'</td>
-                                                        <td>Goal</td>
-                                                        <td>1-0</td>
-                                                        <td style="width: 50%"></td>
+                                                        <td ><span>{{$event->time->elapsed}}'</span></td>
+                                                        <td  class="text-start"><span>{{$event->player->name}}</span></td>
+                                                        <td>{{$event->detail}}</td>
+                                                        <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span></td>
+                                                        <td class="text-end" ><span></span></td>
                                                     </tr>
+                                                        @endif
+                                                        @if($event->team->id==$match->game->teams->away->id)
 
+                                                    <tr>
+                                                        <td ><span>{{$event->time->elapsed}}'</span></td>
+                                                        <td ><span></span></td>
+                                                        <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span></td>
+                                                        <td>{{$event->detail}}</td>
+                                                        <td class="text-end"><span>{{$event->player->name}}</span></td>
+                                                    </tr>
+                                                        @endif
+                                                    @endforeach
 
                                                     </tbody>
                                                 </table>
+                                                @else
+                                                    <h6 class="text-center mt-3">No events available for this fixture!</h6>
+                                                @endif
 
 
                                             </div>
