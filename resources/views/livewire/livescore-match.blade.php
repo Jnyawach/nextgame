@@ -147,28 +147,58 @@
                                          aria-labelledby="profile-tab" tabindex="0">
                                         <div class="card fixture">
                                             <div class="card-body p-0 m-0">
+                                                <!--Match events-->
                                                 @if($match->game->event)
                                                 <table style="width: 100%" class="events-table">
                                                     <tbody>
                                                     @foreach($match->game->event as $event)
                                                         @if($event->team->id==$match->game->teams->home->id)
-                                                    <tr>
-                                                        <td ><span>{{$event->time->elapsed}}'</span></td>
-                                                        <td  class="text-start"><span>{{$event->player->name}}</span></td>
-                                                        <td>{{$event->detail}}</td>
-                                                        <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span></td>
-                                                        <td class="text-end" ><span></span></td>
-                                                    </tr>
+                                                            <tr>
+                                                                <td><span>{{$event->time->elapsed}}'</span></td>
+                                                                <td class="text-start">
+                                                                    @if($event->type=='Goal')
+                                                                        <span><i class="fas fa-futbol"></i></span>
+                                                                    @elseif($event->type=='subst')
+                                                                        <span><i class="fal fa-retweet-alt"></i></span>
+                                                                    @elseif($event->type=='Card')
+                                                                        <span
+                                                                            class="@if($event->detail=='Red Card')
+                                                                            text-danger @endif
+                                                                            @if($event->detail=='Yellow Card')text-warning @endif">
+                                                                            <i class="fas fa-square"></i></span>
+
+                                                                    @endif
+                                                                    <span>{{$event->player->name}}</span>
+                                                                </td>
+
+                                                                <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span>
+                                                                </td>
+                                                                <td class="text-end"><span></span></td>
+                                                            </tr>
                                                         @endif
                                                         @if($event->team->id==$match->game->teams->away->id)
 
-                                                    <tr>
-                                                        <td ><span>{{$event->time->elapsed}}'</span></td>
-                                                        <td ><span></span></td>
-                                                        <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span></td>
-                                                        <td>{{$event->detail}}</td>
-                                                        <td class="text-end"><span>{{$event->player->name}}</span></td>
-                                                    </tr>
+                                                            <tr>
+                                                                <td><span>{{$event->time->elapsed}}'</span></td>
+                                                                <td><span></span></td>
+                                                                <td class="text-center"><span> {{$match->game->goals->home}} - {{$match->game->goals->away}} </span>
+                                                                </td>
+                                                                <td class="text-end">
+                                                                    <span>{{$event->player->name}}</span>
+                                                                    @if($event->type=='Goal')
+                                                                        <span><i class="fas fa-futbol"></i></span>
+                                                                    @elseif($event->type=='subst')
+                                                                        <span><i class="fal fa-retweet-alt"></i></span>
+                                                                    @elseif($event->type=='Card')
+                                                                        <span
+                                                                            class="@if($event->detail=='Red Card')
+                                                                            text-danger @endif
+                                                                            @if($event->detail=='Yellow Card')text-warning @endif">
+                                                                            <i class="fas fa-square"></i></span>
+
+                                                                    @endif
+                                                                </td>
+                                                            </tr>
                                                         @endif
                                                     @endforeach
 
@@ -188,7 +218,9 @@
                                          aria-labelledby="contact-tab" tabindex="0">
                                         <div class="card fixture">
                                             <div class="card-body">
+                                                @if($match->game->statistics)
                                                 <div class="stats-bar text-center">
+                                                    @foreach()
                                                     <div class="match-data">
                                                         <small>Shorts on Goal</small>
                                                         <div class="stats-table">
@@ -427,6 +459,9 @@
 
 
                                                 </div>
+                                                @else
+                                                    <h6 class="text-center mt-3">No statistics available for this fixture!</h6>
+                                                @endif
                                             </div>
                                         </div>
                                     </div>
@@ -434,48 +469,34 @@
                                          aria-labelledby="head-tab" tabindex="0">
                                         <div class="card fixture">
                                             <div class="card-body">
-                                                <div class="game-detail text-center">
-
-                                                    <div class="row mt-1">
-                                                        <div class="col-4 text-center">
-                                                            <img src="images/Arsenal-FC-icon.png" class="img-fluid"
-                                                                 style="width: 30px">
-                                                            <h6 class="mt-2">Arsenal</h6>
-                                                        </div>
-                                                        <div class="col-4 text-center ">
-                                                            <small>August 20, 2022</small>
-                                                            <h2 class="mt-2 fw-bold fs-4">0 : 1</h2>
-
-                                                        </div>
-                                                        <div class="col-4 text-center">
-                                                            <img src="images/premier-league.png" class="img-fluid"
-                                                                 style="width: 30px">
-                                                            <h6 class="mt-2">Manchester United</h6>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
+                                                @if($head)
+                                                    @foreach(json_decode($head) as $game)
                                                 <div class="game-detail text-center mt-2">
 
                                                     <div class="row mt-1">
                                                         <div class="col-4 text-center">
-                                                            <img src="images/Arsenal-FC-icon.png" class="img-fluid"
-                                                                 style="width: 30px">
-                                                            <h6 class="mt-2">Arsenal</h6>
+                                                            <img src="{{$game->home_logo}}" class="img-fluid"
+                                                                 style="height: 20px" alt="{{$game->home}}">
+                                                            <h6 class="mt-2">{{$game->home}}</h6>
                                                         </div>
                                                         <div class="col-4 text-center ">
-                                                            <small>August 20, 2022</small>
-                                                            <h2 class="mt-2 fw-bold fs-4">0 : 1</h2>
 
+                                                            <h4 class="mt-2 fw-bold fs-4">{{$game->home_goals}} : {{$game->away_goals}}</h4>
+                                                            <small>{{\Carbon\Carbon::parse($game->date)->isoFormat('MMM Do YY')}}</small>
                                                         </div>
                                                         <div class="col-4 text-center">
-                                                            <img src="images/premier-league.png" class="img-fluid"
-                                                                 style="width: 30px">
-                                                            <h6 class="mt-2">Manchester United</h6>
+                                                            <img src="{{$game->away_logo}}" class="img-fluid"
+                                                                 style="height: 20px" alt="{{$game->away}}">
+                                                            <h6 class="mt-2">{{$game->away}}</h6>
                                                         </div>
                                                     </div>
 
                                                 </div>
+                                                    @endforeach
+                                                @else
+                                                    <h6 class="text-center mt-3">No data available for this fixture!</h6>
+                                                @endif
+
                                             </div>
                                         </div>
                                     </div>

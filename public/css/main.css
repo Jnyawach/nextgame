@@ -548,10 +548,13 @@ footer .nav .nav-item .nav-link{
     padding: 8px;
 }
 .game-detail small{
-    font-size: 11px;
+    font-size: 10px;
 }
 .game-detail span{
-    font-size: 14px;
+    font-size: 13px;
+}
+.game-detail h6{
+    font-size: 12px;
 }
 .live{
     border-left:2px solid var(--junior) ;
