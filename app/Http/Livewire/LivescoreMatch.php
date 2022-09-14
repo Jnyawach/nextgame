@@ -44,7 +44,7 @@ class LivescoreMatch extends Component
             ])->get($url,$body);
             $result= json_decode($response);
              $fixture=array();
-            dd($result);
+            //dd($result);
             if ($result->response){
                 $fixture['game']=array(
                     'fixture'=>$result->response[0]->fixture,
@@ -97,36 +97,39 @@ class LivescoreMatch extends Component
 
         });
        //match stats
-         $statistics=array();
-         dd($match);
+        $home=array();
+         $away=array();
+
          if ($stats=$games->game->statistics){
-            // dd($stats);
-            foreach ($stats as $data){
-                foreach ($data as $real){
-                    dd($real);
-                    $type=$real->type;
-                    if (!isset($statistics[$type])){
-                        $statistics[$type]=[];
-                    }
 
-
-                }
-                $statistics[$type]=[
-                    'detail'=>[
+            foreach ($stats[0]->statistics as $data){
+                $type=$data->type;
+                if (!isset($home[$type])){
+                    $home[$type]=[
                         'home'=>$data->value
-                    ]
-                ];
+                    ];
+                }
 
             }
+             foreach ($stats[1]->statistics as $data){
+                 $type=$data->type;
+                 if (!isset($away[$type])){
+                     $away[$type]=[
+                         'away'=>$data->value
+                     ];
+                 }
+
+             }
 
          }
-         dd($statistics);
-
+        $statistics=array_merge_recursive($home,$away);
+         //dd($statistics);
         return view('livewire.livescore-match',[
             'countries'=>$countries,
             'popular'=>$popular,
             'match'=>json_decode($match),
-            'head'=>$head
+            'head'=>$head,
+            'statistics'=>$statistics
 
         ]);
     }

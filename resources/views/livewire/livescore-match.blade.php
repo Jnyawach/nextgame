@@ -8,7 +8,7 @@
     <section class="mt-3 p-2">
         <div class="row">
             <div class="d-none d-lg-block col-3">
-                @include('includes.livescore_sidebar')
+                @livewire('sidebar')
             </div>
             <div class="col-12 col-lg-6">
                 <div class="card fixture">
@@ -217,246 +217,21 @@
                                     <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel"
                                          aria-labelledby="contact-tab" tabindex="0">
                                         <div class="card fixture">
-                                            <div class="card-body">
-                                                @if($match->game->statistics)
+                                            <div class="card-body p-0 m-0">
+                                                @if($statistics)
                                                 <div class="stats-bar text-center">
-                                                    @foreach()
-                                                    <div class="match-data">
-                                                        <small>Shorts on Goal</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
+                                                    <table class="table">
+                                                        <tbody>
+                                                        @foreach($statistics as $key=>$data)
+                                                            <tr>
+                                                                <td>{{$data['home']}}</td>
+                                                                <td>{{$key}}</td>
+                                                                <td>{{$data['away']}}</td>
+                                                            </tr>
 
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="match-data mt-3">
-                                                        <small>Shorts off Goal</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="match-data mt-3">
-                                                        <small>Total Shorts</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="match-data mt-3">
-                                                        <small>Fouls</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="match-data mt-3">
-                                                        <small>Corner Kicks</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="match-data mt-3">
-                                                        <small>Possession</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto ">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="match-data mt-3">
-                                                        <small>Red Cards</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto ">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="match-data mt-3">
-                                                        <small>Yellow Cards</small>
-                                                        <div class="stats-table">
-                                                            <div class="row">
-
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-start p-0 m-0">1</p>
-                                                                    <div class="progress justify-content-end">
-                                                                        <div class="progress-bar bg-warning"
-                                                                             role="progressbar" style="width: 10%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-                                                                <div class="col-6 mx-auto">
-                                                                    <p class="text-end p-0 m-0">8</p>
-                                                                    <div class="progress">
-                                                                        <div class="progress-bar bg-primary"
-                                                                             role="progressbar" style="width: 60%"
-                                                                             aria-valuenow="10" aria-valuemin="0"
-                                                                             aria-valuemax="100"></div>
-                                                                    </div>
-
-                                                                </div>
-
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
+                                                        @endforeach
+                                                        </tbody>
+                                                    </table>
 
                                                 </div>
                                                 @else

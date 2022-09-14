@@ -592,3 +592,16 @@ footer .nav .nav-item .nav-link{
 .injury p{
     font-size: 14px;
 }
+.stats-bar table{
+    color: var(--light) !important;
+    font-size: 12px;
+}
+.stats-bar table tbody tr td{
+    border-bottom: 1px solid var(--outline);
+}
+.country-btn{
+    color: var(--light);
+    font-size: 13px !important;
+    outline: none !important;
+    box-shadow: none !important;
+}

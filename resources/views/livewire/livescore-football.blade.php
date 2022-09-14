@@ -8,7 +8,7 @@
     <section class="mt-3 p-2">
         <div class="row">
             <div class="d-none d-lg-block col-3">
-                @include('includes.livescore_sidebar')
+                @livewire('sidebar')
             </div>
             <div class="col-12 col-lg-6" >
                 <div class="card fixture">
