@@ -13,6 +13,7 @@ class LeagueLivescore extends Component
 {
     public $league;
     public $search;
+    public $switch=false;
     public $foo;
     public $favorites=[];
     protected $queryString = [
@@ -82,6 +83,7 @@ class LeagueLivescore extends Component
             $result= json_decode($response);
 
             $round=array();
+            if ($result->response){
             foreach ($result->response as $data){
 
                 $round[]=array(
@@ -95,9 +97,11 @@ class LeagueLivescore extends Component
 
                 );
             }
+            }
             return json_encode($round);
 
         });
+
 
         $standings =cache()->remember('live_standings'.$this->league->league_id,$duration,function (){
             $key = Config::get('sports.KEY');
@@ -114,7 +118,9 @@ class LeagueLivescore extends Component
 
             $result=json_decode($response);
             $teams=array();
+
             //proceed to assign teams
+            if ($result->response){
             foreach ($result->response[0]->league->standings[0] as $team){
                //dd($team);
                 $teams[]=[
@@ -132,6 +138,7 @@ class LeagueLivescore extends Component
                     'goals_against'=>$team->all->goals->against
                 ];
             }
+            }
            return collect($teams);
 
         });
@@ -144,4 +151,13 @@ class LeagueLivescore extends Component
             'standings'=>$standings,
         ]);
     }
+
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
+    }
+
 }

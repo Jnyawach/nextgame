@@ -14,6 +14,7 @@ class LivescoreFootball extends Component
     public $date;
     public $search;
     public $foo;
+    public $switch=false;
     public $favorites=[];
     protected $queryString = [
         'foo',
@@ -91,6 +92,13 @@ class LivescoreFootball extends Component
             dd($data);
         }
 
+    }
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
     }
 
 }

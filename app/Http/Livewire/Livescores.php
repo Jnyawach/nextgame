@@ -16,6 +16,7 @@ class Livescores extends Component
 {
     public $search;
     public $foo;
+    public $switch=false;
     public $favorites=[];
     protected $queryString = [
         'foo',
@@ -99,5 +100,12 @@ class Livescores extends Component
             dd($data);
         }
 
+    }
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
     }
 }

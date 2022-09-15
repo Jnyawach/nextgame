@@ -12,6 +12,7 @@ class LivescoreStandings extends Component
 {
     public $league;
     public $search;
+    public $switch=false;
     public $foo;
     public $favorites=[];
     public $year;
@@ -68,5 +69,13 @@ class LivescoreStandings extends Component
             'popular'=>$popular,
             'standings'=>$standings,
         ]);
+    }
+
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
     }
 }

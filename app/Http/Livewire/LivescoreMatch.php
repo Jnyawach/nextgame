@@ -13,6 +13,7 @@ use function Symfony\Component\String\s;
 class LivescoreMatch extends Component
 {
     public $fixture;
+    public $switch=false;
     public $search;
     public $foo;
     public $favorites=[];
@@ -132,5 +133,13 @@ class LivescoreMatch extends Component
             'statistics'=>$statistics
 
         ]);
+    }
+
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
     }
 }

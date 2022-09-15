@@ -1,16 +1,22 @@
 <div>
     <section>
         <div class="favorite mt-5">
-            <a href="{{route('livescores.index')}}" class="text-decoration-none m-2"><span><i class="fal fa-futbol"></i> </span>Scores</a>
+            @if($switch==false)
+            <button type="button" class="btn btn-link text-decoration-none text-light d-lg-none" wire:click="OpenMenu"><span><i class="fal fa-bars"></i> </span>Leagues</button>
+            @endif
+                <a href="{{route('livescores.index')}}" class="text-decoration-none m-2"><span><i class="fal fa-futbol"></i> </span>Scores</a>
             <a href="#" class="text-decoration-none m-2"><span><i class="fal fa-star"></i> </span>Favorites</a>
+            @if($switch==true)
+            <button type="button" class="btn btn-sm btn-primary d-lg-none float-end" wire:click="CloseMenu"><span><i class="fal fa-times"></i> </span>Close Menu</button>
+            @endif
         </div>
     </section>
     <section class="mt-3 p-2">
         <div class="row">
-            <div class="d-none d-lg-block col-3">
+            <div class=" @if($switch==false)d-none  @endif d-lg-block col-12 col-lg-3">
                 @include('includes.livescore_sidebar')
             </div>
-            <div class="col-12 col-lg-6" >
+            <div class="col-12 col-lg-6 @if($switch==true)d-none @endif" >
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
                        <div class="card-header">
@@ -40,9 +46,10 @@
                     <div class="card-body" >
                         <div class="fixture-competition">
 
-                            @if($next_games)
+                            @if(count(json_decode($next_games))>0)
                                 <h6>Upcoming Matches</h6>
                                @foreach(json_decode($next_games) as $game)
+
                                     <div class="game-detail mt-2">
                                         <a href="{{route('livescores.show',$game->id)}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
 
@@ -130,15 +137,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                @else
-                                    <div class="text-center">
-                                        <h6>Sorry! No Standings available</h6>
-
-                                    </div>
                                 @endif
                             </div>
 
-                                @if($last_games)
+                                @if(count(json_decode($last_games))>0)
                                     <h6 class="mt-4 mb-3">Last Matches</h6>
                                     @foreach(json_decode($last_games) as $game)
                                         <div class="game-detail mt-2">

@@ -13,6 +13,7 @@ class LivescoreFixture extends Component
 {
     public $league;
     public $search;
+    public $switch=false;
     public $foo;
     public $favorites=[];
     public $year;
@@ -70,5 +71,13 @@ class LivescoreFixture extends Component
             'fixtures'=>$fixtures,
 
         ]);
+    }
+
+    public function CloseMenu(){
+        $this->switch=false;
+    }
+
+    public function OpenMenu(){
+        $this->switch=true;
     }
 }

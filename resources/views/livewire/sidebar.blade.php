@@ -1,4 +1,5 @@
 <div>
+    @if($sidebar==false)
     <div class="card fixture">
         <div class="card-header p-2" style="border-bottom:1px solid #222">
             <div class="input-group">
@@ -43,4 +44,29 @@
 
         </div>
     </div>
+    @endif
+    @if($sidebar==true)
+    <div class="card fixture">
+        <div class="card-header p-2" style="border-bottom:1px solid #222">
+        <button type="button" class="btn btn-link text-decoration-none text-light" wire:click="CloseMenu"><span class="me-3"><i class="far fa-angle-left"></i></span>{{$nation->name}}</button>
+        </div>
+        <div class="card-body">
+            @if($menu->count()>0)
+            <ul class="list-unstyled">
+
+                    @foreach($menu as $competition)
+                        <li class="mt-2">
+                            <a href="{{route('football.index', $competition->slug)}}" class="text-decoration-none" title="{{$competition->name}}">
+                                <div class="panel-image">
+                                    <img src="{{$competition->logo}}" class="img-fluid" alt="{{$competition->name}}" style="height: 20px" loading="lazy">
+                                    <span class="ms-3">{{$competition->name}}</span>
+                                </div>
+                            </a>
+                        </li>
+                    @endforeach
+            </ul>
+            @endif
+        </div>
+    </div>
+        @endif
 </div>
