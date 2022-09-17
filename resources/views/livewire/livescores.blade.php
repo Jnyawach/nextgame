@@ -68,9 +68,7 @@
                                             <p class="p-0 m-0 fw-bold">{{$match->home_goals}}</p>
                                         </td>
                                         <td style="width: 2%" rowspan="2">
-                                            <form wire:submit.prevent="AddFavorite({{$match->fixture_id}})" id="{{$match->fixture_id}}">
-                                                <button type="submit" class="btn btn-link" title="Add to Favorite"><i class="fal fa-star"></i></button>
-                                            </form>
+                                            @livewire('favorite-form',['fixture'=>$match->fixture_id])
                                         </td>
                                     </tr>
                                     <tr>

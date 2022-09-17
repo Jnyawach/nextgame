@@ -142,4 +142,6 @@ class LivescoreMatch extends Component
     public function OpenMenu(){
         $this->switch=true;
     }
+
+
 }

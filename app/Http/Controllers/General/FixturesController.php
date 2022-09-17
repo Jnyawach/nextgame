@@ -85,4 +85,9 @@ class FixturesController extends Controller
     {
         //
     }
+
+    public function match ($id){
+        $date=$id;
+        return view('fixtures/match-day', compact('date'));
+    }
 }

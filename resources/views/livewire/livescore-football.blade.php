@@ -102,7 +102,7 @@
                                                     <tbody>
                                                     <tr>
                                                         <td style="width: 2%" rowspan="2">
-                                                            <small>{{\Carbon\Carbon::parse($match->date)->format('H:i')}}</small>
+                                                            <small>{{\Carbon\Carbon::parse($match->date)->timezone($_COOKIE['timezone'])->format('H:i')}}</small>
                                                         </td>
                                                         <td style="width: 4%; text-align: center;">
                                                             <img src="{{$match->home_logo}}" style="height: 18px" alt="{{$match->home_team}}">

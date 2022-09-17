@@ -1,5 +1,5 @@
 <div>
-    <section class="mt-5 p-3">
+    <section class="p-3">
         <div class="competition-header">
             <div class="row">
                 <div class="col-3 col-sm-2 col-lg-1">
@@ -29,7 +29,7 @@
             @foreach(json_decode($round) as $fixture)
 
             <div class="col-12 col-md-6 col-lg-4 p-1">
-                <a href="{{route('fixtures.show',$fixture->id)}}" class="text-decoration-none text-light"
+                <a href="{{route('league.match',[\Illuminate\Support\Str::slug($fixture->home.'-vs-'.$fixture->away),$fixture->id])}}" class="text-decoration-none text-light"
                    title="{{$fixture->home}}-{{$fixture->away}}">
 
                     <div class="card fixture transform-card">
@@ -47,7 +47,8 @@
                                     </div>
                                 </div>
                                 <div class="col-4 align-self-center">
-                                    <p class="m-1">{{\Carbon\Carbon::parse($fixture->date)->format('g:i A')}}</p>
+
+                                    <p class="m-1">{{\Carbon\Carbon::parse($fixture->date,'UTC')->timezone($_COOKIE['timezone'])->format('g:i A')}}</p>
                                     <p class="m-1">{{\Carbon\Carbon::parse($fixture->date)->isoFormat('MMM Do YY')}}</p>
                                 </div>
                             </div>
@@ -71,4 +72,5 @@
         @endif
 
     </section>
+
 </div>

@@ -52,8 +52,8 @@
                                         </div>
                                         <div class="col-4 text-center">
                                             @if($match->game->fixture->status->short=='NS')
-                                            <h2 class="mt-2 fw-bold fs-5">{{\Carbon\Carbon::parse($match->game->fixture->date)->format('H:i')}}</h2>
-                                                <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->isoFormat('MMM Do YY')}}</small>
+                                            <h2 class="mt-2 fw-bold fs-5">{{\Carbon\Carbon::parse($match->game->fixture->date)->timezone($_COOKIE['timezone'])->format('H:i')}}</h2>
+                                                <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->timezone($_COOKIE['timezone'])->isoFormat('MMM Do YY')}}</small>
                                             @elseif($match->game->fixture->status->short=='1H'||$match->game->fixture->status->short=='HT'||$match->game->fixture->status->short=='2H')
                                                 <h2 class="mt-2 fw-bold fs-5">{{$match->game->goals->home}} : {{$match->game->goals->away}}</h2>
                                                 <small class="text-junior">{{$match->game->fixture->status->elapsed}}'</small>
@@ -116,8 +116,8 @@
 
                                                         </div>
                                                         <div class="col-10">
-                                                            <p class="p-0 m-0">{{\Carbon\Carbon::parse($match->game->fixture->date)->isoFormat('MMM Do YY')}}</p>
-                                                            <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->format('H : i')}}</small>
+                                                            <p class="p-0 m-0">{{\Carbon\Carbon::parse($match->game->fixture->date)->timezone($_COOKIE['timezone'])->isoFormat('MMM Do YY')}}</p>
+                                                            <small>{{\Carbon\Carbon::parse($match->game->fixture->date)->timezone($_COOKIE['timezone'])->format('H : i')}}</small>
                                                         </div>
                                                     </div>
                                                 </div>

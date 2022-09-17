@@ -7,13 +7,12 @@ use Illuminate\Support\Facades\Http;
 use Livewire\Component;
 use Config;
 
-class Fixtures extends Component
+class MatchDay extends Component
 {
     public $date;
-
     public function render()
     {
-        $keyword=$this->date.'today';
+        $keyword=$this->date.'following';
         $duration=Carbon::now()->addMinutes(30);
         $request =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
@@ -56,7 +55,7 @@ class Fixtures extends Component
             return collect($fixture);
 
         });
-        return view('livewire.fixtures',[
+        return view('livewire.match-day',[
             'fixtures'=>$request
         ]);
     }

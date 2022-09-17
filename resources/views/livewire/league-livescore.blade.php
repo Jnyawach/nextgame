@@ -51,14 +51,14 @@
                                @foreach(json_decode($next_games) as $game)
 
                                     <div class="game-detail mt-2">
-                                        <a href="{{route('livescores.show',$game->id)}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
+                                        <a href="{{route('league.match',[\Illuminate\Support\Str::slug($game->home.'-vs-'.$game->away),$game->id])}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
 
                                             <table>
                                                 <tbody>
                                                 <tr>
                                                     <td style="width: 2%" rowspan="2">
                                                         @if(!$game->status=='NS') <small>{{$game->status}}</small>@endif
-                                                        <small>{{\Carbon\Carbon::parse($game->date)->format('H:i')}}</small>
+                                                        <small>{{\Carbon\Carbon::parse($game->date)->timezone($_COOKIE['timezone'])->format('H:i')}}</small>
                                                     </td>
                                                     <td style="width: 4%; text-align: center;">
                                                         <img src="{{$game->home_logo}}" style="height: 18px" alt="{{$game->home}}">
@@ -144,14 +144,14 @@
                                     <h6 class="mt-4 mb-3">Last Matches</h6>
                                     @foreach(json_decode($last_games) as $game)
                                         <div class="game-detail mt-2">
-                                            <a href="{{route('livescores.show',$game->id)}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
+                                            <a href="{{route('league.match',[\Illuminate\Support\Str::slug($game->home.'-vs-'.$game->away),$game->id])}}" title="{{$game->home}}-{{$game->away}}" class="text-decoration-none text-light">
 
                                                 <table>
                                                     <tbody>
                                                     <tr>
                                                         <td style="width: 2%" rowspan="2">
                                                             <small>{{$game->status}}</small>
-                                                            <small>{{\Carbon\Carbon::parse($game->date)->format('H:i')}}</small>
+                                                            <small>{{\Carbon\Carbon::parse($game->date)->timezone($_COOKIE['timezone'])->format('H:i')}}</small>
                                                         </td>
                                                         <td style="width: 4%; text-align: center;">
                                                             <img src="{{$game->home_logo}}" style="height: 18px" alt="{{$game->home}}">

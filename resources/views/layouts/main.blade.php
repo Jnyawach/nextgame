@@ -7,8 +7,12 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome/css/all.css')}}" rel="stylesheet">
-
     @yield('styles')
+    <script src="{{asset('js/js.cookie.js')}}"></script>
+    <script>
+        var time=Intl.DateTimeFormat().resolvedOptions().timeZone
+        Cookies.set('timezone', time, { expires: 7 })
+    </script>
 
 </head>
 <body>
@@ -192,6 +196,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+
 @yield('scripts')
 </body>
 </html>

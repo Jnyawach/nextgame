@@ -49,6 +49,7 @@ Route::group([], function (){
     Route::get('football/{id}',  [MainController::class, 'football'])->name('football.index');
     Route::resource('/', MainController::class);
     Route::resource('match-highlights', MatchHighlightsController::class);
+    Route::get('fixtures/match-day/{id}',  [FixturesController::class, 'match'])->name('match-day');
     Route::resource('fixtures', FixturesController::class);
     Route::get('competitions/fixtures/{id}',  [CompetitionsController::class, 'fixtures'])->name('competition-fixtures');
     Route::get('competitions/results/{id}',  [CompetitionsController::class, 'results'])->name('competition-results');
