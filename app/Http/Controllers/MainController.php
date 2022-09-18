@@ -5,6 +5,7 @@ use App\Models\Country;
 use App\Models\Highlight;
 use App\Models\League;
 use App\Models\Popular;
+use App\Models\Prediction;
 use App\Models\Team;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class MainController extends Controller
         $highlights=cache()->remember('home-highlights',$time, function (){
           return  Highlight::take(4)->get();
         });
-        return view('welcome', compact('popular','highlights'));
+         $predictions=Prediction::whereDate('time',Carbon::today())->limit(8)->get();
+
+        return view('welcome', compact('popular','highlights','predictions'));
     }
 
     /**

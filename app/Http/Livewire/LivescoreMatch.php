@@ -26,10 +26,7 @@ class LivescoreMatch extends Component
     {
         $duration=Carbon::now()->addMinute();
         $keyword=$this->fixture;
-        $popular=Popular::all();
-        $countries=Country::when($this->search,function ($query){
-            return $query->where('name', 'like', '%'.$this->search.'%');
-        })->get();
+
         // call for fixture statistics by id
         $match =cache()->remember($keyword,$duration,function (){
             $key = Config::get('sports.KEY');
@@ -100,7 +97,7 @@ class LivescoreMatch extends Component
        //match stats
         $home=array();
          $away=array();
-
+//dd($statistics);
          if ($stats=$games->game->statistics){
 
             foreach ($stats[0]->statistics as $data){
@@ -124,13 +121,36 @@ class LivescoreMatch extends Component
 
          }
         $statistics=array_merge_recursive($home,$away);
-         //dd($statistics);
+
+         //Predictions
+        $predction_keyword=$this->fixture.'fixture_prediction';
+        $predictions=cache()->remember($predction_keyword,Carbon::now()->addHours(6), function (){
+            $key = Config::get('sports.KEY');
+            $host = Config::get('sports.URL');
+
+            $body=[
+                'fixture' => $this->fixture
+            ];
+            $url='https://v3.football.api-sports.io/predictions';
+            $response=Http::withHeaders([
+                'x-rapidapi-host' => $host,
+                'x-rapidapi-key' => $key
+            ])->get($url,$body);
+            $result= json_decode($response);
+           $predictions=array();
+           $predictions=[
+              'predictions'=>$result->response[0]->predictions,
+               'comparisons'=>$result->response[0]->comparison
+           ];
+           return collect($predictions);
+        });
+
         return view('livewire.livescore-match',[
-            'countries'=>$countries,
-            'popular'=>$popular,
+
             'match'=>json_decode($match),
             'head'=>$head,
-            'statistics'=>$statistics
+            'statistics'=>$statistics,
+            'predictions'=>json_decode($predictions)
 
         ]);
     }

@@ -160,6 +160,9 @@ a:hover{
 .match-details{
   color: white !important;
 }
+.prediction-section .card h6{
+    font-size: 13px;
+}
 
 .match-details h6{
     font-weight: 700;

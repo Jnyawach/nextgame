@@ -101,6 +101,12 @@
                                                 aria-controls="contact-tab-pane" aria-selected="false">H2H
                                         </button>
                                     </li>
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="prediction-head" data-bs-toggle="tab"
+                                                data-bs-target="#prediction-pane" type="button" role="tab"
+                                                aria-controls="contact-tab-pane" aria-selected="false">Predictions
+                                        </button>
+                                    </li>
 
                                 </ul>
                                 <div class="tab-content mt-4" id="myTabContent">
@@ -276,6 +282,77 @@
                                                     @endforeach
                                                 @else
                                                     <h6 class="text-center mt-3">No data available for this fixture!</h6>
+                                                @endif
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="prediction-pane" role="tabpanel"
+                                         aria-labelledby="profile-tab" tabindex="0">
+                                        <div class="fixture card">
+                                            <div class="card-body">
+                                                @if($predictions)
+                                                <div class="predictions">
+                                                    <h6 class="text-center">Advice:<br> <span class="text-primary">{{$predictions->predictions->advice}}</span></h6>
+                                                    <h6 class="mt-5 text-center">Probability</h6>
+
+                                                    <div class="row mt-3">
+                                                        <div class="col-4 text-center mx-auto">
+                                                            <p>{{$match->game->teams->home->name}}</p>
+                                                            <p class="text-primary p-0 m-0">{{$predictions->predictions->percent->home}}</p>
+
+                                                        </div>
+                                                        <div class="col-4 text-center mx-auto">
+                                                            <p>Draw</p>
+                                                            <p class="text-primary p-0 m-0">{{$predictions->predictions->percent->away}}</p>
+
+                                                        </div>
+                                                        <div class="col-4 text-center mx-auto">
+                                                            <p>{{$match->game->teams->away->name}}</p>
+                                                            <p class="text-primary p-0 m-0">{{$predictions->predictions->percent->away}}</p>
+
+                                                        </div>
+                                                    </div>
+                                                    <hr>
+                                                    <table class="events-table" style="width: 100%">
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->form->home}}</td>
+                                                            <td class="text-center text-primary">Form</td>
+                                                            <td class="text-center">{{$predictions->comparisons->form->away}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->att->home}}</td>
+                                                            <td class="text-center text-primary">Attacking</td>
+                                                            <td class="text-center">{{$predictions->comparisons->att->away}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->def->home}}</td>
+                                                            <td class="text-center text-primary">Defensive</td>
+                                                            <td class="text-center">{{$predictions->comparisons->def->away}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->h2h->home}}</td>
+                                                            <td class="text-center text-primary">Head to Head</td>
+                                                            <td class="text-center">{{$predictions->comparisons->h2h->away}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->goals->home}}</td>
+                                                            <td class="text-center text-primary">Goals</td>
+                                                            <td class="text-center">{{$predictions->comparisons->goals->away}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">{{$predictions->comparisons->total->home}}</td>
+                                                            <td class="text-center text-primary">Total</td>
+                                                            <td class="text-center">{{$predictions->comparisons->total->away}}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                @else
+                                                    <div class="text-center">
+                                                        <h6>This fixture doesn't have predictions</h6>
+                                                    </div>
                                                 @endif
 
                                             </div>

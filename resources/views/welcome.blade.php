@@ -43,6 +43,39 @@
 
     </section>
     @endif
+    @if($predictions->count()>0)
+    <section class="prediction-section mt-5">
+        <hr>
+        <h1 class="fs-6 fw-bold mt-5">BETTING TIPS</h1>
+        <div class="row mt-5">
+            @foreach($predictions as $prediction)
+                <div class="col-12 col-sm-6 col-md-4 p-1">
+                    <div class="card fixture">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h6>{{$prediction->home}}</h6>
+                                    <h6>{{$prediction->away}}</h6>
+                                </div>
+                                <div class="col-6 align-self-center">
+                                   <small>{{\Carbon\Carbon::parse($prediction->time)->timezone($_COOKIE['timezone'])->format('g:i A')}}</small>
+                                    <small>{{\Carbon\Carbon::parse($prediction->time)->timezone($_COOKIE['timezone'])->isoFormat('MMM Do YY')}}</small>
+                                </div>
+                            </div>
+
+                            <p>Prediction: <span class="text-primary">{{$prediction->prediction}}</span></p>
+                        </div>
+
+                    </div>
+                </div>
+
+            @endforeach
+        </div>
+
+
+
+    </section>
+    @endif
     <section class="popular-competitions mt-5">
         <hr>
         <div class="mt-5 mb-5">
@@ -81,12 +114,8 @@
 
 
         </div>
-        <hr>
-
-    </section>
-    <section class="previous-highlights mt-5">
-        <h1 class="fs-6 fw-bold">BETTING TIPS</h1>
 
 
     </section>
+
 @endsection

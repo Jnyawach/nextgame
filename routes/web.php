@@ -31,6 +31,7 @@ use App\Http\Controllers\General\CompetitionsController;
 use App\Http\Controllers\General\CountriesController;
 use App\Http\Controllers\General\FixturesController;
 use App\Http\Controllers\General\LivescoreController;
+use App\Http\Controllers\General\PredictionController;
 
 Route::group([], function (){
     Route::resource('admin/videos', AdminVideoController::class);
@@ -43,6 +44,7 @@ Route::group([], function (){
 });
 //General Routes
 Route::group([], function (){
+    Route::resource('predictions', PredictionController::class);
     Route::get('football/match/{match}/{id}',  [MainController::class, 'match'])->name('league.match');
     Route::get('football/{id}/standings',  [MainController::class, 'standings'])->name('league.standings');
     Route::get('football/{id}/fixtures',  [MainController::class, 'fixture'])->name('league.fixture');
