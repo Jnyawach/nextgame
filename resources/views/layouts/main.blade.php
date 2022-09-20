@@ -7,6 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="{{asset('css/main.css')}}" rel="stylesheet">
     <link href="{{asset('css/fontawesome/css/all.css')}}" rel="stylesheet">
+    <link rel = "icon" href ="{{asset('images/nextgame-icon.png')}}" type = "image/x-icon">
     @yield('styles')
     <script src="{{asset('js/js.cookie.js')}}"></script>
     <script>
@@ -22,7 +23,9 @@
         <section class="big-menu">
             <nav class="navbar navbar-expand-sm ">
                 <div class="container-fluid">
-                    <a class="navbar-brand me-5" href="/">Nextgame</a>
+                    <a class="navbar-brand me-5" href="/" title="Nextgame">
+                        <img src="{{asset('images/next-game-logo.png')}}" class="img-fluid" alt="Nextgame Logo">
+                    </a>
 
                     <div class=" navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">

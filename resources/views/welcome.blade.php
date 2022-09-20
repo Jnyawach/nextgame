@@ -46,7 +46,7 @@
     @if($predictions->count()>0)
     <section class="prediction-section mt-5">
         <hr>
-        <h1 class="fs-6 fw-bold mt-5">BETTING TIPS</h1>
+        <h1 class="fs-6 fw-bold mt-5">TODAY'S TIPS</h1>
         <div class="row mt-5">
             @foreach($predictions as $prediction)
                 <div class="col-12 col-sm-6 col-md-4 p-1">
@@ -72,7 +72,7 @@
             @endforeach
         </div>
 
-
+        <a href="{{route('predictions.index')}}" class="btn btn-outline-light mt-5">See all betting tips<span class="ms-2"><i class="far fa-long-arrow-alt-right"></i></span></a>
 
     </section>
     @endif

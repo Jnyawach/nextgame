@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\General;
 
 use App\Http\Controllers\Controller;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class PredictionController extends Controller
@@ -15,7 +16,8 @@ class PredictionController extends Controller
     public function index()
     {
         //
-        return view('predictions.index');
+        $date=Carbon::today()->format('Y-m-d');
+        return view('predictions.index', compact('date'));
     }
 
     /**

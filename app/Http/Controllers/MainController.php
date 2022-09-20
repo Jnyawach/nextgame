@@ -30,7 +30,7 @@ class MainController extends Controller
         $highlights=cache()->remember('home-highlights',$time, function (){
           return  Highlight::take(4)->get();
         });
-         $predictions=Prediction::whereDate('time',Carbon::today())->limit(8)->get();
+         $predictions=Prediction::limit(8)->get();
 
         return view('welcome', compact('popular','highlights','predictions'));
     }
