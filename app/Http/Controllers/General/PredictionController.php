@@ -101,6 +101,7 @@ class PredictionController extends Controller
     public function tip($competition,$id){
         $fixture=$id;
         $competition=$competition;
-        return view('predictions/tip', compact('fixture', 'competition'));
+        $date=Carbon::now()->format('Y-m-d');
+        return view('predictions/tip', compact('fixture', 'competition','date'));
     }
 }

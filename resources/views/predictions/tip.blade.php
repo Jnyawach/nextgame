@@ -10,15 +10,19 @@
     <meta name="twitter:description" content="Football Betting tips: Prediction for today's games">
     <meta name="twitter:image" content="{{asset('images/default')}}">
     <meta name="twitter:card" content="summary_large_image">
+
+
     @livewireStyles
 @endsection
 @section('content')
     <section class="mt-5">
-        @livewire('show-tip',['fixture'=>$fixture])
+        @livewire('show-tip',['fixture'=>$fixture,'date'=>$date])
     </section>
 @endsection
 @section('scripts')
+
     @livewireScripts
+
 @endsection
 
 
