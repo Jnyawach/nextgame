@@ -31,7 +31,7 @@
             <div class="col-12 col-lg-6">
                 <div class="card fixture">
                     <div class="card-header p-0" style="border-bottom:1px solid #222">
-                        @include('includes.prediction-nav')
+                        <a href="{{route('predictions.index')}}" class="btn btn-link text-decoration-none"><span class="me-2"><i class="fal fa-arrow-left"></i></span>Return to all Predictions</a>
                     </div>
                     <div class="card-body">
                         @if($match)
@@ -48,12 +48,7 @@
                                             <span>{{$match->game->league->country}}</span>
 
                                         </div>
-                                        <div class="col-2 text-end">
-                                            <form>
-                                                <button type="submit" class="btn btn-link"><i class="fal fa-star"></i>
-                                                </button>
-                                            </form>
-                                        </div>
+
 
                                     </div>
                                     <div class="game-detail mt-3">
