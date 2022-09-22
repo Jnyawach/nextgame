@@ -85,4 +85,22 @@ class PredictionController extends Controller
     {
         //
     }
+
+    public function predictions($id){
+        $date=$id;
+        return view('predictions/betting-tips', compact('date'));
+    }
+
+    public function competition($competition,$id){
+        $league=$id;
+        $competition=$competition;
+        $date=Carbon::now()->format('Y-m-d');
+        return view('predictions/competition', compact('league', 'competition','date'));
+    }
+
+    public function tip($competition,$id){
+        $fixture=$id;
+        $competition=$competition;
+        return view('predictions/tip', compact('fixture', 'competition'));
+    }
 }

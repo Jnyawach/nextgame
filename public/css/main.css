@@ -105,7 +105,7 @@ a:hover{
 }
 
 .btn{
-    border-radius: 0px;
+    border-radius: 4px;
 
 }
 .btn:focus{
@@ -419,7 +419,7 @@ footer .nav .nav-item .nav-link{
 .fixture{
     border: 1px solid #222;
     background: none;
-    border-radius: 0;
+    border-radius: 4px;
 }
 .fixture p{
     font-weight: 500;
@@ -534,6 +534,7 @@ footer .nav .nav-item .nav-link{
 .live-score .nav-item .active{
     background-color: var(--senior);
     border: 1px solid var(--senior);
+    color: var(--light);
 }
 .fixture-competition h6{
     margin: 0;
@@ -549,6 +550,7 @@ footer .nav .nav-item .nav-link{
     background-color: rgba(250,250,250, 0.05);
     border:1px solid var(--outline) ;
     padding: 8px;
+    border-radius: 4px;
 }
 .game-detail small{
     font-size: 10px;

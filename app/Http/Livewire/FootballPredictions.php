@@ -63,7 +63,8 @@ class FootballPredictions extends Component
 
         });
         return view('livewire.football-predictions',[
-            'fixtures'=>$request
+            'fixtures'=>$request,
+
         ]);
     }
 }

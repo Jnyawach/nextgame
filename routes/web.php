@@ -44,6 +44,9 @@ Route::group([], function (){
 });
 //General Routes
 Route::group([], function (){
+    Route::get('predictions/tip/{competition}/{id}',  [PredictionController::class, 'tip'])->name('fixture-tip');
+    Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
+    Route::get('predictions/betting-tips/{id}',  [PredictionController::class, 'predictions'])->name('betting-tips');
     Route::resource('predictions', PredictionController::class);
     Route::get('football/match/{match}/{id}',  [MainController::class, 'match'])->name('league.match');
     Route::get('football/{id}/standings',  [MainController::class, 'standings'])->name('league.standings');
