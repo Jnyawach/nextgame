@@ -94,7 +94,7 @@
             <div class="d-none d-lg-block col-3">
                 <div class="card fixture">
                     <div class="card-body">
-                        <div id="element"></div>
+                        {!! calendar() !!}
                     </div>
                 </div>
             </div>
