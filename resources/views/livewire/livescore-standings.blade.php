@@ -89,9 +89,7 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <diV class="card-footer p-0 m-0">
-                                                    <a href="#" class="btn btn-link text-decoration-none">See all<i class="fal fa-angle-right ms-3"></i></a>
-                                                </diV>
+
                                             </div>
                                         </div>
                                     </div>
@@ -108,7 +106,13 @@
                     </div>
                 </div>
             </div>
-
+            <div class="d-none d-lg-block col-3">
+                <div class="card fixture">
+                    <div class="card-body">
+                        {!! livescore() !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

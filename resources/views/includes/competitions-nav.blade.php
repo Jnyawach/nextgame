@@ -1,7 +1,4 @@
-
-
-
-            <ul class="nav">
+            <ul class="nav live-score">
                 <li class="nav-item">
                     <a class="nav-link {{ Request::routeIs('competitions.show') ? 'active' : '' }}"  href="{{route('competitions.show',$league->slug)}}">Table</a>
                 </li>

@@ -365,7 +365,13 @@
                     </div>
                 </div>
             </div>
-
+            <div class="d-none d-lg-block col-3">
+                <div class="card fixture">
+                    <div class="card-body">
+                        {!! livescore() !!}
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </div>

@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-3 col-sm-2 col-lg-1">
                     <div class="logo-image">
-                        <img src="{{$league->logo}}"  alt="{{$league->name}}" title="{{$league->name}}">
+                        <img src="{{$league->logo}}" alt="{{$league->name}}" title="{{$league->name}}">
                     </div>
 
                 </div>
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <section class="mt-5 prediction-nav">
-                @include('includes.predictions-nav')
+                @include('includes.competitions-nav')
                 <hr class="mt-0">
             </section>
 
@@ -38,12 +38,14 @@
                                             <div class="col-8">
 
                                                 <div>
-                                                    <img src="{{$fixture->home_logo}}" class="img-fluid d-inline-block m-1" style="height: 25px">
+                                                    <img src="{{$fixture->home_logo}}"
+                                                         class="img-fluid d-inline-block m-1" style="height: 18px">
                                                     <p class="d-inline-block m-1">{{$fixture->home}}</p>
                                                     <p class="d-inline-block m-1 float-end">{{$fixture->home_goals}}</p>
                                                 </div>
                                                 <div class="mt-2">
-                                                    <img src="{{$fixture->away_logo}}" class="img-fluid d-inline-block m-1" style="height: 25px">
+                                                    <img src="{{$fixture->away_logo}}"
+                                                         class="img-fluid d-inline-block m-1" style="height: 18px">
                                                     <p class="d-inline-block m-1">{{$fixture->away}}</p>
                                                     <p class="d-inline-block m-1 float-end">{{$fixture->away_goals}}</p>
                                                 </div>
@@ -60,7 +62,6 @@
 
                         </div>
                     @endforeach
-
 
 
                 </div>

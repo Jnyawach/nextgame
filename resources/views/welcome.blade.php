@@ -29,7 +29,8 @@
 
                         <div class="match-details">
                             <h6 class="mt-3">{{$highlight->name}}</h6>
-                            <p class="mt-2 ">{{$highlight->competition}}: <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
+
+                            <p><span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
 
                         </div>
                     </div>
@@ -43,32 +44,47 @@
 
     </section>
     @endif
-    @if($predictions->count()>0)
+    @if($fixtures->count()>0)
     <section class="prediction-section mt-5">
         <hr>
         <h1 class="fs-6 fw-bold mt-5">TODAY'S TIPS</h1>
         <div class="row mt-5">
-            @foreach($predictions as $prediction)
-                <div class="col-12 col-sm-6 col-md-4 p-1">
-                    <div class="card fixture">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <h6>{{$prediction->home}}</h6>
-                                    <h6>{{$prediction->away}}</h6>
-                                </div>
-                                <div class="col-6 align-self-center">
-                                   <small>{{\Carbon\Carbon::parse($prediction->time)->timezone($_COOKIE['timezone'])->format('g:i A')}}</small>
-                                    <small>{{\Carbon\Carbon::parse($prediction->time)->timezone($_COOKIE['timezone'])->isoFormat('MMM Do YY')}}</small>
-                                </div>
-                            </div>
+            @foreach($fixtures->take(5) as $fixture)
 
-                            <p>Prediction: <span class="text-primary">{{$prediction->prediction}}</span></p>
-                        </div>
+                @foreach(array_slice($fixture->games,0,2) as $match)
+                    <div class="col-12 col-sm-6 col-md-4">
+                    <div class="game-detail mt-2 betting-card">
+                        <table>
+                            <tbody>
+                            <tr>
+
+                                <td style="width: 5%; text-align: center;">
+                                    <img src="{{$match->home_logo}}" style="height: 18px" alt="{{$match->home_team}}">
+                                </td>
+                                <td style="width: 50%">
+                                    <p class="p-0 m-0">{{$match->home_team}}</p>
+                                </td>
+                                <td style="width: 40%" rowspan="2" class="text-end">
+                                    <a href="{{route('fixture-tip',[\Illuminate\Support\Str::slug($match->home_team.'-vs-'.$match->away_team),$match->fixture_id])}}" title="See Prediction"
+                                       class="btn btn-link text-decoration-none">See prediction<i
+                                            class="fal fa-angle-right ms-2"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 5%; text-align: center;">
+                                    <img src="{{$match->away_logo}}" style="height: 18px" alt="{{$match->away_team}}">
+                                </td>
+                                <td style="width: 50%">
+                                    <p class="p-0 m-0">{{$match->away_team}}</p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
 
                     </div>
-                </div>
-
+                    </div>
+                @endforeach
             @endforeach
         </div>
 
@@ -83,12 +99,12 @@
 
                 <div class="row display-flex mt-5">
                     @foreach($popular as $competition)
-                        <div class="col-12 col-sm-6 col-md-4 col-lg-3 p-1">
+                        <div class="col-12 col-sm-6 col-md-6 col-lg-3 p-1">
                             <a href="{{route('competitions.show',$competition->league->slug)}}" class="text-decoration-none" title="{{$competition->league->name}}">
                                 <div class="card transform-card fixture">
                                     <div class="card-body p-2">
                                         <div class="row ">
-                                            <div class="col-3">
+                                            <div class="col-3 align-self-center">
                                                 <div class="popular-logo text-center">
                                                     <img src="{{$competition->league->logo}}" title="Premier League"
                                                          class="img-fluid">
@@ -97,8 +113,8 @@
 
                                             </div>
                                             <div class="col-9">
-                                                <h6 class="text-uppercase">{{$competition->league->type}}</h6>
-                                                <p class="fw-bold fs-6">{{ $competition->league->name }}</p>
+                                                <h6 class="">{{$competition->league->type}}</h6>
+                                                <p class="fw-bold p-0 m-0">{{ \Illuminate\Support\Str::limit($competition->league->name, 24, $end='...') }}</p>
                                             </div>
                                         </div>
 

@@ -181,6 +181,7 @@ a:hover{
     justify-content: center;
     align-items: center;
     background-color: var(--light);
+    border-radius: 4px;
 }
 .play-icon{
     opacity: 0.6;
@@ -211,6 +212,7 @@ a:hover{
     transition: .3s ease-in-out;
 
 
+
 }
 .curved:hover{
     -webkit-transform: scale(1.03);
@@ -233,7 +235,7 @@ a:hover{
     border: 0.002rem solid var(--light);
     color: white;
     border-radius: 1px;
-    min-height: 108px;
+
 }
 .transform-card:hover{
     background-color: rgba(250,250,250, 0.1);
@@ -264,8 +266,8 @@ a:hover{
 .popular-logo{
     background-color: white;
     padding: 5px !important;
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     object-fit: contain !important;
 }
 .popular-logo img{
@@ -275,88 +277,22 @@ a:hover{
     margin: auto;
 
 }
+.popular-competitions h6{
+    font-size: 14px;
+}
+.popular-competitions p{
+    font-size: 12px;
+}
 
 
 footer .nav .nav-item .nav-link{
     font-size: 16px;
 }
 /*-------------------Prediction Page-------------------*/
-
-.prediction-nav .nav .nav-item{
-
-}
-.prediction-nav .nav .nav-item .nav-link{
-    font-size: 14px;
-
-}
-.prediction-nav .nav .nav-item .nav-link:hover{
-    color: var(--senior);
-}
-.prediction-nav .nav .nav-item .active{
-    color: var(--senior);
+.betting-card p,.betting-card a{
+    font-size: 13px;
 }
 
-.prediction-table{
-    border: 1px solid var(--senior);
-    color: white;
-}
-
-.prediction-table thead{
-    font-weight: 700;
-    color: var(--success);
-}
-
-.prediction-table tbody tr:hover{
-   /*background-color: rgba(225,225,225,0.5);*/
-    background-color: var(--senior);
-    color: var(--primary);
-}
-
-.head-icon{
-    background-color: white;
-    color: var(--primary);
-    width: 25px;
-    height: 25px;
-
-
-}
-.tip-icon{
-    background-color: var(--senior);
-    color: var(--primary);
-    width: 25px;
-    height: 25px;
-}
-
-.win-icon{
-    text-align: center;
-    font-size: 14px;
-    color: var(--neon);
-    border:2px solid var(--neon);
-    display: inline-block;
-    height: 25px;
-    line-height:25px;
-    width: 25px;
-}
-.loss-icon{
-    text-align: center;
-    font-size: 14px;
-    color: var(--junior);
-    border:2px solid var(--junior);
-    display: inline-block;
-    height: 25px;
-    line-height:25px;
-    width: 25px;
-}
-.draw-icon{
-    text-align: center;
-    font-size: 14px;
-    color: var(--orange);
-    border:2px solid var(--orange);
-    display: inline-block;
-    height: 25px;
-    line-height:25px;
-    width: 25px;
-}
 
 /*----------------competitions page-----------------*/
 .competitions li{
@@ -368,6 +304,7 @@ footer .nav .nav-item .nav-link{
 .country-name{
     color: var(--senior);
 }
+
 
 /*---------------competition page-------------------*/
 
@@ -423,7 +360,7 @@ footer .nav .nav-item .nav-link{
 }
 .fixture p{
     font-weight: 500;
-    font-size: 14px;
+    font-size: 13px;
 
 }
 .rounded-image{
