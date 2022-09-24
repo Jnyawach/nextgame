@@ -22,6 +22,7 @@ use App\Http\Controllers\Admin\AdminLeaguesController;
 use App\Http\Controllers\Admin\AdminTeamsController;
 use App\Http\Controllers\Admin\AdminPopularCompetitions;
 use App\Http\Controllers\Admin\AdminVideoController;
+use App\Http\Controllers\Admin\AdminPolicyController;
 
 
 /*General Controller------------*/
@@ -34,6 +35,7 @@ use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
 Route::group([], function (){
+    Route::resource('admin/policies', AdminPolicyController::class);
     Route::resource('admin/videos', AdminVideoController::class);
     Route::resource('admin/popular', AdminPopularCompetitions::class);
     Route::resource('admin/teams', AdminTeamsController::class);
@@ -48,6 +50,8 @@ Route::group([], function (){
     Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
     Route::get('predictions/betting-tips/{id}',  [PredictionController::class, 'predictions'])->name('betting-tips');
     Route::resource('predictions', PredictionController::class);
+    Route::get('terms',  [MainController::class, 'terms'])->name('terms');
+    Route::get('privacy-policy',  [MainController::class, 'policy'])->name('privacy-policy');
     Route::get('football/match/{match}/{id}',  [MainController::class, 'match'])->name('league.match');
     Route::get('football/{id}/standings',  [MainController::class, 'standings'])->name('league.standings');
     Route::get('football/{id}/fixtures',  [MainController::class, 'fixture'])->name('league.fixture');

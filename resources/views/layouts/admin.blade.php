@@ -10,12 +10,13 @@
     <meta name="keywords" content="Premier league, Betting Prediction">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link rel="shortcut icon" href="img/icons/icon-48x48.png" />
-
+    <link rel = "icon" href ="{{asset('images/nextgame-icon.png')}}" type = "image/x-icon">
+    <link href="{{asset('css/fontawesome/css/all.css')}}" rel="stylesheet">
 
     <title>@yield('title') | Nextgame</title>
 
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+    <link href="{{asset('css/custom.css')}}" rel="stylesheet">
     @yield('styles')
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
@@ -32,40 +33,46 @@
 
                 <li class="sidebar-item {{ request()->is('admin') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('admin.index')}}">
-                        <i class="align-middle" data-feather="sliders"></i> <span class="align-middle">Dashboard</span>
+                        <i class="fal fa-sliders-h"></i> <span class="align-middle">Dashboard</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->is('admin/timezones') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('timezones.index')}}">
-                        <i class="align-middle" data-feather="clock"></i> <span class="align-middle">Timezones</span>
+                        <i class="fal fa-alarm-clock"></i> <span class="align-middle">Timezones</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->is('admin/countries') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('countries.index')}}">
-                        <i class="align-middle" data-feather="globe"></i> <span class="align-middle">Countries</span>
+                        <i class="fal fa-globe"></i> <span class="align-middle">Countries</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->is('admin/leagues') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('leagues.index')}}">
-                        <i class="align-middle" data-feather="folder"></i> <span class="align-middle">Leagues</span>
+                        <i class="far fa-folders"></i> <span class="align-middle">Leagues</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->is('admin/teams') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('teams.index')}}">
-                        <i class="align-middle" data-feather="users"></i> <span class="align-middle">Teams</span>
+                        <i class="fal fa-users"></i> <span class="align-middle">Teams</span>
                     </a>
                 </li>
                 <li class="sidebar-item {{ request()->is('admin/popular') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('popular.index')}}">
-                        <i class="align-middle" data-feather="thumbs-up"></i> <span class="align-middle">Popular Competitions</span>
+                        <i class="fal fa-thumbs-up"></i> <span class="align-middle">Popular Competitions</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item {{ request()->is('admin/videos') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('videos.index')}}">
-                        <i class="align-middle" data-feather="video"></i> <span class="align-middle">Highlights</span>
+                        <i class="far fa-video"></i> <span class="align-middle">Highlights</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item {{ request()->is('admin/policies') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('policies.index')}}">
+                        <i class="fal fa-file-alt"></i> <span class="align-middle">HighlightsPolicy & Terms</span>
                     </a>
                 </li>
 

@@ -177,16 +177,16 @@
             <div class="col-6 col-sm-6 col-md-3">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Premier League</a>
+                        <a class="nav-link" href="{{route('privacy-policy')}}">Privacy policy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Laliga</a>
+                        <a class="nav-link" href="{{route('terms')}}">Terms of Use</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">UEFA Champions League</a>
+                        <a class="nav-link" href="#">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">EUROPA League</a>
+                        <a class="nav-link disabled">Advertising</a>
                     </li>
                 </ul>
             </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Country;
 use App\Models\Highlight;
 use App\Models\League;
+use App\Models\Policy;
 use App\Models\Popular;
 use App\Models\Prediction;
 use App\Models\Team;
@@ -214,5 +215,14 @@ class MainController extends Controller
         $match=str_replace('-', ' ', $match);
 
         return view('football/match', compact('fixture','match'));
+    }
+
+    public function policy(){
+        $policy=Policy::where('category','Privacy')->latest()->first();
+        return view('privacy-policy', compact('policy'));
+    }
+    public function terms(){
+        $term=Policy::where('category','Terms')->latest()->first();
+        return view('terms', compact('term'));
     }
 }
