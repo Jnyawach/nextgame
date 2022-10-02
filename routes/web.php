@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
 /*Admin Controllers here */
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminTimezoneController;
@@ -34,7 +32,7 @@ use App\Http\Controllers\General\FixturesController;
 use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
-Route::group([], function (){
+Route::group(['middleware'=>['auth','role:super-admin']], function (){
     Route::resource('admin/policies', AdminPolicyController::class);
     Route::resource('admin/videos', AdminVideoController::class);
     Route::resource('admin/popular', AdminPopularCompetitions::class);
@@ -50,6 +48,7 @@ Route::group([], function (){
     Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
     Route::get('predictions/betting-tips/{id}',  [PredictionController::class, 'predictions'])->name('betting-tips');
     Route::resource('predictions', PredictionController::class);
+    Route::get('search',  [MainController::class, 'search'])->name('search');
     Route::get('terms',  [MainController::class, 'terms'])->name('terms');
     Route::get('privacy-policy',  [MainController::class, 'policy'])->name('privacy-policy');
     Route::get('football/match/{match}/{id}',  [MainController::class, 'match'])->name('league.match');
@@ -72,6 +71,9 @@ Route::group([], function (){
 });
 
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';

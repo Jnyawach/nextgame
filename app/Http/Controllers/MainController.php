@@ -31,6 +31,7 @@ class MainController extends Controller
         $highlights=cache()->remember('home-highlights',$time, function (){
           return  Highlight::take(4)->get();
         });
+
         $keyword='prediction_today'.Carbon::now()->format('Y-m-d');
         $duration=Carbon::now()->addHours(6);
         $request =cache()->remember($keyword,$duration,function (){
@@ -40,7 +41,7 @@ class MainController extends Controller
                 'date'=>Carbon::now()->format('Y-m-d'),
             ];
             $url='https://v3.football.api-sports.io/fixtures';
-            $response=Http::withHeaders([
+            $response=Http::timeout(100)->withHeaders([
                 'x-rapidapi-host' => $host,
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
@@ -224,5 +225,10 @@ class MainController extends Controller
     public function terms(){
         $term=Policy::where('category','Terms')->latest()->first();
         return view('terms', compact('term'));
+    }
+
+    public function search(){
+
+        return view('search', );
     }
 }

@@ -60,9 +60,9 @@ a:hover{
     color: white;
 }
 .navbar-nav .nav-item .nav-link{
-    font-weight: 700;
+    font-weight: 400;
     color: white;
-    font-size: 12px !important;
+    font-size: 14px !important;
 
 
 }
@@ -152,11 +152,23 @@ a:hover{
 .btn-link:hover{
     color: var(--senior);
 }
+.btn-outline-secondary{
+    border: 1px solid var(--outline);
+    color: var(--light);
+}
+.btn-outline-secondary:hover{
+    background-color: rgba(250,250,250, 0.05);
+}
 .menu-btn{
     color: white !important;
 }
 /*----- End of Navbar-----*/
 /*------Body----*/
+.social-links a{
+
+    border: 1px solid var(--outline);
+    width: 15px;
+}
 .match-details{
   color: white !important;
 }
@@ -642,4 +654,8 @@ progress{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+/*---------------Search Page--------------*/
+.shortcuts{
+    font-size: 12px;
 }
