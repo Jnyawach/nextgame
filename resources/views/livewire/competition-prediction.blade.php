@@ -69,7 +69,7 @@
                                                 <p class="p-0 m-0">{{$match->home_team}}</p>
                                             </td>
                                             <td style="width: 40%" rowspan="2" class="text-end">
-                                                <a href="#" title="See Prediction"
+                                                <a href="{{route('fixture-tip',[\Illuminate\Support\Str::slug($match->home_team.'-vs-'.$match->away_team),$match->fixture_id])}}" title="See Prediction"
                                                    class="btn btn-link text-decoration-none">See prediction<i
                                                         class="fal fa-angle-right ms-2"></i></a>
                                             </td>

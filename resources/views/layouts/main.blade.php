@@ -14,7 +14,7 @@
         var time=Intl.DateTimeFormat().resolvedOptions().timeZone
         Cookies.set('timezone', time, { expires: 7 })
     </script>
-   @livewireScripts
+   @livewireStyles
 </head>
 <body>
 <div class="content">
@@ -133,6 +133,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 
 @yield('scripts')
-@livwireStyles
+@livewireScripts
 </body>
 </html>
