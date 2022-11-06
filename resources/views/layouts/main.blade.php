@@ -16,6 +16,15 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TNVRW6J');</script>
     <!-- End Google Tag Manager -->
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYYR1DZHJR"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-KYYR1DZHJR');
+    </script>
     <script src="{{asset('js/js.cookie.js')}}"></script>
     <script>
         var time=Intl.DateTimeFormat().resolvedOptions().timeZone
