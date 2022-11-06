@@ -3,12 +3,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title') | Nextgame</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link href="{{asset('css/main.css')}}" rel="stylesheet">
-    <link href="{{asset('css/fontawesome/css/all.css')}}" rel="stylesheet">
-    <link rel = "icon" href ="{{asset('images/kola-icon.png')}}" type = "image/x-icon">
-    @yield('styles')
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
                 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -16,15 +10,15 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TNVRW6J');</script>
     <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KYYR1DZHJR"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+    <title>@yield('title') | Nextgame</title>
 
-        gtag('config', 'G-KYYR1DZHJR');
-    </script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link href="{{asset('css/main.css')}}" rel="stylesheet">
+    <link href="{{asset('css/fontawesome/css/all.css')}}" rel="stylesheet">
+    <link rel = "icon" href ="{{asset('images/kola-icon.png')}}" type = "image/x-icon">
+    @yield('styles')
+
+
     <script src="{{asset('js/js.cookie.js')}}"></script>
     <script>
         var time=Intl.DateTimeFormat().resolvedOptions().timeZone
