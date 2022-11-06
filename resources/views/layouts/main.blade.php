@@ -25,8 +25,10 @@
         Cookies.set('timezone', time, { expires: 7 })
     </script>
    @livewireStyles
+    <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
 </head>
 <body>
+
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNVRW6J"
                   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>

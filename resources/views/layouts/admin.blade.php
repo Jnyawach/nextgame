@@ -76,6 +76,12 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ request()->is('logs') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('logs')}}" target="_blank">
+                        <i class="fal fa-file-alt"></i> <span class="align-middle">Logs</span>
+                    </a>
+                </li>
+
 
             </ul>
 

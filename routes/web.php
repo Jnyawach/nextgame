@@ -32,7 +32,7 @@ use App\Http\Controllers\General\FixturesController;
 use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
-Route::group(['middleware'=>['auth','role:super-admin']], function (){
+Route::group(['middleware'=>['auth','role:Admin']], function (){
     Route::resource('admin/policies', AdminPolicyController::class);
     Route::resource('admin/videos', AdminVideoController::class);
     Route::resource('admin/popular', AdminPopularCompetitions::class);
@@ -41,6 +41,7 @@ Route::group(['middleware'=>['auth','role:super-admin']], function (){
     Route::resource('admin/countries', AdminCountriesController::class);
     Route::resource('admin/timezones', AdminTimezoneController::class);
     Route::resource('admin', AdminController::class);
+    Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs');
 });
 //General Routes
 Route::group([], function (){

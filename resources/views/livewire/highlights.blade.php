@@ -5,11 +5,7 @@
             <a href="{{route('match-highlights.show', $recent->slug)}}" title="{{$recent->name}} Highlights" class="text-decoration-none">
                 <div>
                     <div class="player-thumbnail">
-                        @if(file_get_contents($recent->thumbnail))
-                            <img src="{{$recent->thumbnail}}" class="img-fluid" alt="{{$recent->name}}">
-                        @else
-                            <img src="{{asset('images/default.jpg')}}" class="img-fluid" alt="{{$recent->name}}">
-                        @endif
+                        <img src="{{$recent->thumbnail}}" class="img-fluid" alt="{{$recent->name}}">
 
                         <div class="play-icon">
                             <span class="fs-4"><i class="fal fa-play"></i></span>
@@ -33,11 +29,9 @@
              <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
                  <div>
                      <div class="player-thumbnail">
-                         @if(file_get_contents($highlight->thumbnail))
+
                              <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
-                         @else
-                             <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
-                         @endif
+
 
                          <div class="play-icon">
                              <span class="fs-4"><i class="fal fa-play"></i></span>
@@ -67,11 +61,8 @@
                     <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
                         <div>
                             <div class="player-thumbnail">
-                                @if(file_get_contents($highlight->thumbnail))
+
                                     <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}" loading="lazy">
-                                @else
-                                    <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}" loading="lazy">
-                                @endif
 
                                 <div class="play-icon">
                                     <span class="fs-4"><i class="fal fa-play"></i></span>

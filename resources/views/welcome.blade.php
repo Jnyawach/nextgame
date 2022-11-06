@@ -14,11 +14,7 @@
                 <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
                     <div>
                         <div class="player-thumbnail">
-                            @if(file_get_contents($highlight->thumbnail))
-                                <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
-                            @else
-                                <img src="{{asset('images/default.jpg')}}" class="img-fluid curved" alt="{{$highlight->name}}">
-                            @endif
+                            <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
 
                             <div class="play-icon">
                                 <span class="fs-4"><i class="fal fa-play"></i></span>

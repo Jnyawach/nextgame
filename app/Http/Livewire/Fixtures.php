@@ -20,11 +20,13 @@ class Fixtures extends Component
             $host = Config::get('sports.URL');
             $body=[
                 'date'=>$this->date,
+                'status'=>'NS',
+
 
 
             ];
             $url='https://v3.football.api-sports.io/fixtures';
-            $response=Http::timeout(10)->withHeaders([
+            $response=Http::timeout(15)->withHeaders([
                 'x-rapidapi-host' => $host,
                 'x-rapidapi-key' => $key
             ])->get($url,$body);
