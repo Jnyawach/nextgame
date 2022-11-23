@@ -69,6 +69,11 @@
                         <i class="far fa-video"></i> <span class="align-middle">Highlights</span>
                     </a>
                 </li>
+                <li class="sidebar-item {{ request()->is('admin/contact') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('contact.index')}}">
+                        <i class="far fa-envelope"></i> <span class="align-middle">Messages</span>
+                    </a>
+                </li>
 
                 <li class="sidebar-item {{ request()->is('admin/policies') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('policies.index')}}">
@@ -78,7 +83,7 @@
 
                 <li class="sidebar-item {{ request()->is('logs') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('logs')}}" target="_blank">
-                        <i class="fal fa-file-alt"></i> <span class="align-middle">Logs</span>
+                        <i class="fas fa-clipboard-list"></i> <span class="align-middle">Logs</span>
                     </a>
                 </li>
 

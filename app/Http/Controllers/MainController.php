@@ -231,4 +231,13 @@ class MainController extends Controller
 
         return view('search', );
     }
+
+    public function dmca(){
+        return view('dmca');
+    }
+
+    public function contact(){
+        return view('contact-us');
+    }
+
 }

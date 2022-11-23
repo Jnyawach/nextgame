@@ -424,7 +424,11 @@ footer .nav .nav-item .nav-link{
 }
 
 /*-----------------------Hihglights Page--------------*/
+.highlight-search{
+    border: 1px solid var(--outline);
+    border-radius: 8px;
 
+}
 .highlight-title{
     position: absolute;
     bottom: 0px;
@@ -668,4 +672,10 @@ progress{
 /*---------------Search Page--------------*/
 .shortcuts{
     font-size: 12px;
+}
+
+.contact input, .contact textarea{
+    background:none !important;
+    border:  1px solid var(--outline);
+    color: white !important;
 }

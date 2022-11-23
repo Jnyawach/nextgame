@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,7 @@ use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
 Route::group(['middleware'=>['auth','role:Admin']], function (){
+    Route::resource('admin/contact', AdminContactController::class);
     Route::resource('admin/policies', AdminPolicyController::class);
     Route::resource('admin/videos', AdminVideoController::class);
     Route::resource('admin/popular', AdminPopularCompetitions::class);
@@ -49,6 +51,8 @@ Route::group([], function (){
     Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
     Route::get('predictions/betting-tips/{id}',  [PredictionController::class, 'predictions'])->name('betting-tips');
     Route::resource('predictions', PredictionController::class);
+    Route::get('contact-us',  [MainController::class, 'contact'])->name('contact');
+    Route::get('dmca',  [MainController::class, 'dmca'])->name('dmca');
     Route::get('search',  [MainController::class, 'search'])->name('search');
     Route::get('terms',  [MainController::class, 'terms'])->name('terms');
     Route::get('privacy-policy',  [MainController::class, 'policy'])->name('privacy-policy');

@@ -54,16 +54,16 @@
             <div class="col-6 col-sm-6 col-md-3 p-2">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('privacy-policy')}}">Privacy policy</a>
+                        <a class="nav-link" href="{{route('privacy-policy')}}" title="Privacy Policy">Privacy policy</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('terms')}}">Terms of Use</a>
+                        <a class="nav-link" href="{{route('terms')}}" title="Terms of Use">Terms of Use</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Contact Us</a>
+                        <a class="nav-link" href="{{route('contact')}}" title="Contact Us">Contact Us</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Advertising</a>
+                        <a class="nav-link" href="{{route('dmca')}}">DMCA</a>
                     </li>
                 </ul>
             </div>

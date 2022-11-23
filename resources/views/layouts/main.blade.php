@@ -10,7 +10,7 @@
             'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
         })(window,document,'script','dataLayer','GTM-TNVRW6J');</script>
     <!-- End Google Tag Manager -->
-    <title>@yield('title') | Nextgame</title>
+    <title>@yield('title') | Kola Sports</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="{{asset('css/main.css')}}" rel="stylesheet">

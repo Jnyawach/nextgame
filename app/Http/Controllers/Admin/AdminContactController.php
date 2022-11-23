@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Contact;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class AdminContactController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,7 @@ class AdminController extends Controller
     public function index()
     {
         //
-        $messages=Contact::Unread()->count();
-
-        return  view('admin.index', compact('messages'));
+        return view('admin.contact.index');
     }
 
     /**
@@ -51,6 +49,9 @@ class AdminController extends Controller
     public function show($id)
     {
         //
+        $message=Contact::findOrFail($id);
+        $message->update(['status'=>1]);
+        return view('admin.contact.show',compact('message'));
     }
 
     /**

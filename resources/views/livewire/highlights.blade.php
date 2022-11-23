@@ -1,6 +1,16 @@
 <div>
-    <h6>Recently added</h6>
-    <div class="row">
+   <div class="d-flex justify-content-between">
+       <div>
+           <h4>Recently added</h4>
+       </div>
+       <div class="highlight-search">
+           <div class="input-group">
+               <span class="input-group-text p-2" id="basic-addon1"><i class="fal fa-search"></i></span>
+               <input type="search" name="search" class="form-control p-2" placeholder="Search Highlights..." wire:model.debounce.500ms="search">
+           </div>
+       </div>
+   </div>
+    <div class="row mt-4">
         <div class="col-12 col-md-8 col-lg-8 p-2">
             <a href="{{route('match-highlights.show', $recent->slug)}}" title="{{$recent->name}} Highlights" class="text-decoration-none">
                 <div>
