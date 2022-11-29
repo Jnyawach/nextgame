@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\TodoController;
+use App\Http\Controllers\TodoTestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +21,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('football/test',[\App\Http\Controllers\MainController::class,'SoccerTest']);
+
+//Frontend test routes
+
+Route::group([], function (){
+    Route::post('/todos/updateAll',[TodoTestController::class, 'updateAll']);
+    Route::get('/todos/clearComplete',[TodoTestController::class, 'clearComplete']);
+    Route::resource('/todos',TodoTestController::class);
+});

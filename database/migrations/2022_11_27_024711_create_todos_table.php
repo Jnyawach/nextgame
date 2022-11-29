@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('todos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('home_team');
-            $table->string('away_team');
-            $table->dateTime('match_time');
-            $table->text('links');
+            $table->string('name');
+            $table->string('status');
+            $table->integer('order')->nullable();
         });
     }
 
@@ -30,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('todos');
     }
 };
