@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminContactController;
+use App\Http\Controllers\Admin\AdminLinksController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,7 @@ use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
 Route::group(['middleware'=>['auth','role:Admin']], function (){
+    Route::resource('admin/links', AdminLinksController::class);
     Route::resource('admin/contact', AdminContactController::class);
     Route::resource('admin/policies', AdminPolicyController::class);
     Route::resource('admin/videos', AdminVideoController::class);

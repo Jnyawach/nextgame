@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Link extends Model
 {
     use HasFactory;
+
+    protected $fillable=[
+        'match_time','links','home_team','away_team'
+    ];
 }

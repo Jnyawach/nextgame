@@ -81,11 +81,19 @@
                     </a>
                 </li>
 
+                <li class="sidebar-item {{ request()->is('links') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{route('links.index')}}">
+                        <i class="fas fa-video"></i> <span class="align-middle">Match links</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-item {{ request()->is('logs') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{route('logs')}}" target="_blank">
                         <i class="fas fa-clipboard-list"></i> <span class="align-middle">Logs</span>
                     </a>
                 </li>
+
+
 
 
             </ul>
