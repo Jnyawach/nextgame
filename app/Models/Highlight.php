@@ -28,6 +28,6 @@ class Highlight extends Model
 
     protected $fillable=[
        'name','match_url','competition_url','thumbnail','match_date',
-        'video_id','video_title','video_embed','competition','index_status'
+        'video_id','video_title','video_embed','competition','index_status','published'
     ];
 }

@@ -37,6 +37,7 @@ class RequestHighlights extends Command
 
 
 
+
        foreach ($highlights as $video){
                foreach ($video as $highlight){
                    $item= Highlight::updateOrCreate([
@@ -49,6 +50,7 @@ class RequestHighlights extends Command
                        'video_id'=>$highlight['videos'][0]['id'],
                        'video_title'=>$highlight['videos'][0]['title'],
                        'video_embed'=>$highlight['videos'][0]['embed'],
+                       'published'=>Carbon::parse($highlight['date']),
                        'index_status'=>0
                    ]);
                }

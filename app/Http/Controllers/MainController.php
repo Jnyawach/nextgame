@@ -29,7 +29,7 @@ class MainController extends Controller
             return Popular::all();
         });
         $highlights=cache()->remember('home-highlights',$time, function (){
-          return  Highlight::take(4)->get();
+          return  Highlight::orderBy('published','DESC')->take(4)->get();
         });
 
         $keyword='prediction_today'.Carbon::now()->format('Y-m-d');
@@ -83,7 +83,7 @@ class MainController extends Controller
 
         });
         $fixtures=collect(json_decode($request));
-        //dd($fixtures);
+
 
         return view('welcome', compact('popular','highlights','fixtures'));
     }
