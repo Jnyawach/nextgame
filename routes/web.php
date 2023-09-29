@@ -51,7 +51,7 @@ Route::group(['middleware'=>['auth','role:Admin']], function (){
 Route::group([], function (){
     Route::get('predictions/tip/{competition}/{id}',  [PredictionController::class, 'tip'])->name('fixture-tip');
     Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
-    Route::get('predictions/betting-tips/{id}',  [PredictionController::class, 'predictions'])->name('betting-tips');
+    Route::get('predictions/betting-tips/{id}.html',  [PredictionController::class, 'predictions'])->name('betting-tips');
     Route::resource('predictions', PredictionController::class);
     Route::get('contact-us',  [MainController::class, 'contact'])->name('contact');
     Route::get('dmca',  [MainController::class, 'dmca'])->name('dmca');

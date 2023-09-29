@@ -20,12 +20,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('football/test',[\App\Http\Controllers\MainController::class,'SoccerTest']);
 
-//Frontend test routes
 
-Route::group([], function (){
-    Route::post('/todos/updateAll',[TodoTestController::class, 'updateAll']);
-    Route::get('/todos/clearComplete',[TodoTestController::class, 'clearComplete']);
-    Route::resource('/todos',TodoTestController::class);
-});

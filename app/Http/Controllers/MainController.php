@@ -5,7 +5,6 @@ use App\Models\Country;
 use App\Models\Highlight;
 use App\Models\League;
 use App\Models\Policy;
-use App\Models\Popular;
 use App\Models\Prediction;
 use App\Models\Team;
 use Carbon\Carbon;
@@ -24,68 +23,11 @@ class MainController extends Controller
     public function index()
     {
         //
-        $time=Carbon::now()->addHours(2);
-        $popular=cache()->remember('popular',$time,function (){
-            return Popular::all();
-        });
-        $highlights=cache()->remember('home-highlights',$time, function (){
-          return  Highlight::orderBy('published','DESC')->take(4)->get();
-        });
-
-        $keyword='prediction_today'.Carbon::now()->format('Y-m-d');
-        $duration=Carbon::now()->addHours(6);
-        $request =cache()->remember($keyword,$duration,function (){
-            $key = Config::get('sports.KEY');
-            $host = Config::get('sports.URL');
-            $body=[
-                'date'=>Carbon::now()->format('Y-m-d'),
-            ];
-            $url='https://v3.football.api-sports.io/fixtures';
-            $response=Http::timeout(100)->withHeaders([
-                'x-rapidapi-host' => $host,
-                'x-rapidapi-key' => $key
-            ])->get($url,$body);
-            $result= json_decode($response);
-            //dd($result);
-            $groupedObjects=array();
-
-            foreach ($result->response as $cont){
-                $leagueName=$cont->league->name;
-                if (!isset($groupedObjects[$leagueName])){
-                    $groupedObjects[$leagueName]=[
-                        'league_name'=>$cont->league->name,
-                        'league_id'=>$cont->league->id,
-                        'league_logo'=>$cont->league->logo,
-                        'league_country'=>$cont->league->country,
-                        'games'=>[]
-                    ];
-                }
-                $game=[
-                    'fixture_id'=>$cont->fixture->id,
-                    'date'=>$cont->fixture->date,
-                    'status'=>$cont->fixture->status->short,
-                    'status_long'=>$cont->fixture->status->long,
-                    'elapsed'=>$cont->fixture->status->elapsed,
-                    'home_team'=>$cont->teams->home->name,
-                    'home_logo'=>$cont->teams->home->logo,
-                    'away_team'=>$cont->teams->away->name,
-                    'away_logo'=>$cont->teams->away->logo,
-                    'home_goals'=>$cont->goals->home,
-                    'away_goals'=>$cont->goals->away
-                ];
-
-                array_push($groupedObjects[$leagueName]['games'],$game);
-
-
-            }
-            // dd($groupedObjects);
-            return json_encode($groupedObjects);
-
-        });
-        $fixtures=collect(json_decode($request));
-
-
-        return view('welcome', compact('popular','highlights','fixtures'));
+       
+    $highlights=Highlight::orderBy('match_date','DESC')->take(4)->get();
+    $predictions=Prediction::get()->groupBy('country');
+    
+       return view('welcome', compact('highlights','predictions'));
     }
 
     /**

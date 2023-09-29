@@ -16,13 +16,15 @@ return new class extends Migration
         Schema::create('predictions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('title');
+            $table->string('slug');
             $table->string('home')->nullable();
             $table->string('away')->nullable();
             $table->string('competition')->nullable();
             $table->json('odds')->nullable();
             $table->integer('prediction_id')->nullable();
             $table->string('prediction')->nullable();
-            $table->dateTime('time')->nullable();
+            $table->timestamp('match_time')->nullable();
             $table->string('country')->nullable();
             $table->string('market')->nullable();
             $table->string('result')->nullable();
