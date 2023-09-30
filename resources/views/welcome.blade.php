@@ -26,52 +26,50 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @foreach($predictions as $index=>$prediction)
-                    <div class="fixture-competition mt-5">
-                        <div class="row">
-
-                            <div class="col-10">
-                                <span>{{$index}}</span>
-                            </div>
-                            <div class="col-1">
-                                <p><i class="fal fa-angle-right"></i></p>
-
-                            </div>
-                        </div>
-
-                    </div>
-                    @foreach($prediction as $match)
+                   
                     <div class="game-detail mt-2">
                         <table>
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>Home team</th>
+                                    <th>Odds</th>
+                                    <th>Odds</th>
+                                </tr>
+                            </thead>
                             <tbody>
+                            @foreach($predictions as $index=>$prediction)
+                            @foreach($prediction as $match)
                                 <tr>
-                                    <td style="width: 2%" rowspan="2">
-                                        <small>{{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('H:i')}}</small>
+                                    <td style="" rowspan="2" class="px-2">
+                                        <small>
+                                            {{$index}}
+                                        </small>
+
+
                                     </td>
-                                    
-                                    <td style="width: 50%">
-                                        <p class="p-0 m-0 fs-4">{{$match->home}}</p>
-                                    </td>
-                                    <td style="width: 40%" rowspan="2" class="text-end">
-                                        <a href="{{route('betting-tips',$match->slug)}}"
-                                            title="See Prediction" class="btn btn-link text-decoration-none">
-                                            See prediction<i class="fal fa-angle-right ms-2"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                   
-                                    <td style="width: 50%">
+
+                                    <td style="">
+                                        <p class="p-0 m-0">{{$match->home}}</p>
                                         <p class="p-0 m-0">{{$match->away}}</p>
+                                        <small>
+                                            {{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('H:i')}}
+                                        </small>
+                                    </td>
+                                    <td  rowspan="2" class="text-end">
+                                        1X2
+
                                     </td>
                                 </tr>
+                                @endforeach
+                               @endforeach
+
                             </tbody>
                         </table>
 
 
                     </div>
-                    @endforeach
-                    @endforeach
+                   
 
 
 
