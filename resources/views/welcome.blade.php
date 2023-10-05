@@ -25,51 +25,69 @@
                         @include('includes.prediction-nav')
                     </div>
                 </div>
-                <div class="card-body">
-                   
-                    <div class="game-detail mt-2">
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th></th>
-                                    <th>Home team</th>
-                                    <th>Odds</th>
-                                    <th>Odds</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($predictions as $index=>$prediction)
-                            @foreach($prediction as $match)
-                                <tr>
-                                    <td style="" rowspan="2" class="px-2">
-                                        <small>
-                                            {{$index}}
-                                        </small>
+                <div class="card-body my-5">
+                    @foreach($predictions as $index=>$prediction)
+                     <div class="my-5">
+                         <h2 class="fs-6 my-2">{{$index}}</h2>
+                         <div class="game-detail mt-2">
+                             <table class="table league-table">
+                                 <thead>
+                                 <tr>
+                                     <th></th>
+                                     <th></th>
+                                     <th></th>
+                                     <th colspan="3">Odds</th>
+                                     <th colspan="3">Place a bet</th>
+                                 </tr>
+                                 <tr>
+                                     <th>Time</th>
+                                     <th>Match</th>
+                                     <th>Prediction</th>
+                                     <th>1</th>
+                                     <th>X</th>
+                                     <th>2</th>
+                                 </tr>
+                                 </thead>
+                                 <tbody>
+
+                                 @foreach($prediction as $match)
+                                     <tr class="text-light ">
+                                         <td>
+                                             <small>
+                                                 {{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('g:i A')}}
+                                             </small>
+                                         </td>
+                                         <td style="">
+                                             <p class="p-0 m-0 text-capitalize">{{$match->home}} vs {{$match->away}}</p>
+                                         </td>
+                                         <td>
+                                             <button class="btn-primary p-0" style="height: 23px; width: 23px; border-radius:5px;">
+                                                 {{$match->prediction}}
+                                             </button>
+                                         </td>
+
+                                         <td style="letter-spacing: 1px;">
+                                             {{number_format($match->odds['1'],2)}}
+                                         </td>
+                                         <td style="letter-spacing: 1px;">
+                                             {{number_format($match->odds['X'],2)}}
+                                         </td>
+                                         <td style="letter-spacing: 1px;">
+                                             {{number_format($match->odds['2'],2)}}
+                                         </td>
 
 
-                                    </td>
-
-                                    <td style="">
-                                        <p class="p-0 m-0">{{$match->home}}</p>
-                                        <p class="p-0 m-0">{{$match->away}}</p>
-                                        <small>
-                                            {{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('H:i')}}
-                                        </small>
-                                    </td>
-                                    <td  rowspan="2" class="text-end">
-                                        1X2
-
-                                    </td>
-                                </tr>
-                                @endforeach
-                               @endforeach
-
-                            </tbody>
-                        </table>
+                                     </tr>
+                                 @endforeach
 
 
-                    </div>
-                   
+                                 </tbody>
+                             </table>
+
+
+                         </div>
+                     </div>
+                    @endforeach
 
 
 

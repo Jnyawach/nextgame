@@ -23,10 +23,12 @@ class MainController extends Controller
     public function index()
     {
         //
-       
+
     $highlights=Highlight::orderBy('match_date','DESC')->take(4)->get();
     $predictions=Prediction::get()->groupBy('country');
-    
+
+   // dd($predictions);
+
        return view('welcome', compact('highlights','predictions'));
     }
 

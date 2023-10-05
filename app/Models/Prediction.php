@@ -23,4 +23,9 @@ class Prediction extends Model
      'home', 'away','competition','odds','country','prediction',
         'prediction_id','match_time','market','result','status','federation','title'
     ];
+
+    public function getOddsAttribute($value)
+    {
+        return json_decode($value, true);
+    }
 }
