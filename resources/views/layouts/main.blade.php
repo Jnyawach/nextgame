@@ -46,11 +46,15 @@
                     <div class=" navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                             <li class="nav-item">
+                                <a class="nav-link"  href="/">Predictions</a>
+                                <!--
                                 <a class="nav-link"  href="{{route('predictions.index')}}">Predictions</a>
+                                -->
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('match-highlights.index')}}" title="Match Highlights">Highlights</a>
                             </li>
+                            <!--
                             <li class="nav-item">
                                 <a class="nav-link" href="{{route('livescores.index')}}">Livescore</a>
                             </li>
@@ -60,6 +64,7 @@
                             <li class="nav-item">
                                 <a class="btn btn-link fs-6 fw-bold" href="{{route('search')}}"><span><i class="fas fa-search"></i></span></a>
                             </li>
+                            -->
 
                         </ul>
 
@@ -80,9 +85,11 @@
                 <div class="col-6 text-end pe-4">
 
                     <ul class="nav justify-content-end">
+                        <!--
                         <li class="nav-item fs-4">
                             <a class="btn btn-link fs-5" href="{{route('search')}}"><span><i class="fal fa-search"></i></span></a>
                         </li>
+                        -->
 
                         <li class="nav-item">
                             <button class="btn btn-link fs-5" type="button" data-bs-toggle="modal"
@@ -106,19 +113,20 @@
                         <div class="modal-body smaller">
                             <ul class="nav flex-column">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{route('predictions.index')}}" title="Football Predictions">Predictions<span><i data-feather="arrow-up-right"></i></span></a>
+                                    <a class="nav-link" href="/" title="Football Predictions">Predictions<span><i data-feather="arrow-up-right"></i></span></a>
                                 </li>
 
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('match-highlights.index')}}" title="Football Highlights">Highlights<span><i data-feather="arrow-up-right"></i></span></a>
                                 </li>
+                                <!--
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('livescores.index')}}" title="Football Livescore">Livescore<span><i data-feather="arrow-up-right"></i></span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{route('fixtures.index')}}"  title="Football Fixtures">Fixtures<span><i data-feather="arrow-up-right"></i></span></a>
                                 </li>
-
+                                -->
 
 
                             </ul>

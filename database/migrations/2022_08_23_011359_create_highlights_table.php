@@ -22,7 +22,7 @@ return new class extends Migration
             $table->mediumText('match_url')->nullable();
             $table->mediumText('competition_url')->nullable();
             $table->string('thumbnail')->nullable();
-            $table->date('match_date')->nullable();
+            $table->timestamp('match_date')->nullable();
             $table->string('video_id')->nullable();
             $table->string('video_title')->nullable();
             $table->text('video_embed')->nullable();

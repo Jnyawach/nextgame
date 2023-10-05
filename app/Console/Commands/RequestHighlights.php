@@ -35,11 +35,9 @@ class RequestHighlights extends Command
        $response=Http::get('https://www.scorebat.com/video-api/v3/feed/?token='.Config::get('scorebat.access_token'));
        $highlights= json_decode($response, True);
 
-
-
-
        foreach ($highlights as $video){
                foreach ($video as $highlight){
+
                    $item= Highlight::updateOrCreate([
                        'name'=>$highlight['title'],
                        'competition'=>$highlight['competition'],
@@ -50,7 +48,6 @@ class RequestHighlights extends Command
                        'video_id'=>$highlight['videos'][0]['id'],
                        'video_title'=>$highlight['videos'][0]['title'],
                        'video_embed'=>$highlight['videos'][0]['embed'],
-                       'published'=>Carbon::parse($highlight['date']),
                        'index_status'=>0
                    ]);
                }

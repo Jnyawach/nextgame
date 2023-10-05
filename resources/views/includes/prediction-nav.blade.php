@@ -1,6 +1,6 @@
 <ul class="nav live-score">
     <li class="nav-item">
-        <a class="nav-link  {{ request()->is('predictions') ? 'active' : '' }}" href="{{route('predictions.index')}}">TODAY</a>
+        <a class="nav-link  {{ request()->is('/') ? 'active' : '' }}" href="/">TODAY</a>
     </li>
 
     <li class="nav-item">

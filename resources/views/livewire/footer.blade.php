@@ -20,6 +20,7 @@
                     </div>
                 </ul>
             </div>
+            <!--
             <div class="col-6 col-sm-6 col-md-3 p-2">
                 <ul class="nav flex-column">
                     <li class="nav-item">
@@ -30,8 +31,10 @@
 
                 </ul>
             </div>
+            -->
             <div class="col-6 col-sm-6 col-md-3 p-2">
                 <ul class="nav flex-column">
+                    <!--
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('competitions.index')}}" title="Football Competitions">Competitions</a>
                     </li>
@@ -44,8 +47,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('fixtures.index')}}" title="football Fixtures">Fixtures</a>
                     </li>
+                    -->
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('predictions.index')}}" title="Football Predictions">Predictions</a>
+                        <a class="nav-link" href="{{route('match-highlights.index')}}" title="Football Highlights">Highlights<span><i data-feather="arrow-up-right"></i></span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/" title="Football Predictions">Predictions</a>
                     </li>
                 </ul>
             </div>

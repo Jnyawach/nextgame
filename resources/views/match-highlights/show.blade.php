@@ -78,7 +78,7 @@
                 </div>
                 <div class="col-12 col-md-3 text-center p-3">
                     <div class="advert" >
-                        <img src="{{asset('images/advert-sample.jpg')}}" class="img-fluid" alt="Advertisement" style="width: 300px">
+
                     </div>
 
                 </div>

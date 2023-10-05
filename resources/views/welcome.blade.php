@@ -21,7 +21,7 @@
         <div class="row my-5">
             <div class="col-12 col-md-8">
                 <div class="card fixture">
-                    <div class="card-header p-0" style="border-bottom:1px solid #222">
+                    <div class="card-header p-0" >
                         @include('includes.prediction-nav')
                     </div>
                 </div>
@@ -37,7 +37,9 @@
                                      <th></th>
                                      <th></th>
                                      <th colspan="3">Odds</th>
+                                     <!--
                                      <th colspan="3">Place a bet</th>
+                                     -->
                                  </tr>
                                  <tr>
                                      <th>Time</th>
@@ -92,6 +94,39 @@
 
 
                 </div>
+            </div>
+            <div class="col-12 col-md-4">
+                @if($highlights->count()>0)
+
+                    <h1 class="fs-6 fw-bold">Latest Match Highlights</h1>
+                    @foreach($highlights as $highlight)
+                        <div class="most-recent">
+                            <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
+                                <div>
+                                    <div class="player-thumbnail">
+
+                                        <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
+
+
+                                        <div class="play-icon">
+                                            <span class="fs-4"><i class="fal fa-play"></i></span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="match-details">
+                                        <h6 class="mt-3 fw-bold">{{$highlight->name}}</h6>
+                                        <p class="mt-2 ">{{$highlight->competition}}: <span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
+
+                                    </div>
+                                </div>
+
+                            </a>
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
         </div>
 
