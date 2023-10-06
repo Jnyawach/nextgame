@@ -54,27 +54,27 @@
 
                                  @foreach($prediction as $match)
                                      <tr class="text-light ">
-                                         <td>
+                                         <td class="text-start">
                                              <small>
                                                  {{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('g:i A')}}
                                              </small>
                                          </td>
-                                         <td style="">
+                                         <td class="text-start">
                                              <p class="p-0 m-0 text-capitalize">{{$match->home}} vs {{$match->away}}</p>
                                          </td>
-                                         <td>
+                                         <td class="text-start">
                                              <button class="btn-primary p-0" style="height: 23px; width: 23px; border-radius:5px;">
                                                  {{$match->prediction}}
                                              </button>
                                          </td>
 
-                                         <td style="letter-spacing: 1px;">
+                                         <td class="text-start" style="letter-spacing: 1px;">
                                              {{number_format($match->odds['1'],2)}}
                                          </td>
                                          <td style="letter-spacing: 1px;">
                                              {{number_format($match->odds['X'],2)}}
                                          </td>
-                                         <td style="letter-spacing: 1px;">
+                                         <td class="text-start" style="letter-spacing: 1px;">
                                              {{number_format($match->odds['2'],2)}}
                                          </td>
 
