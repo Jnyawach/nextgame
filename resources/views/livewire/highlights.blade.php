@@ -66,7 +66,7 @@
     <section class="mt-5">
         <h6>Previous Highlights</h6>
         <div class="row">
-            @foreach($highlights as $highlight)
+            @foreach($highlights->slice(3) as $highlight)
                 <div class="col-12 col-sm-6 col-md-6 col-lg-3 pt-3">
                     <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights" class="text-decoration-none">
                         <div>
