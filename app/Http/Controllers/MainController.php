@@ -24,10 +24,9 @@ class MainController extends Controller
     {
         //
 
-    $highlights=Highlight::orderBy('match_date','DESC')->take(4)->get();
-    $predictions=Prediction::get()->groupBy('country');
+    $highlights=Highlight::orderBy('match_date','DESC')->take(8)->get();
+    $predictions=Prediction::where('match_date', Carbon::today())->get()->groupBy('country');
 
-   // dd($predictions);
 
        return view('welcome', compact('highlights','predictions'));
     }
