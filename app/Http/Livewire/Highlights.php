@@ -22,7 +22,7 @@ class Highlights extends Component
     public function render()
     {   $time=Carbon::now()->addHour();
         $keyword='highlights'.$this->load;
-        $highlights= Highlight::when($this->search,function ($query){
+        $highlights= Highlight::orderBy('match_date','DESC')->when($this->search,function ($query){
             return $query->where('name', 'like', '%'.$this->search.'%');
         })->limit($this->load)->get();
 

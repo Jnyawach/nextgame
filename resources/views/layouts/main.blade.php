@@ -18,12 +18,6 @@
     <link rel = "icon" href ="{{asset('images/kola-icon.png')}}" type = "image/x-icon">
     @yield('styles')
 
-
-    <script src="{{asset('js/js.cookie.js')}}"></script>
-    <script>
-        var time=Intl.DateTimeFormat().resolvedOptions().timeZone
-        Cookies.set('timezone', time, { expires: 7 })
-    </script>
    @livewireStyles
     <link rel="stylesheet" type="text/css" href="{{asset("vendor/cookie-consent/css/cookie-consent.css")}}">
 </head>
