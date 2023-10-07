@@ -34,20 +34,7 @@
             -->
             <div class="col-6 col-sm-6 col-md-3 p-2">
                 <ul class="nav flex-column">
-                    <!--
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('competitions.index')}}" title="Football Competitions">Competitions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('competition-countries.index')}}" title="Competition Clusters">Countries</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('livescores.index')}}" title="Football Livescore">Livescore</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{route('fixtures.index')}}" title="football Fixtures">Fixtures</a>
-                    </li>
-                    -->
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('match-highlights.index')}}" title="Football Highlights">Highlights<span><i data-feather="arrow-up-right"></i></span></a>
                     </li>

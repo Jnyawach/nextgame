@@ -1,16 +1,23 @@
 <ul class="nav live-score">
-    <li class="nav-item">
-        <a class="nav-link  {{ request()->is('/') ? 'active' : '' }}" href="/">TODAY</a>
-    </li>
+    @if( request()->is('/'))
+        <li class="nav-item">
+            <a class="nav-link  {{ request()->is('/') ? 'active' : '' }}" href="/">TODAY</a>
+        </li>
+    @else
+        <li class="nav-item">
+            <a class="nav-link  {{ url()->full()==route('football.predictions',\Carbon\Carbon::now()->format('Y-m-d'))? 'active' : '' }}" href="{{route('football.predictions',\Carbon\Carbon::now()->format('Y-m-d'))}}">TODAY</a>
+        </li>
+    @endif
+
 
     <li class="nav-item">
-        <a class="nav-link text-uppercase {{ request()->is('predictions/betting-tips/'.\Carbon\Carbon::now()->addDay()->format('Y-m-d')) ? 'active' : '' }}" href="{{route('betting-tips',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDay()->isoFormat('MMM Do')}}</a>
+        <a class="nav-link text-uppercase {{ url()->full()==route('football.predictions',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))? 'active' : '' }}" href="{{route('football.predictions',\Carbon\Carbon::now()->addDay()->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDay()->isoFormat('MMM Do')}}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-uppercase {{ request()->is('predictions/betting-tips/'.\Carbon\Carbon::now()->addDays(2)->format('Y-m-d')) ? 'active' : '' }}" href="{{route('betting-tips',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(2)->isoFormat('MMM Do')}}</a>
+        <a class="nav-link text-uppercase {{ url()->full()==route('football.predictions',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))? 'active' : '' }}" href="{{route('football.predictions',\Carbon\Carbon::now()->addDays(2)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(2)->isoFormat('MMM Do')}}</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-uppercase {{ request()->is('predictions/betting-tips/'.\Carbon\Carbon::now()->addDays(3)->format('Y-m-d')) ? 'active' : '' }}" href="{{route('betting-tips',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
+        <a class="nav-link text-uppercase {{ url()->full()==route('football.predictions',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))? 'active' : '' }}" href="{{route('football.predictions',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
     </li>
 
     <li class="nav-item dropdown d-lg-none">

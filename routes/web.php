@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminContactController;
 use App\Http\Controllers\Admin\AdminLinksController;
+use App\Http\Controllers\General\FootballPredictionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,22 +49,28 @@ Route::group(['middleware'=>['auth','role:Admin']], function (){
     Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index'])->name('logs');
 });
 //General Routes
+Route::get('terms',  [MainController::class, 'terms'])->name('terms');
+Route::get('privacy-policy',  [MainController::class, 'policy'])->name('privacy-policy');
+Route::get('contact-us',  [MainController::class, 'contact'])->name('contact');
+Route::get('dmca',  [MainController::class, 'dmca'])->name('dmca');
+Route::get('football-predictions/{date}.html', [FootballPredictionController::class, 'getPrediction'])->name('football.predictions');
+Route::resource('/', MainController::class);
+Route::resource('match-highlights', MatchHighlightsController::class);
+
+/*
 Route::group([], function (){
     Route::get('predictions/tip/{competition}/{id}',  [PredictionController::class, 'tip'])->name('fixture-tip');
     Route::get('predictions/competition/{competition}/{id}',  [PredictionController::class, 'competition'])->name('competition-tips');
     Route::get('predictions/betting-tips/{id}.html',  [PredictionController::class, 'predictions'])->name('betting-tips');
-    Route::resource('predictions', PredictionController::class);
-    Route::get('contact-us',  [MainController::class, 'contact'])->name('contact');
-    Route::get('dmca',  [MainController::class, 'dmca'])->name('dmca');
+
+
     Route::get('search',  [MainController::class, 'search'])->name('search');
-    Route::get('terms',  [MainController::class, 'terms'])->name('terms');
-    Route::get('privacy-policy',  [MainController::class, 'policy'])->name('privacy-policy');
+
     Route::get('football/match/{match}/{id}',  [MainController::class, 'match'])->name('league.match');
     Route::get('football/{id}/standings',  [MainController::class, 'standings'])->name('league.standings');
     Route::get('football/{id}/fixtures',  [MainController::class, 'fixture'])->name('league.fixture');
     Route::get('football/{id}',  [MainController::class, 'football'])->name('football.index');
-    Route::resource('/', MainController::class);
-    Route::resource('match-highlights', MatchHighlightsController::class);
+
     Route::get('fixtures/match-day/{id}',  [FixturesController::class, 'match'])->name('match-day');
     Route::resource('fixtures', FixturesController::class);
     Route::get('competitions/fixtures/{id}',  [CompetitionsController::class, 'fixtures'])->name('competition-fixtures');
@@ -77,7 +84,7 @@ Route::group([], function (){
     Route::resource('livescores', LivescoreController::class);
 });
 
-
+*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');
