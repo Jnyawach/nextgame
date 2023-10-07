@@ -37,19 +37,17 @@ class RequestHighlights extends Command
 
        foreach ($highlights as $video){
                foreach ($video as $highlight){
-
-                   $item= Highlight::updateOrCreate([
-                       'name'=>$highlight['title'],
-                       'competition'=>$highlight['competition'],
-                       'competition_url'=>$highlight['competitionUrl'],
-                       'match_url'=>$highlight['matchviewUrl'],
-                       'thumbnail'=>$highlight['thumbnail'],
-                       'match_date'=>Carbon::parse($highlight['date']),
-                       'video_id'=>$highlight['videos'][0]['id'],
-                       'video_title'=>$highlight['videos'][0]['title'],
-                       'video_embed'=>$highlight['videos'][0]['embed'],
-                       'index_status'=>0
-                   ]);
+                   $item=Highlight::firstOrNew(['name'=>$highlight['title']]);
+                   $item->competition=$highlight['competition'];
+                   $item->competition_url=$highlight['competitionUrl'];
+                   $item->match_url=$highlight['matchviewUrl'];
+                   $item->thumbnail=$highlight['thumbnail'];
+                   $item->match_date=Carbon::parse($highlight['date']);
+                   $item->video_id=$highlight['videos'][0]['id'];
+                   $item->video_title=$highlight['videos'][0]['title'];
+                   $item->video_embed=$highlight['videos'][0]['embed'];
+                   $item->index_status=0;
+                  $item->save();
                }
 
            }
