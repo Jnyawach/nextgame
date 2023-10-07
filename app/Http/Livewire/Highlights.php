@@ -8,7 +8,7 @@ use Livewire\Component;
 
 class Highlights extends Component
 {
-    public $load=10;
+    public $load=21;
     public $search;
     public $foo;
     protected $queryString = [
