@@ -56,7 +56,7 @@
                                      <tr class="text-light ">
                                          <td class="text-start">
                                              <small>
-                                                 {{\Carbon\Carbon::parse($match->match_time)->timezone($_COOKIE['timezone'])->format('g:i A')}}
+                                                 {{\Carbon\Carbon::parse($match->match_time)->format('g:i A')}}
                                              </small>
                                          </td>
                                          <td class="text-start">
