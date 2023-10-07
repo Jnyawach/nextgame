@@ -56,7 +56,7 @@
                                      <tr class="text-light ">
                                          <td class="text-start">
                                              <small>
-                                                 {{\Carbon\Carbon::parse($match->match_time)->format('g:i A')}}
+                                                 {{\Carbon\Carbon::parse($match->match_time)->format('D M Y g:i A')}}
                                              </small>
                                          </td>
                                          <td class="text-start">
@@ -125,6 +125,9 @@
                             </a>
                         </div>
                     @endforeach
+
+                    <a href="{{route('match-highlights.index')}}" class="btn btn-outline-light mt-5">See all highlights<span
+                            class="ms-2"><i class="far fa-long-arrow-alt-right"></i></span></a>
                 @endif
 
             </div>
@@ -133,49 +136,5 @@
     </div>
 </section>
 @endif
-
-@if($highlights->count()>0)
-<section class="latest-highlights mt-5">
-
-    <div class="play-title">
-        <h1 class="fs-6 fw-bold">LATEST MATCH HIGHLIGHTS</h1>
-
-    </div>
-
-    <div class="row mt-5">
-        @foreach($highlights as $highlight)
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3 pt-3">
-            <a href="{{route('match-highlights.show', $highlight->slug)}}" title="{{$highlight->name}} Highlights"
-                class="text-decoration-none">
-                <div>
-                    <div class="player-thumbnail">
-                        <img src="{{$highlight->thumbnail}}" class="img-fluid curved" alt="{{$highlight->name}}">
-
-                        <div class="play-icon">
-                            <span class="fs-4"><i class="fal fa-play"></i></span>
-
-                        </div>
-
-                    </div>
-
-                    <div class="match-details">
-                        <h6 class="mt-3">{{$highlight->name}}</h6>
-
-                        <p><span>{{\Carbon\Carbon::parse($highlight->match_date)->diffForHumans()}}</span></p>
-
-                    </div>
-                </div>
-
-            </a>
-        </div>
-        @endforeach
-    </div>
-
-    <a href="{{route('match-highlights.index')}}" class="btn btn-outline-light mt-5">See all highlights<span
-            class="ms-2"><i class="far fa-long-arrow-alt-right"></i></span></a>
-
-</section>
-@endif
-
 
 @endsection
