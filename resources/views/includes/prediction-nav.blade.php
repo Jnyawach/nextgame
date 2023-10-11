@@ -20,6 +20,8 @@
         <a class="nav-link text-uppercase {{ url()->full()==route('football.predictions',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))? 'active' : '' }}" href="{{route('football.predictions',\Carbon\Carbon::now()->addDays(3)->format('Y-m-d'))}}">{{\Carbon\Carbon::now()->addDays(3)->isoFormat('MMM Do')}}</a>
     </li>
 
+        <!--
+
     <li class="nav-item dropdown d-lg-none">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fal fa-calendar-alt"></i> MORE
@@ -32,6 +34,7 @@
             </div>
         </div>
     </li>
+    -->
 
 
 

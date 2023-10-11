@@ -14,7 +14,7 @@
 
 @endsection
 
-@if($predictions->count()>0)
+
 <section>
     <div class="my-5">
         <h1 class="fs-6 fw-bold">Latest Predictions</h1>
@@ -26,20 +26,51 @@
                     </div>
                 </div>
                 <div class="card-body my-5">
+                    @if($predictions->count()>0)
                     @foreach($predictions as $index=>$prediction)
                      <div class="my-5">
                          <h2 class="fs-6 my-2">{{$index}}</h2>
                          <div class="game-detail mt-2">
-                             <table class="table league-table">
+
+                             <div class="p-2 d-md-none">
+                                 @foreach($prediction as $match)
+                                 <div class="game-detail p-2" style="font-size: 14px">
+                                     <small class="text-primary">
+                                         {{\Carbon\Carbon::parse($match->match_time)->format('D g:i A')}}
+                                     </small>
+                                     <p class="p-0 m-0 text-capitalize my-2">{{$match->home}} vs {{$match->away}}</p>
+                                    <p> Match prediction: <span class="text-primary">{{$match->prediction}}</span></p>
+                                     <div class="my-2">
+                                         <h6>Odds</h6>
+                                         <table class="table league-table">
+                                             <thead>
+                                             <tr>
+                                                 <th>1</th>
+                                                 <th>X</th>
+                                                 <th>2</th>
+                                             </tr>
+                                             </thead>
+                                             <tbody>
+                                             <tr>
+                                                 <td>{{number_format($match->odds['1'],2)}}</td>
+                                                 <td>{{number_format($match->odds['X'],2)}}</td>
+                                                 <td>{{number_format($match->odds['2'],2)}}</td>
+                                                </tr>
+                                             </tbody>
+                                         </table>
+                                     </div>
+                                 </div>
+                                 @endforeach
+                             </div>
+                             <!--large screen-->
+                             <table class="table league-table d-none d-md-table">
                                  <thead>
                                  <tr>
                                      <th></th>
                                      <th></th>
                                      <th></th>
                                      <th colspan="3">Odds</th>
-                                     <!--
-                                     <th colspan="3">Place a bet</th>
-                                     -->
+
                                  </tr>
                                  <tr>
                                      <th>Time</th>
@@ -56,7 +87,7 @@
                                      <tr class="text-light ">
                                          <td class="text-start">
                                              <small>
-                                                 {{\Carbon\Carbon::parse($match->match_time)->format('D M Y g:i A')}}
+                                                 {{\Carbon\Carbon::parse($match->match_time)->format('D g:i A')}}
                                              </small>
                                          </td>
                                          <td class="text-start">
@@ -85,11 +116,10 @@
 
                                  </tbody>
                              </table>
-
-
                          </div>
                      </div>
                     @endforeach
+                    @endif
 
 
 
@@ -135,6 +165,5 @@
 
     </div>
 </section>
-@endif
 
 @endsection

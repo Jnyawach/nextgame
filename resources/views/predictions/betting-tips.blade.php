@@ -56,7 +56,7 @@
                                                 <tr class="text-light ">
                                                     <td class="text-start">
                                                         <small>
-                                                            {{\Carbon\Carbon::parse($match->match_time)->format('D M Y g:i A')}}
+                                                            {{\Carbon\Carbon::parse($match->match_time)->format('D g:i A')}}
                                                         </small>
                                                     </td>
                                                     <td class="text-start">
