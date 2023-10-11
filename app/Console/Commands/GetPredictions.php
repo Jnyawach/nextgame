@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\Prediction;
 use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Config;
@@ -31,31 +32,37 @@ class GetPredictions extends Command
      */
     public function handle()
     {
+        $period = CarbonPeriod::create(Carbon::today(), Carbon::today()->addDays(4));
+
         $key = Config::get('rapid.KEY');
         $host = Config::get('rapid.URL');
-        $url='https://football-prediction-api.p.rapidapi.com/api/v2/predictions?iso_date='.Carbon::today()->isoFormat('YYYY-MM-DD');
-        $response=Http::withHeaders([
-            'x-rapidapi-host' => $host,
-            'x-rapidapi-key' => $key
-        ])->get($url);
-        $result= json_decode($response);
 
-        foreach ($result->data as $game){
+       foreach ($period as $date){
+           $url='https://football-prediction-api.p.rapidapi.com/api/v2/predictions?iso_date='.$date->isoFormat('YYYY-MM-DD');
+           $response=Http::withHeaders([
+               'x-rapidapi-host' => $host,
+               'x-rapidapi-key' => $key
+           ])->get($url);
+           $result= json_decode($response);
 
-            $prediction=Prediction::updateOrCreate([
-                'title'=>$game->home_team.'-vs-'.$game->away_team,
-                'home'=>$game->home_team,
-                'away'=>$game->away_team,
-                'prediction_id'=>$game->id,
-                'market'=>$game->market,
-                'competition'=>$game->competition_name,
-                'prediction'=>$game->prediction,
-                'country'=>$game->competition_cluster,
-                'match_time'=>Carbon::parse($game->start_date)->setTimezone('UTC'),
-                'odds'=>json_encode($game->odds),
-                'status'=>$game->status,
-                'federation'=>$game->federation
-            ]);
-        }
+           foreach ($result->data as $game){
+
+               $prediction=Prediction::updateOrCreate([
+                   'title'=>$game->home_team.'-vs-'.$game->away_team,
+                   'home'=>$game->home_team,
+                   'away'=>$game->away_team,
+                   'prediction_id'=>$game->id,
+                   'market'=>$game->market,
+                   'competition'=>$game->competition_name,
+                   'prediction'=>$game->prediction,
+                   'country'=>$game->competition_cluster,
+                   'match_time'=>Carbon::parse($game->start_date)->setTimezone('UTC'),
+                   'odds'=>json_encode($game->odds),
+                   'status'=>$game->status,
+                   'federation'=>$game->federation
+               ]);
+           }
+       }
+
     }
 }
