@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('sitemap:generate')->daily()->withoutOverlapping()->onOneServer();
         //$schedule->command('site:index')->everyTwoHours()->withoutOverlapping()->onOneServer();
         $schedule->command('request:highlights')->hourly()->withoutOverlapping()->onOneServer();
-        $schedule->command('get:predictions')->dailyAt('07:00')->withoutOverlapping()->onOneServer();
+        $schedule->command('get:predictions')->twicedailyAt('07:00','01:00')->withoutOverlapping()->onOneServer();
     }
 
     /**

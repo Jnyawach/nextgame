@@ -119,6 +119,10 @@
                          </div>
                      </div>
                     @endforeach
+                    @else
+                        <div class="my-5">
+                            <h4>No predictions available currently!</h4>
+                        </div>
                     @endif
 
 
