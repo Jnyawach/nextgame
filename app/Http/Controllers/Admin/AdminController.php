@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Contact;
+use App\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,8 +19,9 @@ class AdminController extends Controller
     {
         //
         $messages=Contact::Unread()->count();
+        $role=Role::create(['name'=>'Admin','guard_name'=>'web']);
         $user=Auth::user();
-        $user->assignRole('Admin');
+        $user->assignRole($role);
         return  view('admin.index', compact('messages'));
     }
 
