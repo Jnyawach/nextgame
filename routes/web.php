@@ -35,7 +35,7 @@ use App\Http\Controllers\General\FixturesController;
 use App\Http\Controllers\General\LivescoreController;
 use App\Http\Controllers\General\PredictionController;
 
-Route::group(['middleware'=>['auth',/*'role:Admin'*/]], function (){
+Route::group(['middleware'=>['auth','role:Admin']], function (){
     Route::resource('admin/links', AdminLinksController::class);
     Route::resource('admin/contact', AdminContactController::class);
     Route::resource('admin/policies', AdminPolicyController::class);

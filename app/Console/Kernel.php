@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        $schedule->command('test:cron')->everyMinute();
         $schedule->command('sitemap:generate')->daily()->withoutOverlapping()->onOneServer()->timezone('Africa/Nairobi');
         //$schedule->command('site:index')->everyTwoHours()->withoutOverlapping()->onOneServer();
         $schedule->command('request:highlights')->hourly()->withoutOverlapping()->onOneServer();

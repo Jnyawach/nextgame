@@ -19,9 +19,7 @@ class AdminController extends Controller
     {
         //
         $messages=Contact::Unread()->count();
-        $role=Role::create(['name'=>'Admin','guard_name'=>'web']);
-        $user=Auth::user();
-        $user->assignRole($role);
+
         return  view('admin.index', compact('messages'));
     }
 
